@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "272083151165",
+    "firebase_url": "https://clockinout-59ed2-default-rtdb.firebaseio.com",
+    "project_id": "clockinout-59ed2",
+    "storage_bucket": "clockinout-59ed2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272083151165:android:20b11237855773618a3d54",
+        "android_client_info": {
+          "package_name": "com.example.colo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272083151165-gcr4ourl850jvtpaqmke98ffi52pcdu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYiLmO0CotOaHN4LAOXF18cqHmHL5Cmy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272083151165-gcr4ourl850jvtpaqmke98ffi52pcdu2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
