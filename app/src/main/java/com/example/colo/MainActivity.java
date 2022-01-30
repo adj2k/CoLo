@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity
     Button ButtonSunny;
     Button ButtonFoggy;
     Button ButtonCreateAccount;
+    Button ToLogin;
 
     DatabaseReference RootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference conditionRef = RootRef.child("condition");
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity
         ButtonSunny = (Button) findViewById(R.id.buttonSunny);
         ButtonFoggy = (Button) findViewById(R.id.buttonFoggy);
         ButtonCreateAccount = (Button) findViewById(R.id.buttonCreateAccount);
+        ToLogin = (Button) findViewById(R.id.btnToLogin);
     }
 
     @Override
@@ -91,6 +93,15 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        ToLogin.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent toLogin = new Intent(MainActivity.this, LogIn.class);
+                startActivity(toLogin);
+            }
+        });
 
     }
 }

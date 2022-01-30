@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clock Out"
+        app:layout_constraintStart_toEndOf="@+id/buttonSunny"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCondition" />
@@ -44,4 +45,12 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonFoggy"
         app:layout_constraintStart_toEndOf="@+id/buttonSunny"
         app:layout_constraintTop_toBottomOf="@+id/buttonSunny" />
+
+    <Button
+        android:id="@+id/btnToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="165dp"
+        tools:layout_editor_absoluteY="250dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

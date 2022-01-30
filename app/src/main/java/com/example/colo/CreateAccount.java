@@ -61,6 +61,7 @@ public class CreateAccount extends AppCompatActivity
         DatePicker = (Button) findViewById(R.id.btnSelectDate);
         DateText = (TextView) findViewById(R.id.tvDateText);
         RadioGroup = (RadioGroup) findViewById(R.id.RadioGroup);
+        RadioButton = (RadioButton) findViewById(R.id.rbNoAnswer);
         CreateAccountBTN = (Button) findViewById(R.id.btnCreateAccount);
 
         //Date of Birth Button
@@ -125,7 +126,7 @@ public class CreateAccount extends AppCompatActivity
                 String radioButton = RadioButton.getText().toString();
 
 
-                if(validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword())
+                if(validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateDate() & validateGender())
                 {
                     UserHelperClass helperClass = new UserHelperClass(id, name, email, userName, password, dateText, radioButton);
                     reference.push().setValue(helperClass);
@@ -248,6 +249,35 @@ public class CreateAccount extends AppCompatActivity
         }
     }
 
+    private boolean validateDate()
+    {
+        String val = DateText.getText().toString();
+
+        if (val.equals("Date"))
+        {
+            DateText.setError("Please enter your birthday");
+            return false;
+        } else
+        {
+            DateText.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateGender()
+    {
+
+        if (RadioGroup.getCheckedRadioButtonId() == -1)
+        {
+            RadioButton.setError("Please select the gender");
+             return false;
+        } else
+        {
+            RadioButton.setError(null);
+            return true;
+        }
+
+    }
 }
 
 //Figure out JSON later

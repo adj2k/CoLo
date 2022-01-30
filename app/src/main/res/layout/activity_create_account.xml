@@ -116,7 +116,8 @@
                 android:id="@+id/etUserID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="12dp"
+                android:inputType="number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -180,7 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prefer Not to Answer"
-                    android:onClick="checkButton"/>
+                    android:onClick="checkButton" />
             </RadioGroup>
         </com.google.android.material.textfield.TextInputLayout>
 
