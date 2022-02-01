@@ -4,41 +4,24 @@ import android.provider.MediaStore;
 
 public class UserHelperClass<Id>
 {
-
-    long employeeId;
-    String Name, Email, UserName, Password, DateText, RadioButton;
-
+    String Name, Email, UserName, Password, EmployeeID, DateText, RadioButton;
 
     //Constructor. New instance
-    public UserHelperClass()
-    {
-    }
+    public UserHelperClass() { }
 
     //Constructor
-    public UserHelperClass(long id, String name, String email, String userName, String password, String dateText, String radioButton)
+    public UserHelperClass(String name, String email, String userName, String password, String employeeID, String dateText, String radioButton)
     {
-
-        employeeId = id;
         Name = name;
         Email = email;
         UserName = userName;
         Password = password;
+        EmployeeID = employeeID;
         DateText = dateText;
         RadioButton = radioButton;
-
     }
 
     //getters and setters for all of the inputs
-    public long getEmployeeId()
-    {
-        return employeeId;
-    }
-
-    public void setEmployeeId(long employeeId)
-    {
-        this.employeeId = employeeId;
-    }
-
     public String getName()
     {
         return Name;
@@ -78,6 +61,10 @@ public class UserHelperClass<Id>
     {
         Password = password;
     }
+
+    public String getEmployeeID() { return EmployeeID; }
+
+    public void setEmployeeID(String employeeID) { EmployeeID = employeeID; }
 
     public String getDateText() { return DateText; }
 
