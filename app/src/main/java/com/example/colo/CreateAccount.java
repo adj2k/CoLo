@@ -122,6 +122,7 @@ public class CreateAccount extends AppCompatActivity
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
                     userHelperClass = new UserHelperClass(name, email, userName, password, employeeID, dateText, radioButton);
+                    mDatabase.push().setValue(userHelperClass);
                     createAccount(email, password);
                     startActivity(new Intent(CreateAccount.this, MainActivity.class));
                 }
@@ -143,13 +144,11 @@ public class CreateAccount extends AppCompatActivity
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
                             Log.d(TAG, "createUserWithEmail:success");
-                            updateUI(user);
                         } else
                         {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(CreateAccount.this, "Authentication failed.", Toast.LENGTH_LONG).show();
-                            updateUI(user);
                         }
                     }
                 });
@@ -159,7 +158,7 @@ public class CreateAccount extends AppCompatActivity
     public void updateUI(FirebaseUser user)
     {
         String keyId = mDatabase.push().getKey();
-        mDatabase.child(keyId).setValue(userHelperClass);
+        //mDatabase.child(keyId).setValue(userHelperClass);
     }
 
 
