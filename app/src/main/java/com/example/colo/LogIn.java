@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.colo.employeePages.EmployeeHub;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -82,7 +83,7 @@ public class LogIn extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
-                    startActivity(new Intent(LogIn.this, ManagerHub.class));
+                    startActivity(new Intent(LogIn.this, EmployeeHub.class));
                 }else{
                     Toast.makeText(LogIn.this, "Failed to login. Please check credentials", Toast.LENGTH_LONG).show();
                 }
