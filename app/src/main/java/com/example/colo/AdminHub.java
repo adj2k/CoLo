@@ -1,7 +1,5 @@
 package com.example.colo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +7,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ManagerHub extends AppCompatActivity
+public class AdminHub extends AppCompatActivity
 {
 
     public Button LogOut;
@@ -37,7 +37,7 @@ public class ManagerHub extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager_hub);
+        setContentView(R.layout.activity_admin_hub);
 
         LogoutButton = (Button) findViewById(R.id.LogOut_btn);
         EmployeeButton = (ImageButton) findViewById(R.id.employee_btn);
@@ -47,7 +47,7 @@ public class ManagerHub extends AppCompatActivity
         SettingsButton = (ImageButton) findViewById(R.id.projects_btn);
 
         database = FirebaseDatabase.getInstance();
-        mDatabase = database.getReference("Manager");
+        mDatabase = database.getReference("Admin");
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         UID = user.getUid();
@@ -103,44 +103,9 @@ public class ManagerHub extends AppCompatActivity
             public void onClick(View view)
             {
                 mAuth.signOut();
-                startActivity(new Intent(ManagerHub.this, LogIn.class));
+                startActivity(new Intent(AdminHub.this, LogIn.class));
             }
         });
-        /*
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null)
-        {
-            mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
-            {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                {
-                    String email = dataSnapshot.child(UID).child("email").getValue(String.class);
-                    Email.setText(email);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error)
-                {
-
-                }
-            });
-        }else
-        {
-            startActivity(new Intent(ManagerHub.this, MainActivity.class));
-            finish();
-        }
-
-        LogOut.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                mAuth.signOut();
-                startActivity(new Intent(ManagerHub.this, MainActivity.class));
-            }
-        });
-    */
     }
 
 

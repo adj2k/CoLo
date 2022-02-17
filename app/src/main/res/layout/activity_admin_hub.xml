@@ -7,18 +7,58 @@
     tools:context=".ManagerHub">
 
     <ImageButton
+        android:id="@+id/settings_btn"
+        android:layout_width="110dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="27dp"
+        android:adjustViewBounds="true"
+        android:background="#2E72E3"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activitylogBtn_title"
+        app:srcCompat="@android:drawable/ic_menu_preferences"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/settingsBtn_title"
+        android:layout_width="103dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="62dp"
+        android:text="SETTINGS"
+        android:textAlignment="center"
+        android:textColor="#2E72E3"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_btn" />
+
+    <ImageButton
+        android:id="@+id/activity_btn"
+        android:layout_width="110dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="60dp"
+        android:adjustViewBounds="true"
+        android:background="#2E72E3"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/projects_btn"
+        app:layout_constraintTop_toBottomOf="@+id/employeeBtn_title"
+        app:srcCompat="@android:drawable/ic_menu_recent_history"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+    <ImageButton
         android:id="@+id/projects_btn"
         android:layout_width="110dp"
         android:layout_height="104dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="29dp"
         android:layout_marginEnd="55dp"
         android:adjustViewBounds="true"
         android:background="#2E72E3"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/activity_btn"
         app:layout_constraintTop_toBottomOf="@+id/ManagersBtn_title"
-        app:srcCompat="@android:drawable/ic_menu_preferences"
+        app:srcCompat="@android:drawable/ic_menu_today"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <TextView
@@ -26,29 +66,13 @@
         android:layout_width="103dp"
         android:layout_height="32dp"
         android:layout_marginEnd="55dp"
-        android:text="SETTINGS"
+        android:text="PROJECTS"
         android:textAlignment="center"
         android:textColor="#2E72E3"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/projects_btn" />
-
-    <ImageButton
-        android:id="@+id/activity_btn"
-        android:layout_width="110dp"
-        android:layout_height="104dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="63dp"
-        android:adjustViewBounds="true"
-        android:background="#2E72E3"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/projects_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employeeBtn_title"
-        app:srcCompat="@android:drawable/ic_menu_recent_history"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/activitylogBtn_title"
@@ -72,7 +96,7 @@
         android:layout_marginEnd="146dp"
         android:layout_marginBottom="68dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Manager Hub"
+        android:text="Admin Hub"
         android:textColor="#000000"
         android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/announcement_box"
@@ -159,7 +183,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/employee_btn"
         app:layout_constraintTop_toBottomOf="@+id/announcement_btn"
-        app:srcCompat="@android:drawable/ic_menu_today"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <TextView
@@ -180,7 +204,7 @@
         android:layout_width="103dp"
         android:layout_height="32dp"
         android:layout_marginEnd="55dp"
-        android:text="PROJECTS"
+        android:text="MANAGERS"
         android:textAlignment="center"
         android:textColor="#2E72E3"
         android:textSize="18sp"
