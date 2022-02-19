@@ -2,15 +2,20 @@ package com.example.colo;
 
 import android.provider.MediaStore;
 
+import java.util.Calendar;
+
 public class UserHelperClass<Id>
 {
     String Name, Email, UserName, Password, EmployeeID, DateText, RadioButton;
 
+    Calendar ClockInTime;
+    Calendar ClockOutTime;
     //Constructor. New instance
     public UserHelperClass() { }
 
     //Constructor
-    public UserHelperClass(String name, String email, String userName, String password, String employeeID, String dateText, String radioButton)
+    public UserHelperClass(String name, String email, String userName, String password, String employeeID, String dateText, String radioButton,
+                           Calendar clockInTime, Calendar clockOutTime)
     {
         Name = name;
         Email = email;
@@ -19,6 +24,8 @@ public class UserHelperClass<Id>
         EmployeeID = employeeID;
         DateText = dateText;
         RadioButton = radioButton;
+        ClockInTime = clockInTime;
+        ClockOutTime = clockOutTime;
     }
 
     //getters and setters for all of the inputs
