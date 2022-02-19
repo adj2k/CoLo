@@ -121,7 +121,7 @@ public class CreateAccount extends AppCompatActivity
 
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
-                    userHelperClass = new UserHelperClass(name, email, userName, password, employeeID, dateText, radioButton);
+                    userHelperClass = new UserHelperClass(name, email, userName, password, employeeID, dateText, radioButton, null, null);
                     mDatabase.push().setValue(userHelperClass);
                     createAccount(email, password);
                     startActivity(new Intent(CreateAccount.this, MainActivity.class));
