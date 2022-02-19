@@ -122,43 +122,31 @@ public class CreateAccount extends AppCompatActivity
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
                     userHelperClass = new UserHelperClass(name, email, userName, password, employeeID, dateText, radioButton, null, null);
-                    mDatabase.push().setValue(userHelperClass);
-                    createAccount(email, password);
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                            {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task)
+                                {
+                                    if (task.isSuccessful())
+                                    {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
+                                        Log.d(TAG, "createUserWithEmail:success");
+//                                      FirebaseDatabase.getInstance().getReference("Employees "+uidpath);
+                                        FirebaseDatabase.getInstance().getReference("Employee").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                .setValue(userHelperClass);
+                                    } else
+                                    {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(CreateAccount.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                     startActivity(new Intent(CreateAccount.this, MainActivity.class));
                 }
             }
         });
-    }
-
-    public void createAccount(String email, String password)
-    {
-        FirebaseUser user = mAuth.getCurrentUser();
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        if (task.isSuccessful())
-                        {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "createUserWithEmail:success");
-                        } else
-                        {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(CreateAccount.this, "Authentication failed.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-    }
-
-
-    public void updateUI(FirebaseUser user)
-    {
-        String keyId = mDatabase.push().getKey();
-        //mDatabase.child(keyId).setValue(userHelperClass);
     }
 
 
