@@ -18,8 +18,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LogIn extends AppCompatActivity
@@ -83,7 +86,33 @@ public class LogIn extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
-                    startActivity(new Intent(LogIn.this, EmployeeHub.class));
+
+                    DatabaseReference reference =  FirebaseDatabase.getInstance().getReference("Employee")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                            for(DataSnapshot snapshot : datasnapshot.getChildren()){
+                                if(snapshot.getKey().equals("role")) {
+                                    String checkRole = snapshot.getValue().toString();
+                                    Log.i("Role: ", checkRole);
+
+                                    if(checkRole.equals("Manager")){
+                                        startActivity(new Intent(LogIn.this, ManagerHub.class));
+                                    } else if (checkRole.equals("Employee")){
+                                        startActivity(new Intent(LogIn.this, EmployeeHub.class));
+                                    }
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
                 }else{
                     Toast.makeText(LogIn.this, "Failed to login. Please check credentials", Toast.LENGTH_LONG).show();
                 }
