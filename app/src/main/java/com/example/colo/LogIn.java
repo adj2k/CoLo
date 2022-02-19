@@ -58,6 +58,7 @@ public class LogIn extends AppCompatActivity
             public void onClick(View view)
             {
                 logIn();
+
             }
         });
     }
