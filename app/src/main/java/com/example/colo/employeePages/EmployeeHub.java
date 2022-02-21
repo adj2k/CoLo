@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.colo.MainActivity;
@@ -16,8 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class EmployeeHub extends AppCompatActivity {
 
-    TextView clock_in_out;
-    Button emp_logout;
+    ImageButton clock_in_out;
+    Button  emp_logout;
     private FirebaseAuth eAuth;
 
 
@@ -26,7 +27,7 @@ public class EmployeeHub extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_hub);
 
-        clock_in_out = (TextView) findViewById(R.id.in_out_btn);
+        clock_in_out = (ImageButton) findViewById(R.id.clock_in_out_btn);
         emp_logout = (Button) findViewById(R.id.emp_logout_btn);
         eAuth = FirebaseAuth.getInstance();
 
