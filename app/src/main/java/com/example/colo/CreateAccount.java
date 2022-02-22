@@ -42,8 +42,8 @@ public class CreateAccount extends AppCompatActivity
     TextView DateText;
     Button DatePicker, CreateAccountBTN;
     DatePickerDialog.OnDateSetListener dateSetListener;
-    android.widget.RadioGroup RadioGroup;
-    RadioButton RadioButton;
+    android.widget.RadioGroup RadioGroupGender, RadioGroupRole;
+    RadioButton RadioButtonGender, RadioButtonRole;
 
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
@@ -68,9 +68,13 @@ public class CreateAccount extends AppCompatActivity
         EmployeeID = (EditText) findViewById(R.id.etEmployeeID);
         DatePicker = (Button) findViewById(R.id.btnSelectDate);
         DateText = (TextView) findViewById(R.id.tvDateText);
-        RadioGroup = (RadioGroup) findViewById(R.id.RadioGroup);
-        RadioButton = (RadioButton) findViewById(R.id.rbNoAnswer);
         CreateAccountBTN = (Button) findViewById(R.id.btnCreateAccount);
+
+        RadioGroupGender = (RadioGroup) findViewById(R.id.RadioGroupGender);
+        RadioButtonGender = (RadioButton) findViewById(R.id.rbNoAnswer);
+        RadioGroupRole = (RadioGroup) findViewById(R.id.RadioGroupRole);
+        RadioButtonRole = (RadioButton) findViewById(R.id.rbEmployee);
+
 
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference(EMPLOYEE);
@@ -117,11 +121,12 @@ public class CreateAccount extends AppCompatActivity
                 String password = Password.getText().toString();
                 String employeeID = EmployeeID.getText().toString();
                 String dateText = DateText.getText().toString();
-                String radioButton = RadioButton.getText().toString();
+                String gender = RadioButtonGender.getText().toString();
+                String role = RadioButtonRole.getText().toString();
 
-                if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
+                if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender() & validateRole())
                 {
-                    userHelperClass = new UserHelperClass(name, email, userName, password, employeeID, dateText, radioButton, null, null);
+                    userHelperClass = new UserHelperClass(name, email, userName, password, employeeID, dateText, gender, role, null, null);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
                             {
                                 @Override
@@ -150,11 +155,18 @@ public class CreateAccount extends AppCompatActivity
     }
 
 
-    public void checkButton(View v)
+    public void checkButtonGender(View v)
     {
-        int radioId = RadioGroup.getCheckedRadioButtonId();
-        RadioButton = findViewById(radioId);
+        int radioId = RadioGroupGender.getCheckedRadioButtonId();
+        RadioButtonGender = findViewById(radioId);
     }
+
+    public void checkButtonRole(View v)
+    {
+        int radioId = RadioGroupRole.getCheckedRadioButtonId();
+        RadioButtonRole = findViewById(radioId);
+    }
+
 
     private boolean validateName()
     {
@@ -291,18 +303,32 @@ public class CreateAccount extends AppCompatActivity
 
     private boolean validateGender()
     {
-
-        if (RadioGroup.getCheckedRadioButtonId() == -1)
+        if (RadioGroupGender.getCheckedRadioButtonId() == -1)
         {
-            RadioButton.setError("Please select the gender");
+            RadioButtonGender.setError("Please select the gender");
             return false;
         } else
         {
-            RadioButton.setError(null);
+            RadioButtonGender.setError(null);
             return true;
         }
-
     }
+
+
+    private boolean validateRole()
+    {
+        if (RadioGroupRole.getCheckedRadioButtonId() == -1)
+        {
+            RadioButtonRole.setError("Please select the role");
+            return false;
+        } else
+        {
+            RadioButtonRole.setError(null);
+            return true;
+        }
+    }
+
+
 }
 
 

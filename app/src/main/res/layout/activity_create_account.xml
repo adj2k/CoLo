@@ -8,6 +8,10 @@
     android:layout_marginRight="16dp"
     tools:context=".CreateAccount">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -154,10 +158,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Gender"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <RadioGroup
-                android:id="@+id/RadioGroup"
+                android:id="@+id/RadioGroupGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -167,22 +172,53 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Male"
-                    android:onClick="checkButton"/>
+                    android:onClick="checkButtonGender"/>
 
                 <RadioButton
                     android:id="@+id/rbFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Female"
-                    android:onClick="checkButton"/>
+                    android:onClick="checkButtonGender"/>
 
                 <RadioButton
                     android:id="@+id/rbNoAnswer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prefer Not to Answer"
-                    android:onClick="checkButton" />
+                    android:onClick="checkButtonGender" />
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/tvSelectRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Role"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/RadioGroupRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbManager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="checkButtonRole"
+                    android:text="Manager" />
+
+                <RadioButton
+                    android:id="@+id/rbEmployee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="checkButtonRole"
+                    android:text="Employee" />
+
+            </RadioGroup>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -195,8 +231,7 @@
             app:backgroundTint="#2E72E3"
             app:cornerRadius="40dp" />
 
-
     </LinearLayout>
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

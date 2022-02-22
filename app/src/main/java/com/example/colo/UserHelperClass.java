@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 public class UserHelperClass<Id>
 {
-    String Name, Email, UserName, Password, EmployeeID, DateText, RadioButton;
+    String Name, Email, UserName, Password, EmployeeID, DateText, Gender, Role;
 
     Calendar ClockInTime;
     Calendar ClockOutTime;
@@ -14,7 +14,7 @@ public class UserHelperClass<Id>
     public UserHelperClass() { }
 
     //Constructor
-    public UserHelperClass(String name, String email, String userName, String password, String employeeID, String dateText, String radioButton,
+    public UserHelperClass(String name, String email, String userName, String password, String employeeID, String dateText, String gender, String role,
                            Calendar clockInTime, Calendar clockOutTime)
     {
         Name = name;
@@ -23,7 +23,8 @@ public class UserHelperClass<Id>
         Password = password;
         EmployeeID = employeeID;
         DateText = dateText;
-        RadioButton = radioButton;
+        Gender = gender;
+        Role = role;
         ClockInTime = clockInTime;
         ClockOutTime = clockOutTime;
     }
@@ -77,8 +78,12 @@ public class UserHelperClass<Id>
 
     public void setDateText(String dateText) { DateText = dateText; }
 
-    public String getRadioButton() { return RadioButton; }
+    public String getGender() { return Gender; }
 
-    public void setRadioButton(String radioButton) { RadioButton = radioButton; }
+    public void setGender(String gender) { Gender = gender; }
+
+    public String getRole() { return Role; }
+
+    public void setRole(String role) { Role = role; }
 }
 
