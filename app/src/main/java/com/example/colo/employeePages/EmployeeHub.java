@@ -34,7 +34,7 @@ public class EmployeeHub extends AppCompatActivity {
         clock_in_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),ClockIn.class));
+                startActivity(new Intent(EmployeeHub.this,ClockIn.class));
             }
         });
 

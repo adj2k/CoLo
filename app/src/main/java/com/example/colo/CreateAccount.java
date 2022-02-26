@@ -68,7 +68,7 @@ public class CreateAccount extends AppCompatActivity
         EmployeeID = (EditText) findViewById(R.id.etEmployeeID);
         DatePicker = (Button) findViewById(R.id.btnSelectDate);
         DateText = (TextView) findViewById(R.id.tvDateText);
-        RadioGroup = (RadioGroup) findViewById(R.id.RadioGroup);
+        RadioGroup = (RadioGroup) findViewById(R.id.rbGender);
         RadioButton = (RadioButton) findViewById(R.id.rbNoAnswer);
         CreateAccountBTN = (Button) findViewById(R.id.btnCreateAccount);
 
