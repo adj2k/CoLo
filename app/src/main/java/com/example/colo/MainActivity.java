@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent toCreateAccount = new Intent(MainActivity.this, CreateAccount.class);
+                Intent toCreateAccount = new Intent(MainActivity.this, Announcements.class);
                 startActivity(toCreateAccount);
             }
         });
