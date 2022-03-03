@@ -43,8 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-       //return notesList;
-        return 0;
+       return AnnouncementsList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
