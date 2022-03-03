@@ -27,11 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class ClockIn extends AppCompatActivity {
@@ -39,7 +41,7 @@ public class ClockIn extends AppCompatActivity {
     private Button clock_in_btn;
     private Button clock_out_btn;
     private static final String CLOCKIN = "Clock In";
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
 
     // Write time of clockIn/ out to Firebase
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -82,7 +84,7 @@ public class ClockIn extends AppCompatActivity {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Employee").child(userKey);
 
         // get local time in hh:mm:ss format
-        LocalTime clock = LocalTime.now();
+        LocalDateTime clock = LocalDateTime.now();
         String currentTime = clock.format(formatter);
         HashMap map = new HashMap();
         map.put("clockInTime", currentTime);
@@ -96,16 +98,35 @@ public class ClockIn extends AppCompatActivity {
         String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Employee").child(userKey);
         // get local time in hh:mm:ss format
-        LocalTime clock = LocalTime.now();
-        String currentTime = clock.format(formatter);
+        LocalDateTime clock = LocalDateTime.now();
+        String end = clock.format(formatter);
 
         HashMap map = new HashMap();
-        map.put("clockOutTime", currentTime);
+        map.put("clockOutTime", end);
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String clockIn = snapshot.child("clockInTime").getValue().toString();
+                String start = snapshot.child("clockInTime").getValue().toString();
+
+                LocalDateTime clockIn = LocalDateTime.parse(start, formatter);
+                System.out.println("Before Second Parse");
+
+                LocalDateTime clockOut = LocalDateTime.parse(end, formatter);
+
+                Duration shiftLength = Duration.between(clockIn, clockOut);
+                long timeInMillis = shiftLength.toMillis();
+
+                //how to get time from millis!!!!!!!!!!!!!!!!
+                System.out.println("Shift was " + timeInMillis + "Milliseconds");
+                System.out.print("Shift was== " + TimeUnit.MILLISECONDS.toHours(timeInMillis));
+                System.out.print(":" + TimeUnit.MILLISECONDS.toMinutes(timeInMillis));
+                System.out.println(":" + TimeUnit.MILLISECONDS.toSeconds(timeInMillis)%60);
+
+                // add this amount to total in employee database.
+                HashMap map = new HashMap();
+                map.put("timeWorked", timeInMillis);
+                ref.updateChildren(map);
             }
 
             @Override
