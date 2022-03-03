@@ -10,19 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
-    //RealmResults<Note> notesList;
+    ArrayList<Announcements> AnnouncementsList;
 
-    /*
-    public MyAdapter(Context context, RealmResults<note> notesList) {
+
+    public MyAdapter(Context context, ArrayList<Announcements> AnnouncementsList) {
         this.context = context;
-        this.notesList = notesList;
+        this.AnnouncementsList = AnnouncementsList;
     }
 
-     */
+
 
     @NonNull
     @Override
@@ -32,12 +33,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        //Note note = notesList.get(position);
-        //holder.titleOutput.setText(note.getTitle());
-        //holder.descriptionOutput.setText(note.getOutput());
+        Announcements Announcement = AnnouncementsList.get(position);
+        holder.titleOutput.setText(Announcement.getAnnouncementTitle());
+        holder.descriptionOutput.setText(Announcement.getDescription());
 
-       //String formattedTime = DateFormat.getDateTimeInstance().format(note.createdTime);
-        //holder.timeOutput.setText(formattedTime));
+       String formattedTime = DateFormat.getDateTimeInstance().format(Announcement.createdTime);
+        holder.timeOutput.setText(formattedTime);
     }
 
     @Override
