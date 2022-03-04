@@ -35,29 +35,29 @@ import java.util.Calendar;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-public class CreateAccount extends AppCompatActivity
+public class AddCompany extends AppCompatActivity
 {
 
-    EditText CompanyName, Name, Email, Username, Password, VerifyPassword, EmployeeID;
+    EditText CompanyName,Name, Email, Username, Password, VerifyPassword, EmployeeID;
     TextView DateText;
     Button DatePicker, CreateAccountBTN;
     DatePickerDialog.OnDateSetListener dateSetListener;
-    android.widget.RadioGroup RadioGroupGender, RadioGroupRole;
-    RadioButton RadioButtonGender, RadioButtonRole;
+    android.widget.RadioGroup RadioGroupGender;
+    RadioButton RadioButtonGender;
 
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private static final String EMPLOYEE = "Employee";
-    private static final String TAG = "CreateAccount";
-    private UserHelperClass userHelperClass;
+//    private static final String EMPLOYEE = "Employee";
+    private static final String TAG = "Add Company";
+    private AdminHelperClass adminHelperClass;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account);
+        setContentView(R.layout.activity_add_company);
 
         CompanyName = (EditText) findViewById(R.id.etAddCompany);
         Name = (EditText) findViewById(R.id.etNameEntry);
@@ -72,12 +72,10 @@ public class CreateAccount extends AppCompatActivity
 
         RadioGroupGender = (RadioGroup) findViewById(R.id.RadioGroupGender);
         RadioButtonGender = (RadioButton) findViewById(R.id.rbNoAnswer);
-        RadioGroupRole = (RadioGroup) findViewById(R.id.RadioGroupRole);
-        RadioButtonRole = (RadioButton) findViewById(R.id.rbEmployee);
 
 
         database = FirebaseDatabase.getInstance();
-        mDatabase = database.getReference(EMPLOYEE);
+//        mDatabase = database.getReference();
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -92,7 +90,7 @@ public class CreateAccount extends AppCompatActivity
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(CreateAccount.this, android.R.style.Theme_Holo_Dialog_MinWidth, dateSetListener, year, month, day);
+                DatePickerDialog dialog = new DatePickerDialog(AddCompany.this, android.R.style.Theme_Holo_Dialog_MinWidth, dateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -115,8 +113,6 @@ public class CreateAccount extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                // Manager is creating this employee/manager
-                // Company attribute
                 String companyName = CompanyName.getText().toString();
                 String name = Name.getText().toString();
                 String email = Email.getText().toString();
@@ -125,34 +121,33 @@ public class CreateAccount extends AppCompatActivity
                 String employeeID = EmployeeID.getText().toString();
                 String dateText = DateText.getText().toString();
                 String gender = RadioButtonGender.getText().toString();
-                String role = RadioButtonRole.getText().toString();
+                String role = "Admin";
 
-                if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender() & validateRole())
+                if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
-                    userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null);
+                    adminHelperClass = new AdminHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                    {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task)
+                        {
+                            if (task.isSuccessful())
                             {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task)
-                                {
-                                    if (task.isSuccessful())
-                                    {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
-                                        Log.d(TAG, "createUserWithEmail:success");
+                                // Sign in success, update UI with the signed-in user's information
+                                Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
+                                Log.d(TAG, "createUserWithEmail:success");
 //                                      FirebaseDatabase.getInstance().getReference("Employees "+uidpath);
-                                        FirebaseDatabase.getInstance().getReference("Companies").child(companyName).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                .setValue(userHelperClass);
-                                    } else
-                                    {
-                                        // If sign in fails, display a message to the user.
-                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(CreateAccount.this, "Authentication failed.", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            });
-                    finish();
-//                    startActivity(new Intent(CreateAccount.this, ManagerHub.class));
+                                FirebaseDatabase.getInstance().getReference("Companies").child(companyName).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(adminHelperClass);
+                            } else
+                            {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(AddCompany.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                    startActivity(new Intent(AddCompany.this, MainActivity.class));
                 }
             }
         });
@@ -165,11 +160,7 @@ public class CreateAccount extends AppCompatActivity
         RadioButtonGender = findViewById(radioId);
     }
 
-    public void checkButtonRole(View v)
-    {
-        int radioId = RadioGroupRole.getCheckedRadioButtonId();
-        RadioButtonRole = findViewById(radioId);
-    }
+
 
 
     private boolean validateName()
@@ -319,18 +310,7 @@ public class CreateAccount extends AppCompatActivity
     }
 
 
-    private boolean validateRole()
-    {
-        if (RadioGroupRole.getCheckedRadioButtonId() == -1)
-        {
-            RadioButtonRole.setError("Please select the role");
-            return false;
-        } else
-        {
-            RadioButtonRole.setError(null);
-            return true;
-        }
-    }
+
 
 
 }

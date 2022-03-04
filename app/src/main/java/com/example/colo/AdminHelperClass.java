@@ -4,18 +4,18 @@ import android.provider.MediaStore;
 
 import java.util.Calendar;
 
-public class UserHelperClass<Id>
+public class AdminHelperClass<Id>
 {
     String CompanyName, Name, Email, UserName, Password, EmployeeID, DateText, Gender, Role;
 
     Calendar ClockInTime;
     Calendar ClockOutTime;
     //Constructor. New instance
-    public UserHelperClass() { }
+    public AdminHelperClass() { }
 
     //Constructor
-    public UserHelperClass(String companyName, String name, String email, String userName, String password, String employeeID, String dateText, String gender, String role,
-                            Calendar clockInTime, Calendar clockOutTime)
+    public AdminHelperClass(String companyName, String name, String email, String userName, String password, String employeeID, String dateText, String gender, String role,
+                           Calendar clockInTime, Calendar clockOutTime)
     {
         CompanyName = companyName;
         Name = name;
