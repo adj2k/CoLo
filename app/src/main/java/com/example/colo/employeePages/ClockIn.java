@@ -5,6 +5,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,12 +49,33 @@ public class ClockIn extends AppCompatActivity {
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+    String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Employee").child(userKey);
     // get data from Firebase
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in);
+
+        // see which button needs to be greyed out and deactivated.
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child("clockInTime").exists()) {
+                    clock_in_btn.setEnabled(false);
+                    clock_in_btn.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+                } else {
+                    clock_out_btn.setEnabled(false);
+                    clock_out_btn.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // set up Firebase instance
 
@@ -79,9 +102,9 @@ public class ClockIn extends AppCompatActivity {
 
     private void addClockInTime() {
         // get userID
-        String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         // get ref to be changed.
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Employee").child(userKey);
+
 
         // get local time in hh:mm:ss format
         LocalDateTime clock = LocalDateTime.now();
@@ -91,20 +114,21 @@ public class ClockIn extends AppCompatActivity {
         ref.updateChildren(map);
         Toast display = Toast.makeText(ClockIn.this, "Clocked In", Toast.LENGTH_LONG);
         display.show();
+        clock_in_btn.setEnabled(false);
+        clock_out_btn.setEnabled(true);
     }
 
     private void clockOutTime() {
-        // record the clock out time
-        String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Employee").child(userKey);
         // get local time in hh:mm:ss format
         LocalDateTime clock = LocalDateTime.now();
         String end = clock.format(formatter);
 
         HashMap map = new HashMap();
         map.put("clockOutTime", end);
+        ref.updateChildren(map);
 
-        ref.addValueEventListener(new ValueEventListener() {
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String start = snapshot.child("clockInTime").getValue().toString();
@@ -124,9 +148,27 @@ public class ClockIn extends AppCompatActivity {
                 System.out.println(":" + TimeUnit.MILLISECONDS.toSeconds(timeInMillis)%60);
 
                 // add this amount to total in employee database.
-                HashMap map = new HashMap();
-                map.put("timeWorked", timeInMillis);
-                ref.updateChildren(map);
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        long timeWorked = ((long) snapshot.child("timeWorked").getValue());
+
+                        long newTimeWorked = timeInMillis + timeWorked;
+                        System.out.println("old time : " + timeWorked + "   New Time worked was                                                 " + newTimeWorked);
+                        ref.child("timeWorked").setValue(newTimeWorked);
+
+                        //  !!!!!!!!!!!!!!!!!!!!!! RUNS FOREVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+                        //HashMap map = new HashMap();
+                        //map.put("timeWorked", newTimeWorked);
+                        //ref.updateChildren(map);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
             }
 
             @Override
@@ -135,13 +177,16 @@ public class ClockIn extends AppCompatActivity {
             }
         });
 
-        // Clear out old clock in time
-        //map.put("clockInTime", null);
-        ref.updateChildren(map);
+        // clear out old clock in time
+
+        ref.child("clockInTime").setValue(null);
 
         // add to weeks total hours in Firebase
         Toast display = Toast.makeText(ClockIn.this, "Clocked Out", Toast.LENGTH_LONG);
         display.show();
+
+        clock_out_btn.setEnabled(false);
+        clock_in_btn.setEnabled(true);
 
     }
 
