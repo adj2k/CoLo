@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.21388888888888888" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_admin_hub.xml" value="0.25" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_manager_hub.xml" value="0.23822463768115942" />
+        <entry key="app/src/main/res/layout/activity_add_company.xml" value="0.1703125" />
+        <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.15625" />
+        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.165" />
       </map>
     </option>
   </component>
