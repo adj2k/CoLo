@@ -1,12 +1,15 @@
 package com.example.colo;
 
 import android.content.Context;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DateFormat;
@@ -15,35 +18,30 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<Announcements> AnnouncementsList;
+    ArrayList<CurrentAnnouncement> list;
 
 
-    public MyAdapter(Context context, ArrayList<Announcements> AnnouncementsList) {
+    public MyAdapter(Context context, ArrayList<CurrentAnnouncement> list) {
+        list = new ArrayList<>();
         this.context = context;
-        this.AnnouncementsList = AnnouncementsList;
+        this.list = list;
     }
-
-
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view,parent,false));
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view,parent,true);
+        return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Announcements Announcement = AnnouncementsList.get(position);
-        holder.titleOutput.setText(Announcement.getAnnouncementTitle());
-        holder.descriptionOutput.setText(Announcement.getDescription());
+        CurrentAnnouncement announcement = list.get(position);
+        holder.titleOutput.setText(announcement.getTitle());
+        holder.descriptionOutput.setText(announcement.getDescription());
 
-       String formattedTime = DateFormat.getDateTimeInstance().format(Announcement.createdTime);
-        holder.timeOutput.setText(formattedTime);
-    }
-
-    @Override
-    public int getItemCount() {
-       return AnnouncementsList.size();
+       String formattedTime = DateFormat.getDateTimeInstance().format(announcement.createdTime);
+       holder.timeOutput.setText(formattedTime);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -59,5 +57,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             timeOutput = itemView.findViewById(R.id.timeOutput);
 
         }
+    }
+
+    @Override
+    public int getItemCount() {
+        Log.d("ListSize: ", String.valueOf(list.size()));
+        return list.size();
     }
 }

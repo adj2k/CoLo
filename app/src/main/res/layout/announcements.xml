@@ -1,36 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Announcements">
+    tools:context=".Announcements"
+    android:orientation="vertical">
 
+    <include layout="@layout/item_view">
+
+    </include>
+    <!--
     <TextView
-        android:id="@+id/announcementTitle"
-        android:layout_width="wrap_content"
+        android:id="@+id/announcementPageTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:text="Announcements"
         android:textSize="20dp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="36dp" />
+        app:layout_constraintTop_toTopOf="@+id/announcementList"
+        tools:layout_editor_absoluteX="130dp" />
+    -->
+
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/announcementList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerView"
-        android:layout_above="@+id/addNewAnnouncement_btn"
-        android:layout_below="@+id/announcementTitle"
-        />
+        android:layout_height="wrap_content"
+        android:scrollIndicators="bottom"
+        android:fadeScrollbars="false"
+        android:layout_gravity="center_vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addNewAnnouncement_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/recyclerView"
+        android:layout_below="@+id/announcementList"
         android:text="Add New Announcement"
-        app:layout_constraintBottom_toBottomOf="@id/recyclerView"/>
+        app:layout_constraintTop_toBottomOf="@id/announcementList" >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.button.MaterialButton>
+
+
+</LinearLayout>
 
