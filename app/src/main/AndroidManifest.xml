@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CoLo">
+        android:theme="@style/Theme.CoLo"
+        android:name=".GlobalCompanyName">
         <activity
             android:name=".AddCompany"
             android:exported="false" />
@@ -26,6 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+
     </application>
+
 
 </manifest>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -188,8 +189,10 @@ public class LogIn extends AppCompatActivity
                                                             Log.i("Role: ", checkRole);
 
                                                             if(checkRole.equals("Admin")){
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, ManagerHub.class));
                                                             } else if (checkRole.equals("Employee")){
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, EmployeeHub.class));
                                                             }
                                                         }
@@ -205,7 +208,7 @@ public class LogIn extends AppCompatActivity
                                         }
                                         else {
                                             // Return
-                                            Toast.makeText(LogIn.this, "YOU DON'T WORK FOR THIS COMPANY.", Toast.LENGTH_LONG).show();
+//                                            Toast.makeText(LogIn.this, "YOU DON'T WORK FOR THIS COMPANY.", Toast.LENGTH_LONG).show();
 
                                         }
 
