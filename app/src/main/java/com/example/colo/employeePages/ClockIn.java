@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.colo.GlobalCompanyName;
 import com.example.colo.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -45,14 +46,14 @@ public class ClockIn extends AppCompatActivity {
     private static final String CLOCKIN = "Clock In";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
 
+    String companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
     // Write time of clockIn/ out to Firebase
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Employee").child(userKey);
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies").child(companyNameRef).child(userKey);
     // get data from Firebase
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

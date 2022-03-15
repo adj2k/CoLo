@@ -1,8 +1,10 @@
 package com.example.colo.employeePages;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +34,7 @@ public class EmployeeHub extends AppCompatActivity {
         eAuth = FirebaseAuth.getInstance();
 
         clock_in_out.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EmployeeHub.this,ClockIn.class));
