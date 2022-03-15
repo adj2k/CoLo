@@ -34,7 +34,6 @@ public class EmployeeHub extends AppCompatActivity {
         eAuth = FirebaseAuth.getInstance();
 
         clock_in_out.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EmployeeHub.this,ClockIn.class));

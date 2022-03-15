@@ -189,7 +189,6 @@ public class LogIn extends AppCompatActivity
                                                             Log.i("Role: ", checkRole);
 
                                                             if(checkRole.equals("Admin")){
-
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, ManagerHub.class));
                                                             } else if (checkRole.equals("Employee")){

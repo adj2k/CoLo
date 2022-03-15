@@ -45,20 +45,21 @@ public class ClockIn extends AppCompatActivity {
     private Button clock_out_btn;
     private static final String CLOCKIN = "Clock In";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
-
-    String companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
+    private String companyNameRef = "";
     // Write time of clockIn/ out to Firebase
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
     String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies").child(companyNameRef).child(userKey);
-    // get data from Firebase
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in);
-
+        companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
+        //
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
+        // get data from Firebase
         // see which button needs to be greyed out and deactivated.
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -102,11 +103,9 @@ public class ClockIn extends AppCompatActivity {
     }
 
     private void addClockInTime() {
-        // get userID
-
-        // get ref to be changed.
 
 
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
         // get local time in hh:mm:ss format
         LocalDateTime clock = LocalDateTime.now();
         String currentTime = clock.format(formatter);
@@ -117,9 +116,14 @@ public class ClockIn extends AppCompatActivity {
         display.show();
         clock_in_btn.setEnabled(false);
         clock_out_btn.setEnabled(true);
+        System.out.println(companyNameRef);
+        finish();
     }
 
     private void clockOutTime() {
+
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
         // get local time in hh:mm:ss format
         LocalDateTime clock = LocalDateTime.now();
         String end = clock.format(formatter);
@@ -152,7 +156,10 @@ public class ClockIn extends AppCompatActivity {
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long timeWorked = ((long) snapshot.child("timeWorked").getValue());
+                        long timeWorked = 0;
+                        if(snapshot.child("timeWorked").getValue() !=null) {
+                            timeWorked = ((long) snapshot.child("timeWorked").getValue());
+                        }
 
                         long newTimeWorked = timeInMillis + timeWorked;
                         System.out.println("old time : " + timeWorked + "   New Time worked was                                                 " + newTimeWorked);
@@ -188,7 +195,9 @@ public class ClockIn extends AppCompatActivity {
 
         clock_out_btn.setEnabled(false);
         clock_in_btn.setEnabled(true);
-
+        System.out.println(companyNameRef);
+        finish();
     }
+
 
 }
