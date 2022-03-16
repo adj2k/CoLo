@@ -56,10 +56,10 @@ public class ClockIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in);
+        // gets user's company name and user ref
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
-        //
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
-        // get data from Firebase
+
         // see which button needs to be greyed out and deactivated.
         ref.addValueEventListener(new ValueEventListener() {
             @Override

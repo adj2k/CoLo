@@ -84,7 +84,7 @@ public class ManagerHub extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                //startActivity(new Intent(ManagerHub.this, ActivityLog.class));
+                startActivity(new Intent(ManagerHub.this, ManagerClockLog.class));
             }
         });
 
