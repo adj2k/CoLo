@@ -46,9 +46,7 @@ public class ClockIn extends AppCompatActivity {
     private static final String CLOCKIN = "Clock In";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
     private String companyNameRef = "";
-    // Write time of clockIn/ out to Firebase
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
