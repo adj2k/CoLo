@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.colo.GlobalCompanyName;
 import com.example.colo.R;
+import com.example.colo.UserHelperClass;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,18 +23,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CreateProject extends AppCompatActivity {
+public class CreateProject extends AppCompatActivity implements ManagerProjectListEmployeeAdapter.OnNoteListener {
 
     EditText name, description;
-    private Button create_projcet_btn;
+    private Button create_project_btn;
     private String companyName = "";
     boolean flag = true;
-
+    ProjectHelperClass projectHelperClass;
 
     RecyclerView recyclerView;
     ManagerProjectListEmployeeAdapter myAdapter;
     ArrayList<ManagerProjectListEmployeeData> list;
+    ArrayList<String> employees;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +50,12 @@ public class CreateProject extends AppCompatActivity {
         recyclerView = findViewById(R.id.employee_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        name = (EditText) findViewById(R.id.get_project_name);
+        description = (EditText) findViewById(R.id.get_project_desc);
 
         list = new ArrayList<>();
-        myAdapter = new ManagerProjectListEmployeeAdapter(this,list);
+        employees = new ArrayList<>();
+        myAdapter = new ManagerProjectListEmployeeAdapter(this,list, this);
         recyclerView.setAdapter(myAdapter);
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -68,22 +77,44 @@ public class CreateProject extends AppCompatActivity {
         });
 
 
-        create_projcet_btn = (Button) findViewById(R.id.create_projcet_btn);
-        create_projcet_btn.setOnClickListener(new View.OnClickListener() {
+        create_project_btn = (Button) findViewById(R.id.create_project_btn);
+        create_project_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { addProject();}
         });
     }
 
-    // submit new project to database
+    // submit new project to database !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     private void addProject() {
+        String pName = name.getText().toString();
+        String pDescription = description.getText().toString();
+        String pManagerUI = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyName).child("Projects");
+        projectHelperClass = new ProjectHelperClass(pName, pDescription, pManagerUI, employees);
+        if(validateDec() && validateName() && validateEmployees()){
+            ref.child(name.getText().toString()).setValue(projectHelperClass);
+
+        }
+
 
     }
+
+    private boolean validateEmployees() {
+        if(employees.isEmpty()) {
+            create_project_btn.setError("Must select at lease ONE employee");
+            return false;
+        } else
+        {
+            create_project_btn.setError(null);
+            return true;
+        }
+    }
+
 
     // check if fields are blank OR name dup
     private boolean validateName() {
         String val = name.getText().toString();
-
         // get ref
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyName).child("Projects");
         if(val.isEmpty()) {
@@ -125,5 +156,23 @@ public class CreateProject extends AppCompatActivity {
             description.setError(null);
             return true;
         }
+    }
+
+
+    @Override
+    public void onNoteClick(int position) {
+        String empName = list.get(position).getName();
+        boolean clickFlag = true;
+        for(String i : employees) {
+            if(empName.equals(i)) {
+                Toast.makeText(CreateProject.this, "Employee already Chosen", Toast.LENGTH_LONG).show();
+                clickFlag = false;
+            }
+        }
+        // add employee to list if they are not already on the list
+        if(clickFlag) {
+            employees.add(empName);
+        }
+
     }
 }

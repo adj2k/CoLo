@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoLo">
-        <activity android:name=".Projects.CreateProject"></activity>
+        <activity
+            android:name=".Projects.CreateProject"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Projects.ManagerProjects" />
         <activity android:name=".ManagerClockLog" />
         <activity
