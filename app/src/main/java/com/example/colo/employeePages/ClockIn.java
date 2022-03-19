@@ -46,9 +46,7 @@ public class ClockIn extends AppCompatActivity {
     private static final String CLOCKIN = "Clock In";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
     private String companyNameRef = "";
-    // Write time of clockIn/ out to Firebase
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
@@ -56,10 +54,10 @@ public class ClockIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in);
+        // gets user's company name and user ref
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
-        //
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
-        // get data from Firebase
+
         // see which button needs to be greyed out and deactivated.
         ref.addValueEventListener(new ValueEventListener() {
             @Override

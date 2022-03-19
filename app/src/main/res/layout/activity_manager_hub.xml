@@ -151,7 +151,7 @@
         android:id="@+id/managers_btn"
         android:layout_width="110dp"
         android:layout_height="104dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="55dp"
         android:adjustViewBounds="true"
         android:background="#2E72E3"
