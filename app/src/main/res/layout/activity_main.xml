@@ -82,4 +82,5 @@
         app:layout_constraintStart_toEndOf="@+id/buttonSunny"
         app:layout_constraintTop_toBottomOf="@+id/buttonSunny"
         app:layout_constraintVertical_bias="0.832" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

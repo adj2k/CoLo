@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.colo.Announcements.CreateAnnouncement;
 import com.example.colo.MainActivity;
 import com.example.colo.ManagerHub;
 import com.example.colo.R;
@@ -20,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class EmployeeHub extends AppCompatActivity {
 
     ImageButton clock_in_out;
-    Button  emp_logout;
+    Button  emp_logout, e_ann_btn;
     private FirebaseAuth eAuth;
 
 
@@ -32,11 +33,19 @@ public class EmployeeHub extends AppCompatActivity {
         clock_in_out = (ImageButton) findViewById(R.id.clock_in_out_btn);
         emp_logout = (Button) findViewById(R.id.emp_logout_btn);
         eAuth = FirebaseAuth.getInstance();
+        e_ann_btn = (Button) findViewById(R.id.e_ann_btn);
 
         clock_in_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EmployeeHub.this,ClockIn.class));
+            }
+        });
+
+        e_ann_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EmployeeHub.this, CreateAnnouncement.class));
             }
         });
 
