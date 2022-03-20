@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class UserHelperClass<Id>
 {
     String CompanyName, Name, Email, UserName, Password, EmployeeID, DateText, Gender, Role;
-
+    Boolean OneTimePassword;
     Calendar ClockInTime;
     Calendar ClockOutTime;
     //Constructor. New instance
@@ -15,7 +15,7 @@ public class UserHelperClass<Id>
 
     //Constructor
     public UserHelperClass(String companyName, String name, String email, String userName, String password, String employeeID, String dateText, String gender, String role,
-                            Calendar clockInTime, Calendar clockOutTime)
+                           Calendar clockInTime, Calendar clockOutTime, Boolean oneTimePassword)
     {
         CompanyName = companyName;
         Name = name;
@@ -28,6 +28,7 @@ public class UserHelperClass<Id>
         Role = role;
         ClockInTime = clockInTime;
         ClockOutTime = clockOutTime;
+        OneTimePassword = oneTimePassword;
     }
 
     //getters and setters for all of the inputs
@@ -92,5 +93,8 @@ public class UserHelperClass<Id>
     public String getRole() { return Role; }
 
     public void setRole(String role) { Role = role; }
-}
 
+    public Boolean getOneTimePassword() { return OneTimePassword; }
+
+    public void setOneTimePassword(Boolean oneTimePassword) { OneTimePassword = oneTimePassword; }
+}
