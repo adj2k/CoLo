@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -47,6 +49,8 @@ public class ClockIn extends AppCompatActivity {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
     private String companyNameRef = "";
 
+    DateTimeFormatter formatterdisplay = DateTimeFormatter.ofPattern("hh:mm a");
+
     String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
@@ -54,6 +58,14 @@ public class ClockIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in);
+
+        //display date on top of the page
+        EditText viewDate=findViewById(R.id.date);
+        //get the date and day
+        Calendar calendar= Calendar.getInstance();
+        String currentDate= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        viewDate.setText(currentDate);
+
         // gets user's company name and user ref
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
