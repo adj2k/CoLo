@@ -9,14 +9,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".Projects.CreateProject"
-                  android:windowSoftInputMode="adjustPan"/>
-      
+        <activity android:name=".Projects.CreateProject"></activity>
         <activity android:name=".Announcements.CreateAnnouncement"
                   android:windowSoftInputMode="adjustPan"/>
-
         <activity android:name=".Projects.ManagerProjects" />
         <activity android:name=".Announcements.ManagerCreateAnnouncement"
                   android:windowSoftInputMode="adjustPan"/>

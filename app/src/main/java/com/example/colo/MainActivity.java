@@ -38,8 +38,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.SplashScreenTheme);
         setTheme(R.style.Theme_CoLo);
         setContentView(R.layout.activity_main);
+
 
         conditionTextView = (TextView) findViewById(R.id.textViewCondition);
         ButtonSunny = (Button) findViewById(R.id.buttonSunny);
