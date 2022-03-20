@@ -18,7 +18,6 @@ public class AnnouncementHelperClass {
         return aDescription;
     }
 
-
     public void setaTitle(String aTitle) {
         this.aTitle = aTitle;
     }

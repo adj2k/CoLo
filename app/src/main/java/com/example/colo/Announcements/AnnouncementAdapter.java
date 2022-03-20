@@ -15,30 +15,31 @@ import java.util.ArrayList;
 
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.MyViewHolder> {
 
-    Context context;
-    private OnNoteListener aOnNoteListener;
+    // This is the adapter needed to inflate (load the data into) the RecyclerView
+    // RecyclerView is used to generate a scrollable list of data, "recycling" the same item layout
+    // In this case, the item layout is res/layout/announcement_view.xml
 
+    Context context;
     ArrayList<AnnouncementList> list;
 
-    public AnnouncementAdapter(Context context, ArrayList<AnnouncementList> list, OnNoteListener aOnNoteListener) {
+    public AnnouncementAdapter(Context context, ArrayList<AnnouncementList> list) {
         this.context = context;
         this.list = list;
-        this.aOnNoteListener = aOnNoteListener;
     }
 
     @NonNull
     @Override
     public AnnouncementAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.announcement_view,parent, false);
-        return new MyViewHolder(v, aOnNoteListener);
+        return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AnnouncementAdapter.MyViewHolder holder, int position) {
 
         AnnouncementList announcement = list.get(position);
-        holder.title.setText(announcement.getTitle());
-        holder.description.setText(announcement.getDescription());
+        holder.title.setText(announcement.getaTitle());
+        holder.description.setText(announcement.getaDescription());
     }
 
     @Override
@@ -47,33 +48,17 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
+        // Here we setup the variables to assign to the different textItems in the announcement_item.xml
         TextView title, description;
-        OnNoteListener onNoteListener;
 
-        public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.announcement_title);
             description = itemView.findViewById(R.id.announcement_description);
-            this.onNoteListener = onNoteListener;
-
-           // itemView.setOnClickListener((View.OnClickListener) this);
 
         }
-
-        /*@Override
-        public void onClick(View view) {
-            onNoteListener.onNoteClick(getAdapterPosition());
-        }*/
     }
 
-    public interface OnNoteListener {
-        void onNoteClick(int position);
-    }
 
-    public void removeAt(int position) {
-        list.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, list.size());
-    }
 }

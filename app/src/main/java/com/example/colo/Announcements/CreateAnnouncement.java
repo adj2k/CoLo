@@ -24,14 +24,16 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateAnnouncement extends AppCompatActivity implements AnnouncementAdapter.OnNoteListener {
+public class CreateAnnouncement extends AppCompatActivity {
+
+    // Variable Setup
     EditText title, description;
     private Button create_announcement_btn;
     boolean flag = true;
 
+    // Defines the announcementHelperClass and announcements list, which is not currently used
     AnnouncementHelperClass announcementHelperClass;
     ArrayList<String> announcements;
-
     RecyclerView recyclerView;
     AnnouncementAdapter myAdapter;
     ArrayList<AnnouncementList> list;
@@ -41,18 +43,20 @@ public class CreateAnnouncement extends AppCompatActivity implements Announcemen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_announcements_page);
 
-        // get company name
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Announcements");
+        // Sets the database reference to the "Announcements"
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Announcements");
 
+        // Sets up the RecyclerView
         recyclerView = findViewById(R.id.announcement_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        // Sets up the list, announcements list (not currently used), and adapter
         list = new ArrayList<>();
         announcements = new ArrayList<>();
-        myAdapter = new AnnouncementAdapter(this,list, this);
+        myAdapter = new AnnouncementAdapter(this,list);
         recyclerView.setAdapter(myAdapter);
 
+        // Listens for data change in database and updates new entries to the list
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -71,42 +75,5 @@ public class CreateAnnouncement extends AppCompatActivity implements Announcemen
             }
         });
 
-        /*
-        create_announcement_btn = (Button) findViewById(R.id.create_announcement_btn);
-        create_announcement_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { addAnnouncement();}
-        });
-        */
     }
-
-    // submit new announcement to database
-    /*
-    private void addAnnouncement() {
-        String aTitle = title.getText().toString();
-        String aDescription = description.getText().toString();
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Announcements");
-        announcementHelperClass = new AnnouncementHelperClass(aTitle, aDescription, announcements);
-        ref.child(title.getText().toString()).setValue(announcementHelperClass);
-        ref.child(description.getText().toString()).setValue(announcementHelperClass);
-
-    }*/
-
-    @Override
-    public void onNoteClick(int position) {
-        String announcementName = list.get(position).getTitle();
-        boolean clickFlag = true;
-        for (String i : announcements) {
-            if(announcementName.equals(i)) {
-                Toast.makeText(CreateAnnouncement.this, "Announcement Chosen", Toast.LENGTH_LONG).show();
-                clickFlag = false;
-            }
-        }
-
-        if(clickFlag) {
-            announcements.add(announcementName);
-        }
-    }
-
 }
