@@ -58,4 +58,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:id="@+id/buttonAnnouncements"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Announcements"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonFoggy"
+        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintStart_toEndOf="@+id/buttonSunny"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSunny"
+        app:layout_constraintVertical_bias="0.147" />
+
+    <Button
+        android:id="@+id/buttonCreateAnnouncement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Announcement"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonFoggy"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toEndOf="@+id/buttonSunny"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSunny"
+        app:layout_constraintVertical_bias="0.832" />
 </androidx.constraintlayout.widget.ConstraintLayout>

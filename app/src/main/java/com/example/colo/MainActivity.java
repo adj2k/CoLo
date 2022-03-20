@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.colo.Announcements.CreateAnnouncement;
+import com.example.colo.Announcements.ManagerCreateAnnouncement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity
     Button ButtonFoggy;
     Button ButtonCreateAccount;
     Button ToLogin;
+    Button ButtonCreateAnnouncement;
+    Button ButtonAnnouncements;
 
     DatabaseReference RootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference conditionRef = RootRef.child("condition");
@@ -41,6 +45,8 @@ public class MainActivity extends AppCompatActivity
         ButtonFoggy = (Button) findViewById(R.id.buttonFoggy);
         ButtonCreateAccount = (Button) findViewById(R.id.buttonCreateAccount);
         ToLogin = (Button) findViewById(R.id.btnToLogin);
+        ButtonCreateAnnouncement = (Button) findViewById(R.id.buttonCreateAnnouncement);
+        ButtonAnnouncements = (Button) findViewById(R.id.buttonAnnouncements);
     }
 
     @Override
@@ -89,6 +95,26 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent toCreateAccount = new Intent(MainActivity.this, CreateAccount.class);
+                startActivity(toCreateAccount);
+            }
+        });
+
+        ButtonAnnouncements.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent toCreateAccount = new Intent(MainActivity.this, CreateAnnouncement.class);
+                startActivity(toCreateAccount);
+            }
+        });
+
+        ButtonCreateAnnouncement.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent toCreateAccount = new Intent(MainActivity.this, ManagerCreateAnnouncement.class);
                 startActivity(toCreateAccount);
             }
         });

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.colo.Announcements.CreateAnnouncement;
 import com.example.colo.Projects.ManagerProjects;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,7 +59,7 @@ public class ManagerHub extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                //startActivity(new Intent(ManagerHub.this, Announcement.class));
+                startActivity(new Intent(ManagerHub.this, CreateAnnouncement.class));
             }
         });
 
