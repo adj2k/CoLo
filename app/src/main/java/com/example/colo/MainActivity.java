@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.colo.Announcements.CreateAnnouncement;
+import com.example.colo.Announcements.ManagerCreateAnnouncement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent toCreateAccount = new Intent(MainActivity.this, CreateAccount.class);
+                Intent toCreateAccount = new Intent(MainActivity.this, ManagerCreateAnnouncement.class);
                 startActivity(toCreateAccount);
             }
         });
