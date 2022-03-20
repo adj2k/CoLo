@@ -1,11 +1,15 @@
 package com.example.colo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.InputType;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -39,6 +43,7 @@ public class LogIn extends AppCompatActivity
     TextView AddCompany;
 
     //Firebase
+    private String m_Text = "";
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -76,7 +81,7 @@ public class LogIn extends AppCompatActivity
 //                    Log.i("Company: ", snapshot.getKey());
                     arrayList.add(snapshot.getKey());
 
-                    }
+                }
 
 
             }
@@ -87,18 +92,17 @@ public class LogIn extends AppCompatActivity
             }
         });
         //
-        System.out.println("HEELELELELELLE");
 
 
-        /*
-        AutoCompleteTextView autocomplete =  (AutoCompleteTextView) (R.id.etCompany);
+
+        AutoCompleteTextView autocomplete =  (AutoCompleteTextView) Company;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this,android.R.layout.select_dialog_item, arrayList);
         autocomplete.setThreshold(1);
         autocomplete.setAdapter(adapter);
-        Log.i("Company: ","asdaasdads");
-        */
-        //
+
+
+
 
 
         Login.setOnClickListener(new View.OnClickListener()
@@ -183,21 +187,25 @@ public class LogIn extends AppCompatActivity
                                                 @Override
 
                                                 public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+
+
+
                                                     for(DataSnapshot snapshot : datasnapshot.getChildren()){
+                                                        String localRole = "";
                                                         if(snapshot.getKey().equals("role")) {
                                                             String checkRole = snapshot.getValue().toString();
+                                                            localRole = checkRole;
+                                                            Log.i("StupidLocalRole",localRole);
                                                             Log.i("Role: ", checkRole);
-
                                                             if(checkRole.equals("Admin") || checkRole.equals("Manager")){
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, ManagerHub.class));
                                                             } else if (checkRole.equals("Employee")){
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, EmployeeHub.class));
+                                                                }
                                                             }
                                                         }
-
-                                                    }
                                                 }
 
                                                 @Override

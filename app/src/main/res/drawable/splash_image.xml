@@ -3,6 +3,7 @@
 
     <item android:drawable="@drawable/blue_bg_dark" />
 
-    <item android:drawable="@drawable/logo_transparent_cropped" android:gravity="center_horizontal" android:height="150dp"
+    <item android:drawable="@drawable/logo_transparent_cropped"
+        android:gravity="center_horizontal" android:height="150dp"
         android:width="150dp" android:top="200dp"/>
 </layer-list>
