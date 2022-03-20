@@ -35,7 +35,7 @@ import java.util.Arrays;
 public class LogIn extends AppCompatActivity
 {
     EditText Email, Password, Company;
-    Button Login;
+    TextView Login;
     TextView AddCompany;
 
     //Firebase
@@ -54,7 +54,7 @@ public class LogIn extends AppCompatActivity
 
         Email = (EditText) findViewById(R.id.etEmail);
         Password = (EditText) findViewById(R.id.etPassword);
-        Login = (Button) findViewById(R.id.btnLogin);
+        Login = (TextView) findViewById(R.id.btnToLogin);
         Company = (EditText) findViewById(R.id.etCompany);
         AddCompany = (TextView) findViewById(R.id.tvAddCompany);
 
@@ -90,14 +90,14 @@ public class LogIn extends AppCompatActivity
         System.out.println("HEELELELELELLE");
 
 
-        autocomplete = (AutoCompleteTextView)
-                findViewById(R.id.etCompany);
+        /*
+        AutoCompleteTextView autocomplete =  (AutoCompleteTextView) (R.id.etCompany);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this,android.R.layout.select_dialog_item, arrayList);
         autocomplete.setThreshold(1);
         autocomplete.setAdapter(adapter);
         Log.i("Company: ","asdaasdads");
-
+        */
         //
 
 
