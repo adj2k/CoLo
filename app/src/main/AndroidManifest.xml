@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
 
-        android:theme="@style/SplashScreenTheme">
+        android:theme="@style/Theme.CoLo">
         <activity android:name=".Projects.CreateProject"
                   android:windowSoftInputMode="adjustPan"/>
       
@@ -32,6 +32,7 @@
         <activity android:name=".CreateAccount" />
         <activity
             android:name=".MainActivity"
+            android:theme="@style/SplashScreenTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
