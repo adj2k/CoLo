@@ -2,9 +2,9 @@ package com.example.colo.Projects;
 
 public class ManagerProjectListEmployeeData {
     // enter data that needs to be added to tiles
-    String name;
+    String userName;
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 }
