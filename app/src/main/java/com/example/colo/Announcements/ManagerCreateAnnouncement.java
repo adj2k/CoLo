@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.colo.GlobalCompanyName;
 import com.example.colo.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,13 +39,15 @@ public class ManagerCreateAnnouncement extends AppCompatActivity {
     AnnouncementAdapter myAdapter;
     ArrayList<AnnouncementList> list;
 
+    private String companyNameRef = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_announcements_manager_page);
 
         // get company name
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Announcements");
+        //DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Announcements");
 
         recyclerView = findViewById(R.id.announcement_list);
         recyclerView.setHasFixedSize(true);
@@ -57,6 +60,9 @@ public class ManagerCreateAnnouncement extends AppCompatActivity {
 
         title = findViewById(R.id.get_announcement_title);
         description = findViewById(R.id.get_announcement_desc);
+
+        companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child("Announcements");
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -71,6 +77,7 @@ public class ManagerCreateAnnouncement extends AppCompatActivity {
                 myAdapter.notifyDataSetChanged();
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -96,7 +103,7 @@ public class ManagerCreateAnnouncement extends AppCompatActivity {
         String aTitle = title.getText().toString();
         String aDescription = description.getText().toString();
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Announcements");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child("Announcements");
         announcementHelperClass = new AnnouncementHelperClass(aTitle, aDescription);
         ref.push().setValue(announcementHelperClass);
 

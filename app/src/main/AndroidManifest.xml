@@ -27,6 +27,7 @@
         <activity android:name=".employeePages.ClockIn" />
         <activity android:name=".employeePages.EmployeeHub" />
         <activity android:name=".ManagerHub" />
+        <activity android:name=".AdminHub"/>
         <activity android:name=".LogIn"
                   android:windowSoftInputMode="adjustPan"/>/>
         <activity android:name=".CreateAccount" />

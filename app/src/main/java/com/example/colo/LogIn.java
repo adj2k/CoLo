@@ -188,7 +188,10 @@ public class LogIn extends AppCompatActivity
                                                             String checkRole = snapshot.getValue().toString();
                                                             Log.i("Role: ", checkRole);
 
-                                                            if(checkRole.equals("Admin") || checkRole.equals("Manager")){
+                                                            if(checkRole.equals("Admin")){
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
+                                                                startActivity(new Intent(LogIn.this, AdminHub.class));
+                                                            }else if(checkRole.equals("Manager")){
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, ManagerHub.class));
                                                             } else if (checkRole.equals("Employee")){
