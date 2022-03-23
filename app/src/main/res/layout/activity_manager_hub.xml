@@ -51,7 +51,7 @@
             android:layout_height="30dp"
             android:layout_marginEnd="15dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_menu"
+            android:src="@drawable/ic_logout"
             app:layout_constraintBottom_toBottomOf="@id/textHello"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/textHello"
@@ -76,7 +76,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:hint="@string/search_elements"
+                android:hint="@string/search_bar_string"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:paddingStart="15dp"
@@ -177,7 +177,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutAnnouncements"
+                android:id="@+id/layoutActivityLog"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -195,13 +195,13 @@
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/announcement_icon"/>
+                    android:src="@drawable/activity_log_icon"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/announcement_string"
+                    android:text="@string/activity_log_string"
                     android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp"
@@ -250,7 +250,7 @@
                 android:padding="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/layoutSettings"
                 app:layout_constraintStart_toStartOf="@id/layoutEmployees"
-                app:layout_constraintTop_toBottomOf="@+id/layoutAnnouncements"
+                app:layout_constraintTop_toBottomOf="@+id/layoutActivityLog"
                 >
 
                 <TextView
@@ -290,6 +290,7 @@
                     android:text="@string/dummy_text"
                     android:textColor="@color/colorWhite"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/textLatestAnnouncement"/>
 
                 <TextView

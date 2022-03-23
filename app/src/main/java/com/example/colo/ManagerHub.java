@@ -45,6 +45,7 @@ public class ManagerHub extends AppCompatActivity
     LinearLayout EmployeeButton;
     LinearLayout AnnouncementButton;
     LinearLayout ProjectButton;
+    LinearLayout ActivityLogButton;
     ImageButton ActivityButton;
     LinearLayout SettingsButton;
     ConstraintLayout AnnouncementButton2;
@@ -59,7 +60,7 @@ public class ManagerHub extends AppCompatActivity
 
         //LogoutButton = (Button) findViewById(R.id.LogOut_btn);
         EmployeeButton = findViewById(R.id.layoutEmployees);
-        AnnouncementButton = findViewById(R.id.layoutAnnouncements);
+        ActivityLogButton = findViewById(R.id.layoutActivityLog);
         ProjectButton = findViewById(R.id.layoutProjects);
         //ActivityButton = (ImageButton) findViewById(R.id.activity_btn);
         SettingsButton = findViewById(R.id.layoutSettings);
@@ -77,7 +78,7 @@ public class ManagerHub extends AppCompatActivity
 
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(UID);
-        refAnnouncements = FirebaseDatabase.getInstance().getReference("Announcements");
+        refAnnouncements = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child("Announcements");
 
         ref.child("name").addValueEventListener(new ValueEventListener() {
             @Override
@@ -109,11 +110,12 @@ public class ManagerHub extends AppCompatActivity
             }
         });
 
-        AnnouncementButton.setOnClickListener(new View.OnClickListener()
+        ActivityLogButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                // CHANGE TO ACTIVITY LOG CLASS
                 startActivity(new Intent(ManagerHub.this, ManagerCreateAnnouncement.class));
             }
         });
