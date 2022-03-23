@@ -13,8 +13,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
     </style>
 
-<style name="SplashScreenTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-    <item name="android:windowBackground">@drawable/splash_image</item>
-    
-</style>
+    <style name="SplashScreenTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+
+    </style>
+
+    <style name="Theme.CoLo.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.CoLo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.CoLo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
