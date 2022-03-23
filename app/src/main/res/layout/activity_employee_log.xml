@@ -19,10 +19,9 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/el_header"
             android:layout_width="225dp"
             android:layout_height="30dp"
-            android:text="Activity Log for week of:"
             android:textColor="@color/white"
             android:textSize="20sp"
             tools:layout_editor_absoluteX="16dp" />
@@ -56,127 +55,99 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+            <TextView
                 android:id="@+id/sunday"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:text="Sun" />
+                android:layout_height="match_parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/monday"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:text="Mon" />
+                android:layout_height="match_parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/tuesday"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:text="Tue" />
+                android:layout_height="match_parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/wednesday"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:text="Wed" />
+                android:layout_height="match_parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/thursday"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:text="Thu" />
+                android:layout_height="match_parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/friday"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:text="Fri" />
+                android:layout_height="match_parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/saturday"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:text="Sat" />
+                android:layout_height="match_parent" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+            <TextView
                 android:id="@+id/sunday_hours"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/blue_fill__rounded_color"
-                android:inputType="number"
-                android:text="5"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
-            <EditText
+            <TextView
                 android:id="@+id/monday_hours"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/blue_fill__rounded_color"
-                android:inputType="number"
-                android:text="6"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
-            <EditText
+            <TextView
                 android:id="@+id/tuesday_hours"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/blue_fill__rounded_color"
-                android:inputType="number"
-                android:text="6"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
-            <EditText
+            <TextView
                 android:id="@+id/wednesday_hours"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/blue_fill__rounded_color"
-                android:inputType="number"
-                android:text="7"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
-            <EditText
+            <TextView
                 android:id="@+id/thursday_hours"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/blue_fill__rounded_color"
-                android:inputType="number"
-                android:text="5"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
-            <EditText
+            <TextView
                 android:id="@+id/friday_hours"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/blue_fill__rounded_color"
-                android:inputType="number"
-                android:text="5"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
-            <EditText
+            <TextView
                 android:id="@+id/saturday_hours"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/blue_fill__rounded_color"
-                android:inputType="number"
-                android:text="0"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
         </TableRow>
@@ -192,7 +163,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hours_per_day_table">
@@ -201,24 +172,20 @@
                 android:id="@+id/act_week_total_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:text="Total Hours for the week: "
                 android:textSize="24sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/act_week_total"
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/blue_fill__rounded_color"
-                android:inputType="number"
-                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/white" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hours_per_day_table">
@@ -227,17 +194,13 @@
                 android:id="@+id/act_project_total_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:text="Total Hours on [Project Name]: "
                 android:textSize="24sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/act_project_total"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/blue_fill__rounded_color"
-                android:inputType="number"
-                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/white" />
         </TableRow>
