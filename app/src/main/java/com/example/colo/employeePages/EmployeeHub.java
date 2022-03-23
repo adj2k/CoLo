@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class EmployeeHub extends AppCompatActivity {
 
-    ImageButton clock_in_out;
+    ImageButton clock_in_out,  e_activity_btn;
     Button  emp_logout, e_ann_btn;
     private FirebaseAuth eAuth;
 
@@ -34,6 +34,7 @@ public class EmployeeHub extends AppCompatActivity {
         emp_logout = (Button) findViewById(R.id.emp_logout_btn);
         eAuth = FirebaseAuth.getInstance();
         e_ann_btn = (Button) findViewById(R.id.e_ann_btn);
+        e_activity_btn = (ImageButton) findViewById(R.id.e_activity_btn);
 
         clock_in_out.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +57,13 @@ public class EmployeeHub extends AppCompatActivity {
             {
                 eAuth.signOut();
                 startActivity(new Intent(EmployeeHub.this, MainActivity.class));
+            }
+        });
+
+        e_activity_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EmployeeHub.this,EmployeeActivityLog.class));
             }
         });
     }

@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/drawable/splash_image.xml" value="0.1095" />
+        <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/activity_employee_hub.xml" value="0.1" />
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/activity_log_in.xml" value="0.1265625" />
+        <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/activity_manager_hub.xml" value="0.1" />
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/announcements.xml" value="0.1265625" />
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/item_view.xml" value="0.1265625" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/drawable/announcement_background.xml" value="0.1905" />
