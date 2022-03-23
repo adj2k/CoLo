@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ManagerCreateAnnouncement extends AppCompatActivity {
 
@@ -66,6 +67,7 @@ public class ManagerCreateAnnouncement extends AppCompatActivity {
 
                     list.add(announcement);
                 }
+                Collections.reverse(list);
                 myAdapter.notifyDataSetChanged();
 
             }

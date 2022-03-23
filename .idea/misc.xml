@@ -7,6 +7,21 @@
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/activity_log_in.xml" value="0.1265625" />
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/announcements.xml" value="0.1265625" />
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/item_view.xml" value="0.1265625" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/drawable/announcement_background.xml" value="0.1905" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/drawable/header_background.xml" value="0.1025" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/drawable/ic_menu.xml" value="0.1905" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/drawable/search_icon.xml" value="0.1905" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/drawable/white_rectangle_background.xml" value="0.1025" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_admin_hub.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_announcements_manager_page.xml" value="0.15172101449275363" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_announcements_page.xml" value="0.15172101449275363" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_create_account.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_create_project.xml" value="0.14722222222222223" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_manager_hub.xml" value="0.33" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_manager_projects.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/employee.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/project_item.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/menu/navigation_menu.xml" value="0.36770833333333336" />
       </map>
     </option>
   </component>
