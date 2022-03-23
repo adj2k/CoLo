@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">CoLo</string>
+    <string name="hello">Hello</string>
+    <string name="search_elements">Search Elements</string>
+    <string name="employees">Employees</string>
+    <string name="projects">Projects</string>
+    <string name="announcement_string">Announcements</string>
+    <string name="settings_string">Settings</string>
+    <string name="dummy_text">Announcement Text Here</string>
+    <string name="home">Home</string>
+    <string name="employees_menu">Employees</string>
+    <string name="projects_menu">Projects</string>
+    <string name="settings_menu">Settings</string>
+    <string name="announcement_description">Description Here</string>
 </resources>
