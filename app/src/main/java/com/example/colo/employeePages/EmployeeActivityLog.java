@@ -3,9 +3,20 @@ package com.example.colo.employeePages;
 import android.os.Bundle;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import com.example.colo.R;
+import com.example.colo.GlobalCompanyName;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EmployeeActivityLog extends AppCompatActivity {
@@ -20,12 +31,35 @@ public class EmployeeActivityLog extends AppCompatActivity {
     String projString = "Total Hours on  " + "|||||" + ": ";
     String headerString = "Activity Log for week of:";
 
+    private String companyNameRef = "";
+    String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    long temp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_log);
 
-        dOWHours.add("5");
+        companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long timeWorked = 0;
+                if(snapshot.child("timeWorked").getValue() !=null) {
+                    timeWorked = ((long) snapshot.child("timeWorked").getValue());
+                    temp = timeWorked;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        String sunAnswer = "" + TimeUnit.MILLISECONDS.toMinutes(temp);
+
         dOWHours.add("6");
         dOWHours.add("6");
         dOWHours.add("7");
@@ -54,17 +88,17 @@ public class EmployeeActivityLog extends AppCompatActivity {
         elProj_tvl = (TextView) findViewById(R.id.act_project_total_text);
         el_header = (TextView) findViewById(R.id.el_header);
 
-        elSu_tv.setText(dOWHours.get(0));
-        elMo_tv.setText(dOWHours.get(1));
-        elTu_tv.setText(dOWHours.get(2));
-        elWe_tv.setText(dOWHours.get(3));
-        elTh_tv.setText(dOWHours.get(4));
-        elFr_tv.setText(dOWHours.get(5));
-        elSa_tv.setText(dOWHours.get(6));
+        elSu_tv.setText(sunAnswer);
+        elMo_tv.setText(dOWHours.get(0));
+        elTu_tv.setText(dOWHours.get(1));
+        elWe_tv.setText(dOWHours.get(2));
+        elTh_tv.setText(dOWHours.get(3));
+        elFr_tv.setText(dOWHours.get(4));
+        elSa_tv.setText(dOWHours.get(5));
 
-        String totalAnswer = "" + (Integer.parseInt(dOWHours.get(0)) + Integer.parseInt(dOWHours.get(1))
-                + Integer.parseInt(dOWHours.get(2)) + Integer.parseInt(dOWHours.get(3)) + Integer.parseInt(dOWHours.get(4))
-                + Integer.parseInt(dOWHours.get(5)) + Integer.parseInt(dOWHours.get(6)));
+        String totalAnswer = "" + (Integer.parseInt(sunAnswer) + Integer.parseInt(dOWHours.get(0))
+                + Integer.parseInt(dOWHours.get(1)) + Integer.parseInt(dOWHours.get(2)) + Integer.parseInt(dOWHours.get(3))
+                + Integer.parseInt(dOWHours.get(4)) + Integer.parseInt(dOWHours.get(5)));
 
         elTot_tv.setText(totalAnswer);
 
