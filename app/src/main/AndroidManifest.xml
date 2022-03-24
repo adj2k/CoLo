@@ -17,6 +17,7 @@
         <activity android:name=".Announcements.CreateAnnouncement"
                   android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ViewEmployees"/>
+        <activity android:name=".ViewManagers"/>
 
         <activity android:name=".Projects.ManagerProjects" />
         <activity android:name=".Announcements.ManagerCreateAnnouncement"
@@ -32,6 +33,7 @@
         <activity android:name=".LogIn"
                   android:windowSoftInputMode="adjustPan"/>/>
         <activity android:name=".CreateEmployee" />
+        <activity android:name=".CreateManager" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashScreenTheme"
