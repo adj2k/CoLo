@@ -72,7 +72,7 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/icon"
+                android:layout_toRightOf="@+id/password_icon"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Password"
@@ -86,7 +86,7 @@
                 android:textSize="12sp" />
 
             <ImageView
-                android:id="@+id/icon"
+                android:id="@+id/password_icon"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_centerVertical="true"
@@ -107,7 +107,7 @@
                 android:id="@+id/etCompany"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/icon"
+                android:layout_toRightOf="@+id/company_icon"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Company Name"
@@ -121,7 +121,7 @@
                 android:textSize="12sp" />
 
             <ImageView
-                android:id="@+id/icon"
+                android:id="@+id/company_icon"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
