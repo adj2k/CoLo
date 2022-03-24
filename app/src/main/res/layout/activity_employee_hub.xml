@@ -4,144 +4,463 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FEFFFF"
+    android:background="@color/colorBackground"
     tools:context=".employeePages.EmployeeHub">
 
-    <ImageButton
-        android:id="@+id/clock_in_out_btn"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="50dp"
-        android:adjustViewBounds="false"
-        android:background="#415EFE"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_activity"
-        app:srcCompat="@android:drawable/ic_menu_recent_history"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
-    <TextView
-        android:id="@+id/text_clock_in_out"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginEnd="140dp"
-        android:text="CLOCK IN/OUT"
-        android:textAlignment="center"
-        android:textColor="#415EFE"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clock_in_out_btn" />
+        android:background="@drawable/header_background"
+        android:padding="8dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/employee_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="#FDFDFE"
-        android:fontFamily="casual"
-        android:text="Employee Hub"
-        android:textAlignment="center"
-        android:textColor="#5C5555"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textHello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/hello"
+            android:textColor="@color/colorWhite"
+            android:textSize="23sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/e_ann_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="40dp"
-        android:fontFamily="sans-serif"
-        android:text="View Announcements"
-        android:textAlignment="center"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:backgroundTint="#415EFE"
-        app:layout_constraintBottom_toTopOf="@+id/e_activity_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employee_title" />
+        </TextView>
 
-    <ImageButton
-        android:id="@+id/e_activity_btn"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="60dp"
-        android:adjustViewBounds="false"
-        android:background="#415EFE"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/e_projects_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/e_ann_btn"
-        app:srcCompat="@android:drawable/ic_menu_my_calendar"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+        <TextView
+            android:id="@+id/textUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="John"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textHello"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/e_projects_btn"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="50dp"
-        android:adjustViewBounds="false"
-        android:background="#415EFE"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/e_activity_btn"
-        app:layout_constraintTop_toBottomOf="@+id/e_ann_btn"
-        app:srcCompat="@android:drawable/ic_menu_today"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+        </TextView>
 
-    <TextView
-        android:id="@+id/text_activity"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:text="ACTIVITY LOG"
-        android:textAlignment="center"
-        android:textColor="#415EFE"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/e_activity_btn" />
+        <ImageView
+            android:id="@+id/e_logout_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_logout"
+            app:layout_constraintBottom_toBottomOf="@id/textHello"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textHello"
+            app:tint="@color/colorWhite"
+            android:focusable="true">
 
-    <TextView
-        android:id="@+id/text_projects"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="63dp"
-        android:text="PROJECTS"
-        android:textAlignment="center"
-        android:textColor="#415EFE"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/e_projects_btn" />
+        </ImageView>
 
-    <Button
-        android:id="@+id/emp_logout_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="LOG OUT"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:backgroundTint="#415EFE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_clock_in_out" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_rectangle_background"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/e_logout_btn">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/search_bar_string"
+                android:imeOptions="actionSearch"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/search_icon_background"
+                android:contentDescription="@string/app_name"
+                android:padding="6dp"
+                android:src="@drawable/ic_search"
+                android:tint="@color/colorPrimary" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/bottomView"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/clock_in_out_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:clickable="true"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/e_projects_btn"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/clockinout"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/clock"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e_projects_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@+id/clock_in_out_btn"
+                android:padding="15dp"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/projects_icon"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/projects"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutActivityLog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/e_projects_btn"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clock_in_out_btn">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/activity_log_icon"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/activity_log_string"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e_settings_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintStart_toEndOf="@id/clock_in_out_btn"
+                app:layout_constraintTop_toBottomOf="@+id/e_projects_btn">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/settings_icon"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/settings_string"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/e_ann_btn"
+                android:clickable="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/announcement_background"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/e_settings_btn"
+                app:layout_constraintStart_toStartOf="@id/clock_in_out_btn"
+                app:layout_constraintTop_toBottomOf="@+id/layoutActivityLog"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/textLatestAnnouncement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white_rectangle_background"
+                    android:paddingStart="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="2dp"
+                    android:text="ANNOUNCEMENT"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_announcement"
+                    android:tint="@color/colorWhite"
+                    app:layout_constraintBottom_toBottomOf="@id/textLatestAnnouncement"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/textLatestAnnouncement"
+                    />
+
+                <TextView
+                    android:id="@+id/announcement_title_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@string/dummy_text"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/textLatestAnnouncement"/>
+
+                <TextView
+                    android:id="@+id/announcement_description_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@string/announcement_description"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@id/announcement_title_text"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+    <View
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </View>
+
+
+    <!--
+     <ImageButton
+         android:id="@+id/clock_in_out_btn"
+         android:layout_width="110dp"
+         android:layout_height="110dp"
+         android:layout_marginTop="50dp"
+         android:adjustViewBounds="false"
+         android:background="#415EFE"
+         android:scaleType="fitCenter"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/text_activity"
+         app:srcCompat="@android:drawable/ic_menu_recent_history"
+         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+     <TextView
+         android:id="@+id/text_clock_in_out"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="140dp"
+         android:layout_marginEnd="140dp"
+         android:text="CLOCK IN/OUT"
+         android:textAlignment="center"
+         android:textColor="#415EFE"
+         android:textSize="18sp"
+         android:textStyle="bold"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/clock_in_out_btn" />
+
+     <TextView
+         android:id="@+id/employee_title"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+         android:background="#FDFDFE"
+         android:fontFamily="casual"
+         android:text="Employee Hub"
+         android:textAlignment="center"
+         android:textColor="#5C5555"
+         android:textSize="26sp"
+         android:textStyle="bold"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.498"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+
+     <Button
+         android:id="@+id/e_ann_btn"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="50dp"
+         android:layout_marginTop="70dp"
+         android:layout_marginEnd="50dp"
+         android:layout_marginBottom="40dp"
+         android:fontFamily="sans-serif"
+         android:text="View Announcements"
+         android:textAlignment="center"
+         android:textSize="17sp"
+         android:textStyle="bold"
+         android:typeface="normal"
+         app:backgroundTint="#415EFE"
+         app:layout_constraintBottom_toTopOf="@+id/e_activity_btn"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/employee_title" />
+
+     <ImageButton
+         android:id="@+id/e_activity_btn"
+         android:layout_width="110dp"
+         android:layout_height="110dp"
+         android:layout_marginStart="50dp"
+         android:layout_marginTop="35dp"
+         android:layout_marginEnd="60dp"
+         android:adjustViewBounds="false"
+         android:background="#415EFE"
+         android:scaleType="fitCenter"
+         app:layout_constraintEnd_toStartOf="@+id/e_projects_btn"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/e_ann_btn"
+         app:srcCompat="@android:drawable/ic_menu_my_calendar"
+         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+     <ImageButton
+         android:id="@+id/e_projects_btn"
+         android:layout_width="110dp"
+         android:layout_height="110dp"
+         android:layout_marginTop="35dp"
+         android:layout_marginEnd="50dp"
+         android:adjustViewBounds="false"
+         android:background="#415EFE"
+         android:scaleType="fitCenter"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toEndOf="@+id/e_activity_btn"
+         app:layout_constraintTop_toBottomOf="@+id/e_ann_btn"
+         app:srcCompat="@android:drawable/ic_menu_today"
+         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+     <TextView
+         android:id="@+id/text_activity"
+         android:layout_width="120dp"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="55dp"
+         android:text="ACTIVITY LOG"
+         android:textAlignment="center"
+         android:textColor="#415EFE"
+         android:textSize="17sp"
+         android:textStyle="bold"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/e_activity_btn" />
+
+     <TextView
+         android:id="@+id/text_projects"
+         android:layout_width="100dp"
+         android:layout_height="wrap_content"
+         android:layout_marginEnd="63dp"
+         android:text="PROJECTS"
+         android:textAlignment="center"
+         android:textColor="#415EFE"
+         android:textSize="17sp"
+         android:textStyle="bold"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/e_projects_btn" />
+
+     <Button
+         android:id="@+id/emp_logout_btn"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:fontFamily="sans-serif"
+         android:text="LOG OUT"
+         android:textSize="17sp"
+         android:textStyle="bold"
+         app:backgroundTint="#415EFE"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/text_clock_in_out" />
+        -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
