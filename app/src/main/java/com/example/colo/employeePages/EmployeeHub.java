@@ -39,8 +39,6 @@ public class EmployeeHub extends AppCompatActivity {
     private DatabaseReference ann_ref;
     TextView hello_name,ann_title,ann_desc;
     String UID, first_name;
-    private FirebaseDatabase database;
-    private DatabaseReference mDatabase;
     private FirebaseAuth eAuth;
     FirebaseUser user;
 
@@ -60,8 +58,6 @@ public class EmployeeHub extends AppCompatActivity {
         ann_title = findViewById(R.id.ann_title);
         ann_desc = findViewById(R.id.ann_desc);
 
-        database = FirebaseDatabase.getInstance();
-        mDatabase = database.getReference("Employee");
         eAuth = FirebaseAuth.getInstance();
         user = eAuth.getCurrentUser();
         UID = user.getUid();

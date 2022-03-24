@@ -24,7 +24,7 @@
             android:fontFamily="@font/poppins_regular"
             android:text="@string/hello"
             android:textColor="@color/colorWhite"
-            android:textSize="23sp"
+            android:textSize="21sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -35,11 +35,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="14dp"
             android:fontFamily="@font/poppins_regular"
             android:text="John"
             android:textColor="@color/colorWhite"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/textHello"
             app:layout_constraintTop_toTopOf="parent">
@@ -50,29 +50,29 @@
             android:id="@+id/e_logout_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="10dp"
             android:clickable="true"
             android:contentDescription="@string/app_name"
+            android:focusable="true"
             android:src="@drawable/ic_logout"
             app:layout_constraintBottom_toBottomOf="@id/textHello"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/textHello"
-            app:tint="@color/colorWhite"
-            android:focusable="true">
+            app:tint="@color/colorWhite">
 
         </ImageView>
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/white_rectangle_background"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/e_logout_btn">
+            app:layout_constraintTop_toBottomOf="@id/e_logout_btn"
+            tools:layout_editor_absoluteX="23dp">
 
             <EditText
                 android:layout_width="0dp"
@@ -98,6 +98,34 @@
                 android:tint="@color/colorPrimary" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="You are invaluable to us!"
+            android:textColor="@color/colorWhite"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/e_username"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="So, always work hard!!"
+            android:textColor="@color/colorWhite"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/e_username"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
