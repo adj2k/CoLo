@@ -37,7 +37,7 @@ public class ManagerProjectListEmployeeAdapter extends RecyclerView.Adapter<Mana
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         ManagerProjectListEmployeeData user = list.get(position);
-        holder.name.setText(user.getName());
+        holder.userName.setText(user.getUserName());
     }
 
     @Override
@@ -46,12 +46,12 @@ public class ManagerProjectListEmployeeAdapter extends RecyclerView.Adapter<Mana
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name;
+        TextView userName;
         OnNoteListener onNoteListener;
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
-            name = itemView.findViewById(R.id.employee_name);
+            userName = itemView.findViewById(R.id.employee_username);
             this.onNoteListener = onNoteListener;
 
             itemView.setOnClickListener(this);
