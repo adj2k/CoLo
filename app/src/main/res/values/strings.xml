@@ -15,4 +15,5 @@
     <string name="activity_log_string">Activity Log</string>
     <string name="search_bar_string">Search</string>
     <string name="managers_string">Managers</string>
+    <string name="clock">Clock In/Out</string>
 </resources>
