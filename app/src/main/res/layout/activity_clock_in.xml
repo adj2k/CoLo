@@ -4,22 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".employeePages.ClockIn">
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="CLOCK IN/CLOCK OUT"
-        android:textAlignment="center"
-        android:textColor="#0B0B0B"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/date"
@@ -60,7 +46,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="0dp"
             android:accessibilityLiveRegion="assertive"
-            android:background="#FFFFFF"
+            android:background="#F9F9F9"
             android:backgroundTint="#FFFFFF"
             android:textAlignment="center"
             android:textColor="#0B0B0B"
@@ -70,31 +56,44 @@
 
     </RelativeLayout>
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="120dp"
+        android:background="?android:attr/galleryItemBackground"
+        android:backgroundTint="#0A0A0A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
     <Button
         android:id="@+id/clock_in_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="169dp"
-        android:layout_marginBottom="118dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="100dp"
         android:text="Clock In"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/clock_out_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="169dp"
-        android:layout_marginBottom="118dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="100dp"
         android:text="Clock Out"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        android:textColor="#FCFBFB"
+        app:backgroundTint="#AA0303"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/clock_in_btn"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
