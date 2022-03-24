@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class AdminHub extends AppCompatActivity
     String UID, first_name;
     TextView screen_name;
     TextView announcement_text, announcement_desc_text;
-    //Button LogoutButton;
+    ImageView LogoutButton;
     LinearLayout EmployeeButton;
     //LinearLayout AnnouncementButton;
     LinearLayout ManagersButton;
@@ -62,6 +63,7 @@ public class AdminHub extends AppCompatActivity
         announcement_desc_text = findViewById(R.id.announcement_description_text_Admin);
         AnnouncementButton = findViewById(R.id.announcement_popup_admin);
         ManagersButton = findViewById(R.id.layoutManagers);
+        LogoutButton = findViewById(R.id.imageMenu_Admin);
 
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference("Admin");
@@ -157,6 +159,16 @@ public class AdminHub extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AdminHub.this, ViewManagers.class));
+            }
+        });
+
+        LogoutButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                mAuth.signOut();
+                startActivity(new Intent(AdminHub.this, LogIn.class));
             }
         });
 
