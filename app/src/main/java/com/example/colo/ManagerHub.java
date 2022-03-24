@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,7 +42,6 @@ public class ManagerHub extends AppCompatActivity
     String UID, first_name;
     TextView screen_name;
     TextView announcement_text, announcement_desc_text;
-    Button LogoutButton;
     LinearLayout EmployeeButton;
     LinearLayout AnnouncementButton;
     LinearLayout ProjectButton;
@@ -49,6 +49,7 @@ public class ManagerHub extends AppCompatActivity
     ImageButton ActivityButton;
     LinearLayout SettingsButton;
     ConstraintLayout AnnouncementButton2;
+    ImageView LogoutButton;
 
     private String companyNameRef = "";
 
@@ -68,6 +69,7 @@ public class ManagerHub extends AppCompatActivity
         announcement_text = findViewById(R.id.announcement_title_text);
         announcement_desc_text = findViewById(R.id.announcement_description_text);
         AnnouncementButton2 = findViewById(R.id.announcement_popup);
+        LogoutButton = findViewById(R.id.logoutImage);
 
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference("Manager");
@@ -147,16 +149,6 @@ public class ManagerHub extends AppCompatActivity
             }
         });
 
-        /*
-        ActivityButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(new Intent(ManagerHub.this, ManagerClockLog.class));
-            }
-        });*/
-
         SettingsButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -166,7 +158,7 @@ public class ManagerHub extends AppCompatActivity
             }
         });
 
-            /*
+
         LogoutButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -176,26 +168,6 @@ public class ManagerHub extends AppCompatActivity
                 startActivity(new Intent(ManagerHub.this, LogIn.class));
             }
         });
-        */
-        /*
-        if(user != null)
-        {
-            mDatabase.addListenerForSingleValueEvent(new ValueEventListener()
-            {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                {
-                    String first_name = dataSnapshot.child(UID).child("name").getValue(String.class);
-                    screen_name.setText(first_name);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error)
-                {
-
-                }
-            });
-        } */
     }
 
 

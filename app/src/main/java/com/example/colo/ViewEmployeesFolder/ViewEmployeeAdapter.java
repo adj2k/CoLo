@@ -61,6 +61,15 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
             ID = itemView.findViewById(R.id.employeeIDtext);
             email = itemView.findViewById(R.id.employeeEmailtext);
 
+            /*
+            itemView.findViewById(R.id.employeeDeleteButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });*/
+
+
         }
     }
 
