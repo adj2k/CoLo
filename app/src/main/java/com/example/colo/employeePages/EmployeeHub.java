@@ -37,6 +37,7 @@ public class EmployeeHub extends AppCompatActivity {
         e_activity_btn = (ImageButton) findViewById(R.id.e_activity_btn);
 
         clock_in_out.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EmployeeHub.this,ClockIn.class));
@@ -63,7 +64,7 @@ public class EmployeeHub extends AppCompatActivity {
         e_activity_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EmployeeHub.this,EmployeeActivityLog.class));
+                startActivity(new Intent(EmployeeHub.this, com.example.colo.employeePages.EmployeeActivityLog.class));
             }
         });
     }
