@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -132,7 +130,7 @@ public class AdminHub extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent(AdminHub.this, CreateAccount.class));
+                startActivity(new Intent(AdminHub.this, ViewEmployees.class));
             }
         });
 

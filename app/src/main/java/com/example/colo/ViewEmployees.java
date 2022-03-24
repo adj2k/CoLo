@@ -1,23 +1,22 @@
 package com.example.colo;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.colo.Announcements.AnnouncementAdapter;
-import com.example.colo.Announcements.AnnouncementHelperClass;
-import com.example.colo.Announcements.AnnouncementList;
-import com.example.colo.Announcements.ManagerCreateAnnouncement;
-import com.example.colo.Projects.ManagerProjectListEmployeeData;
 import com.example.colo.ViewEmployeesFolder.EmployeeList;
 import com.example.colo.ViewEmployeesFolder.ViewEmployeeAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ViewEmployees extends AppCompatActivity {
 
@@ -39,7 +37,11 @@ public class ViewEmployees extends AppCompatActivity {
     ArrayList<EmployeeList> list;
     private String companyNameRef = "";
     LinearLayout CreateEmployee;
+    Dialog dialog;
+    ImageView deleteEmployee;
+    Button yes, cancel;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,20 +68,6 @@ public class ViewEmployees extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    /*
-                    if(dataSnapshot.getKey().equals("role")) {
-                        String checkRole = dataSnapshot.getValue().toString();
-                        Log.i("Role: ", checkRole);
-
-                        if (checkRole.equals("Employee")) {
-                            //String name = dataSnapshot.child("name").getValue(String.class);
-                            //String ID = dataSnapshot.child("EmployeeID").getValue(String.class);
-                            //String email =  dataSnapshot.child("email").getValue(String.class);
-                            EmployeeList user = dataSnapshot.getValue(EmployeeList.class);
-                            list.add(user);
-
-                        }
-                    } */
                     // used to make sure PROJECTS and maybe ANNOUNCEMENTS are not posted to list
                     if(!dataSnapshot.getKey().equals("Projects") ) {
                         if(!dataSnapshot.getKey().equals("Announcements")) {
@@ -103,10 +91,49 @@ public class ViewEmployees extends AppCompatActivity {
             public void onClick(View view)
             {
                 // CHANGE TO ACTIVITY LOG CLASS
-                startActivity(new Intent(ViewEmployees.this, CreateAccount.class));
+                startActivity(new Intent(ViewEmployees.this, com.example.colo.CreateEmployee.class));
             }
         });
 
+        /*
+        dialog = new Dialog(ViewEmployees.this);
+        dialog.setContentView(R.layout.pop_delete);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.delete_dialog_background));
+        }
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        dialog.setCancelable(true);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+
+        yes = dialog.findViewById(R.id.btn_yes);
+        cancel = dialog.findViewById(R.id.btn_cancel);
+
+        deleteEmployee = findViewById(R.id.employeeDeleteButton);
+
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ViewEmployees.this, "User Deleted", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ViewEmployees.this, "Action Cancelled", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        deleteEmployee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+            }
+        });
+        */
 
 
     }

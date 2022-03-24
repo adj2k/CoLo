@@ -31,7 +31,7 @@
         <activity android:name=".AdminHub"/>
         <activity android:name=".LogIn"
                   android:windowSoftInputMode="adjustPan"/>/>
-        <activity android:name=".CreateAccount" />
+        <activity android:name=".CreateEmployee" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashScreenTheme"
