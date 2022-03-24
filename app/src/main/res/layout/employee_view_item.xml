@@ -108,6 +108,7 @@
         <ImageView
             android:id="@+id/employeeDeleteButton"
             android:layout_width="30dp"
+            android:clickable="true"
             android:layout_height="30dp"
             android:src="@drawable/ic_remove"
             android:tint="#FF7F7F"

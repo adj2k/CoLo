@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -27,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ViewEmployees extends AppCompatActivity {
+public class ViewManagers extends AppCompatActivity {
 
 
     UserHelperClass userHelperClass;
@@ -44,7 +42,7 @@ public class ViewEmployees extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_employees);
+        setContentView(R.layout.activity_view_managers);
 
         // Sets up the RecyclerView
         recyclerView = findViewById(R.id.employee_list2);
@@ -90,7 +88,7 @@ public class ViewEmployees extends AppCompatActivity {
             public void onClick(View view)
             {
                 // CHANGE TO ACTIVITY LOG CLASS
-                startActivity(new Intent(ViewEmployees.this, com.example.colo.CreateEmployee.class));
+                startActivity(new Intent(ViewManagers.this, CreateManager.class));
             }
         });
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
-    tools:context=".CreateEmployee">
+    tools:context=".CreateManager">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeaderViewE"
@@ -22,8 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="65dp"
-            android:text="Create an Employee"
+            android:layout_marginLeft="85dp"
+            android:text="Create a Manager"
             android:textColor="@color/colorWhite"
             android:textSize="25sp"
             android:fontFamily="@font/poppins_regular"
@@ -58,7 +58,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter the employee's name">
+            android:hint="Enter the manager's name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNameEntry"
@@ -72,7 +72,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter the employee's email">
+            android:hint="Enter the manager's email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmailEntry"
