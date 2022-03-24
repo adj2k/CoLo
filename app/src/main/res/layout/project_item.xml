@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="pName"
-                android:textColor="@color/teal_700"
+                android:textColor="#1566e0"
                 android:textSize="28sp"
                 android:textStyle="bold"/>
 
