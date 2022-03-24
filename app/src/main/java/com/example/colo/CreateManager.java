@@ -1,8 +1,5 @@
 package com.example.colo;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,6 +13,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,14 +25,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-public class CreateEmployee extends AppCompatActivity
+public class CreateManager extends AppCompatActivity
 {
 
     EditText Name, Email, Username, Password, VerifyPassword, EmployeeID;
     TextView DateText;
     Button DatePicker, CreateAccountBTN;
     DatePickerDialog.OnDateSetListener dateSetListener;
-    android.widget.RadioGroup RadioGroupGender, RadioGroupRole;
+    RadioGroup RadioGroupGender, RadioGroupRole;
     RadioButton RadioButtonGender, RadioButtonRole;
 
     private FirebaseDatabase database;
@@ -48,7 +48,7 @@ public class CreateEmployee extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account);
+        setContentView(R.layout.activity_create_account_manager);
 
         Name = (EditText) findViewById(R.id.etNameEntry);
         Email = (EditText) findViewById(R.id.etEmailEntry);
@@ -81,7 +81,7 @@ public class CreateEmployee extends AppCompatActivity
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(CreateEmployee.this, android.R.style.Theme_Holo_Dialog_MinWidth, dateSetListener, year, month, day);
+                DatePickerDialog dialog = new DatePickerDialog(CreateManager.this, android.R.style.Theme_Holo_Dialog_MinWidth, dateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -114,7 +114,7 @@ public class CreateEmployee extends AppCompatActivity
                 String employeeID = EmployeeID.getText().toString();
                 String dateText = DateText.getText().toString();
                 String gender = RadioButtonGender.getText().toString();
-                String role = "Employee";
+                String role = "Manager";
 
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender() & validateRole())
                 {
@@ -136,12 +136,11 @@ public class CreateEmployee extends AppCompatActivity
                                     {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(CreateEmployee.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(CreateManager.this, "Authentication failed.", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
                     finish();
-//                    startActivity(new Intent(CreateAccount.this, ManagerHub.class));
                 }
             }
         });
@@ -152,6 +151,12 @@ public class CreateEmployee extends AppCompatActivity
     {
         int radioId = RadioGroupGender.getCheckedRadioButtonId();
         RadioButtonGender = findViewById(radioId);
+    }
+
+    public void checkButtonRole(View v)
+    {
+        int radioId = RadioGroupRole.getCheckedRadioButtonId();
+        RadioButtonRole = findViewById(radioId);
     }
 
 

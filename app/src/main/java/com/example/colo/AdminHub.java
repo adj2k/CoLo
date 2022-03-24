@@ -152,6 +152,14 @@ public class AdminHub extends AppCompatActivity
             }
         });
 
+        ManagersButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminHub.this, ViewManagers.class));
+            }
+        });
+
 
     }
 }
