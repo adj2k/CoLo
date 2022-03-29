@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmployeeActivityLog">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:id="@+id/el_header"
+            android:layout_width="225dp"
+            android:layout_height="30dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextClock
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:format12Hour="EE, dd-MMM"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            tools:layout_editor_absoluteX="411dp"
+            android:textAlignment="viewStart"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TableLayout
+        android:id="@+id/hours_per_day_table"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/sunday"
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/monday"
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tuesday"
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/wednesday"
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/thursday"
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/friday"
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/saturday"
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/sunday_hours"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/monday_hours"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tuesday_hours"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/wednesday_hours"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/thursday_hours"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/friday_hours"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/saturday_hours"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hours_per_day_table">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hours_per_day_table">
+
+            <TextView
+                android:id="@+id/act_week_total_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/act_week_total"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hours_per_day_table">
+
+            <TextView
+                android:id="@+id/act_project_total_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/act_project_total"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_fill__rounded_color"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+        </TableRow>
+
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
