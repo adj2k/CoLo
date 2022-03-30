@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateProject extends AppCompatActivity implements ManagerProjectListEmployeeAdapter.OnNoteListener {
+public class CreateProject extends AppCompatActivity implements QuantityListener {
 
     EditText name, description;
     private Button create_project_btn;
@@ -34,9 +34,9 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
     ProjectHelperClass projectHelperClass;
 
     RecyclerView recyclerView;
-    ManagerProjectListEmployeeAdapter myAdapter;
+    ProjectEmployeeAdapter myAdapter;
     ArrayList<ManagerProjectListEmployeeData> list;
-    ArrayList<String> employees;
+    ArrayList<String> employees, EmployeeUIDS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +48,16 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyName);
 
         recyclerView = findViewById(R.id.employee_list);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setHasFixedSize(true);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         name = (EditText) findViewById(R.id.get_project_name);
         description = (EditText) findViewById(R.id.get_project_desc);
 
         list = new ArrayList<>();
         employees = new ArrayList<>();
-        myAdapter = new ManagerProjectListEmployeeAdapter(this,list, this);
-        recyclerView.setAdapter(myAdapter);
+        EmployeeUIDS = new ArrayList<>();
+        //myAdapter = new ManagerProjectListEmployeeAdapter(this,list, this);
+        //recyclerView.setAdapter(myAdapter);
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -68,6 +69,7 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
                         if(!dataSnapshot.getKey().equals("Announcements")) {
                             ManagerProjectListEmployeeData user = dataSnapshot.getValue(ManagerProjectListEmployeeData.class);
                             list.add(user);
+                            EmployeeUIDS.add(dataSnapshot.getKey());
                         }
                     }
                 }
@@ -80,12 +82,22 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
             }
         });
 
+        setRecyclerView();
 
         create_project_btn = (Button) findViewById(R.id.create_project_btn);
         create_project_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { addProject();}
         });
+    }
+
+    private void setRecyclerView() {
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        myAdapter = new ProjectEmployeeAdapter(this, list, EmployeeUIDS, (QuantityListener) this);
+        recyclerView.setAdapter(myAdapter);
+
+
     }
 
     // submit new project to database !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -166,21 +178,9 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
         }
     }
 
-
     @Override
-    public void onNoteClick(int position) {
-        String empName = list.get(position).getUserName();
-        boolean clickFlag = true;
-        for(String i : employees) {
-            if(empName.equals(i)) {
-                Toast.makeText(CreateProject.this, "Employee already Chosen", Toast.LENGTH_LONG).show();
-                clickFlag = false;
-            }
-        }
-        // add employee to list if they are not already on the list
-        if(clickFlag) {
-            employees.add(empName);
-        }
-
+    public void onQuantityChange(ArrayList<String> list) {
+        employees = list;
+        //Toast.makeText(CreateProject.this, employees.toString(), Toast.LENGTH_LONG).show();
     }
 }
