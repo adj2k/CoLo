@@ -1,6 +1,7 @@
 package com.example.colo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -9,7 +10,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +26,10 @@ import com.example.colo.Announcements.CreateAnnouncement;
 import com.example.colo.Announcements.ManagerCreateAnnouncement;
 import com.example.colo.Projects.ManagerProjects;
 import com.example.colo.employeePages.EmployeeHub;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,8 +38,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ManagerHub extends AppCompatActivity
-{
+import org.w3c.dom.Text;
+
+public class ManagerHub extends AppCompatActivity {
 
     public Button LogOut;
     public TextView Email;
@@ -45,6 +53,7 @@ public class ManagerHub extends AppCompatActivity
     String UID, first_name;
     TextView screen_name;
     TextView announcement_text, announcement_desc_text;
+    EditText UpdatePassword, ConfirmUpdatePassword;
     LinearLayout EmployeeButton;
     LinearLayout AnnouncementButton;
     LinearLayout ProjectButton;
@@ -59,51 +68,83 @@ public class ManagerHub extends AppCompatActivity
     private String m_Text = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child(userKey);
 
-        DatabaseReference referenceCompany =  FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef);
-
+        DatabaseReference referenceCompany = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef);
 
 
         referenceCompany.addValueEventListener(new ValueEventListener() {
             @Override
-
-
-
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
 
-                for(DataSnapshot snapshot : datasnapshot.getChildren()){
-                    if(snapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    if (snapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                         // Auth Key = Key in Company => proceed to check for role
                         reference.addValueEventListener(new ValueEventListener() {
                             @Override
 
                             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                                for(DataSnapshot snapshot : datasnapshot.getChildren()){
-                                    if(snapshot.getKey().equals("oneTimePassword")) {
-                                        if(snapshot.getValue().equals((true))) {
-                                            AlertDialog.Builder builder = new AlertDialog.Builder(ManagerHub.this);
-                                            builder.setTitle("Title");
+                                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                                    if (snapshot.getKey().equals("oneTimePassword")) {
+                                        if (snapshot.getValue().equals((true))) {
+                                            LayoutInflater linf = LayoutInflater.from(ManagerHub.this);
+                                            final View inflator = linf.inflate(R.layout.onetime_popup, null);
+                                            AlertDialog dialog = new AlertDialog.Builder(ManagerHub.this)
+                                                    .setTitle("Please update your password")
+                                                    .setView(inflator)
+                                                    .setPositiveButton(android.R.string.ok, null)
+                                                    .create();
 
-                                            // Set up the input
-                                            final EditText input = new EditText(ManagerHub.this);
-                                            // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                                            input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                                            builder.setView(input);
+                                            final EditText UpdatePassword = (EditText) inflator.findViewById(R.id.updatePassword);
+                                            final EditText ConfirmUpdatePassword = (EditText) inflator.findViewById(R.id.confirmUpdatePassword);
 
 
-                                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
                                                 @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    m_Text = input.getText().toString();
-                                                    reference.child("oneTimePassword").setValue(false);
+                                                public void onShow(DialogInterface dialogInterface) {
+
+                                                    Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                                                    button.setOnClickListener(new View.OnClickListener() {
+
+                                                        @Override
+                                                        public void onClick(View view) {
+                                                            // TODO Do something
+
+                                                            String updatePassword = UpdatePassword.getText().toString();
+                                                            String confirmUpdatePassword = ConfirmUpdatePassword.getText().toString();
+
+
+                                                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+                                                            //Update password and oneTimePassword in database
+                                                            if (updatePassword.isEmpty()) {
+                                                                UpdatePassword.setError("Field can not be empty");
+                                                            } else if (confirmUpdatePassword.isEmpty()) {
+                                                                ConfirmUpdatePassword.setError("Field can not be empty");
+                                                            } else if (UpdatePassword.length() < 6) {
+                                                                UpdatePassword.setError("Password needs to be at least 6 characters long");
+                                                            } else if (!(updatePassword.equals(confirmUpdatePassword))) {
+                                                                ConfirmUpdatePassword.setError("The passwords do not match");
+                                                            } else {
+                                                                reference.child("password").setValue(updatePassword);
+                                                                reference.child("oneTimePassword").setValue(false);
+                                                                //Dismiss once everything is OK.
+                                                                user.updatePassword(updatePassword);
+                                                                dialog.dismiss();
+                                                            }
+                                                        }
+
+                                                        ;
+                                                    });
                                                 }
                                             });
 
-                                            builder.show();
+
+                                            dialog.show();
                                         }
                                     }
                                 }
@@ -114,11 +155,7 @@ public class ManagerHub extends AppCompatActivity
 
                             }
                         });
-                    }
-                    else {
-                        // Return
-//                                            Toast.makeText(LogIn.this, "YOU DON'T WORK FOR THIS COMPANY.", Toast.LENGTH_LONG).show();
-
+                    } else {
                     }
 
                 }
@@ -129,17 +166,6 @@ public class ManagerHub extends AppCompatActivity
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-
 
 
         super.onCreate(savedInstanceState);
@@ -165,8 +191,8 @@ public class ManagerHub extends AppCompatActivity
         Log.i("UID: ", UID);
 
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(UID);
-        refAnnouncements = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child("Announcements");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child(UID);
+        refAnnouncements = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child("Announcements");
 
         ref.child("name").addValueEventListener(new ValueEventListener() {
             @Override
@@ -184,7 +210,7 @@ public class ManagerHub extends AppCompatActivity
         refAnnouncements.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String text = dataSnapshot.child("aTitle").getValue(String.class);
                     String description = dataSnapshot.child("aDescription").getValue(String.class);
                     announcement_text.setText(text);
@@ -198,64 +224,51 @@ public class ManagerHub extends AppCompatActivity
             }
         });
 
-        ActivityLogButton.setOnClickListener(new View.OnClickListener()
-        {
+        ActivityLogButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 // CHANGE TO ACTIVITY LOG CLASS
                 startActivity(new Intent(ManagerHub.this, ManagerCreateAnnouncement.class));
             }
         });
 
-        AnnouncementButton2.setOnClickListener(new View.OnClickListener()
-        {
+        AnnouncementButton2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 startActivity(new Intent(ManagerHub.this, ManagerCreateAnnouncement.class));
             }
         });
 
-        EmployeeButton.setOnClickListener(new View.OnClickListener()
-        {
+        EmployeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 startActivity(new Intent(ManagerHub.this, ViewEmployees.class));
             }
         });
 
-        ProjectButton.setOnClickListener(new View.OnClickListener()
-        {
+        ProjectButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 startActivity(new Intent(ManagerHub.this, ManagerProjects.class));
             }
         });
 
-        SettingsButton.setOnClickListener(new View.OnClickListener()
-        {
+        SettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 //startActivity(new Intent(ManagerHub.this, ManagerSettings.class));
             }
         });
 
 
-        LogoutButton.setOnClickListener(new View.OnClickListener()
-        {
+        LogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 mAuth.signOut();
                 startActivity(new Intent(ManagerHub.this, LogIn.class));
             }
         });
     }
-
 
 
 }
