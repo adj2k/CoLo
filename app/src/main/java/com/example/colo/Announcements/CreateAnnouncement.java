@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.colo.GlobalCompanyName;
 import com.example.colo.R;
 import com.example.colo.Announcements.AnnouncementHelperClass;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CreateAnnouncement extends AppCompatActivity {
@@ -37,6 +39,7 @@ public class CreateAnnouncement extends AppCompatActivity {
     RecyclerView recyclerView;
     AnnouncementAdapter myAdapter;
     ArrayList<AnnouncementList> list;
+    private String companyNameRef = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class CreateAnnouncement extends AppCompatActivity {
         setContentView(R.layout.activity_announcements_page);
 
         // Sets the database reference to the "Announcements"
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Announcements");
+        //DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Announcements");
 
         // Sets up the RecyclerView
         recyclerView = findViewById(R.id.announcement_list);
@@ -56,6 +59,9 @@ public class CreateAnnouncement extends AppCompatActivity {
         myAdapter = new AnnouncementAdapter(this,list);
         recyclerView.setAdapter(myAdapter);
 
+        companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child("Announcements");
+
         // Listens for data change in database and updates new entries to the list
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -66,6 +72,7 @@ public class CreateAnnouncement extends AppCompatActivity {
 
                     list.add(announcement);
                 }
+                Collections.reverse(list);
                 myAdapter.notifyDataSetChanged();
 
             }

@@ -81,7 +81,7 @@ public class LogIn extends AppCompatActivity
 //                    Log.i("Company: ", snapshot.getKey());
                     arrayList.add(snapshot.getKey());
 
-                }
+                    }
 
 
             }
@@ -197,7 +197,12 @@ public class LogIn extends AppCompatActivity
                                                             localRole = checkRole;
                                                             Log.i("StupidLocalRole",localRole);
                                                             Log.i("Role: ", checkRole);
-                                                            if(checkRole.equals("Admin") || checkRole.equals("Manager")){
+
+
+                                                            if(checkRole.equals("Admin")){
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
+                                                                startActivity(new Intent(LogIn.this, AdminHub.class));
+                                                            }else if(checkRole.equals("Manager")){
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, ManagerHub.class));
                                                             } else if (checkRole.equals("Employee")){

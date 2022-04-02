@@ -52,6 +52,8 @@ public class ClockIn extends AppCompatActivity {
     DateTimeFormatter formatterdisplay = DateTimeFormatter.ofPattern("hh:mm a");
 
     String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String first_name;
+    TextView hello_name;
 
 
     @Override
@@ -59,6 +61,7 @@ public class ClockIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in);
 
+        hello_name=findViewById(R.id.e_username_c);
         //display date on top of the page
         EditText viewDate=findViewById(R.id.date);
         //get the date and day
@@ -69,6 +72,20 @@ public class ClockIn extends AppCompatActivity {
         // gets user's company name and user ref
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
+
+        //Display the first name after Hello
+        ref.child("name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                first_name = snapshot.getValue(String.class);
+                hello_name.setText(first_name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // see which button needs to be greyed out and deactivated.
         ref.addValueEventListener(new ValueEventListener() {

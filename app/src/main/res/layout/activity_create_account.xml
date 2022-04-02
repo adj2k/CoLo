@@ -4,48 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    tools:context=".CreateAccount">
+    android:layout_marginLeft="0dp"
+    android:layout_marginRight="0dp"
+    tools:context=".CreateEmployee">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutHeaderViewE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_background"
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="65dp"
+            android:text="Create an Employee"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomView"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeaderViewE"
+        android:layout_marginTop="75dp">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="sans-serif"
-            android:includeFontPadding="true"
-            android:text="Add an Employee"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter the company's name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etAddCompany"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        >
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -203,35 +210,7 @@
                     android:onClick="checkButtonGender" />
             </RadioGroup>
 
-            <TextView
-                android:id="@+id/tvSelectRole"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select Role"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
 
-            <RadioGroup
-                android:id="@+id/RadioGroupRole"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rbManager"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="checkButtonRole"
-                    android:text="Manager" />
-
-                <RadioButton
-                    android:id="@+id/rbEmployee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="checkButtonRole"
-                    android:text="Employee" />
-
-            </RadioGroup>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -243,9 +222,18 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             app:backgroundTint="#2E72E3"
-            app:cornerRadius="40dp" />
+            app:cornerRadius="40dp"
+            android:layout_marginBottom="25dp"/>
 
     </LinearLayout>
     </ScrollView>
+
+    <View
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </View>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

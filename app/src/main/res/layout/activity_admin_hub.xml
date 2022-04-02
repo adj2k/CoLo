@@ -4,225 +4,353 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ManagerHub">
+    android:background="@color/colorBackground"
+    tools:context=".AdminHub">
 
-    <ImageButton
-        android:id="@+id/settings_btn"
-        android:layout_width="110dp"
-        android:layout_height="104dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="27dp"
-        android:adjustViewBounds="true"
-        android:background="#2E72E3"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activitylogBtn_title"
-        app:srcCompat="@android:drawable/ic_menu_preferences"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
-    <TextView
-        android:id="@+id/settingsBtn_title"
-        android:layout_width="103dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="62dp"
-        android:text="SETTINGS"
-        android:textAlignment="center"
-        android:textColor="#2E72E3"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_btn" />
-
-    <ImageButton
-        android:id="@+id/activity_btn"
-        android:layout_width="110dp"
-        android:layout_height="104dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="29dp"
-        android:adjustViewBounds="true"
-        android:background="#2E72E3"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employeeBtn_title"
-        app:srcCompat="@android:drawable/ic_menu_recent_history"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
-    <ImageButton
-        android:id="@+id/projects_btn"
-        android:layout_width="110dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="55dp"
-        android:adjustViewBounds="true"
-        android:background="#2E72E3"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ManagersBtn_title"
-        app:srcCompat="@android:drawable/ic_menu_today"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
-    <TextView
-        android:id="@+id/projectsBtn_title"
-        android:layout_width="103dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="55dp"
-        android:text="PROJECTS"
-        android:textAlignment="center"
-        android:textColor="#2E72E3"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/projects_btn" />
-
-    <TextView
-        android:id="@+id/activitylogBtn_title"
-        android:layout_width="128dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="55dp"
-        android:text="ACTIVITY LOG"
-        android:textAlignment="center"
-        android:textColor="#2E72E3"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_btn" />
-
-    <TextView
-        android:id="@+id/page_title"
-        android:layout_width="199dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="146dp"
-        android:layout_marginBottom="68dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Admin Hub"
-        android:textColor="#000000"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/announcement_box"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="78dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="676dp"
-        android:src="@color/teal_700"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/page_title"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/announcement_btn"
-        android:layout_width="288dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="31dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Announcements"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:backgroundTint="#2E72E3"
-        app:cornerRadius="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/employee_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/announcement_box" />
-
-    <TextView
-        android:id="@+id/announcement_box"
-        android:layout_width="289dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="55dp"
-        android:background="#852E72E3"
-        android:text="The Latest Announcement goes here. This announcement will announce something to the team from the announcement page!"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image"
-        tools:ignore="TextContrastCheck" />
-
-    <ImageButton
-        android:id="@+id/employee_btn"
-        android:layout_width="110dp"
-        android:layout_height="104dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="65dp"
-        android:adjustViewBounds="true"
-        android:background="#2E72E3"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/managers_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/announcement_btn"
-        app:srcCompat="@android:drawable/ic_menu_myplaces"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
-    <ImageButton
-        android:id="@+id/managers_btn"
-        android:layout_width="110dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="55dp"
-        android:adjustViewBounds="true"
-        android:background="#2E72E3"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/employee_btn"
-        app:layout_constraintTop_toBottomOf="@+id/announcement_btn"
-        app:srcCompat="@android:drawable/ic_menu_my_calendar"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
-    <TextView
-        android:id="@+id/employeeBtn_title"
-        android:layout_width="103dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="55dp"
-        android:text="EMPLOYEES"
-        android:textAlignment="center"
-        android:textColor="#2E72E3"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employee_btn" />
-
-    <TextView
-        android:id="@+id/ManagersBtn_title"
-        android:layout_width="103dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="55dp"
-        android:text="MANAGERS"
-        android:textAlignment="center"
-        android:textColor="#2E72E3"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/managers_btn" />
-
-    <Button
-        android:id="@+id/LogOut_btn"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutHeader_Admin"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="238dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="27dp"
-        android:text="LOG OUT"
-        app:backgroundTint="#2E72E3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:background="@drawable/header_background"
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/textHello_Admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/hello"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textUsername_Admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="15dp"
+            android:text="John"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toEndOf="@+id/textHello_Admin"
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/imageMenu_Admin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_logout"
+            app:layout_constraintBottom_toBottomOf="@id/textHello_Admin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textHello_Admin"
+            app:tint="@color/colorWhite">
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_rectangle_background"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageMenu_Admin"
+            >
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/search_bar_string"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/search_icon_background"
+                android:contentDescription="@string/app_name"
+                android:padding="6dp"
+                android:src="@drawable/ic_search"
+                android:tint="@color/colorPrimary"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/bottomView_Admin"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader_Admin">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/layoutEmployees_Admin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:clickable="true"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/layoutManagers"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/employees_icon_2"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/employees"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutManagers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@+id/layoutEmployees_Admin"
+                android:padding="15dp"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/manager_icon"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/managers_string"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutActivityLog_Admin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/layoutManagers"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutEmployees_Admin">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/activity_log_icon"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/activity_log_string"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutProjects_Admin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintStart_toEndOf="@id/layoutEmployees_Admin"
+                app:layout_constraintTop_toBottomOf="@+id/layoutManagers">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/projects_icon"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/projects"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layoutSettings_Admin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/layoutManagers"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutActivityLog_Admin">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/settings_icon"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/settings_string"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/announcement_popup_admin"
+                android:clickable="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/announcement_background"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/layoutProjects_Admin"
+                app:layout_constraintStart_toStartOf="@id/layoutEmployees_Admin"
+                app:layout_constraintTop_toBottomOf="@+id/layoutSettings_Admin"
+                >
+
+                <TextView
+                    android:id="@+id/textLatestAnnouncement_Admin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white_rectangle_background"
+                    android:paddingStart="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="2dp"
+                    android:text="ANNOUNCEMENT"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_announcement"
+                    android:tint="@color/colorWhite"
+                    app:layout_constraintBottom_toBottomOf="@id/textLatestAnnouncement_Admin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/textLatestAnnouncement_Admin"
+                    />
+
+                <TextView
+                    android:id="@+id/announcement_title_text_Admin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@string/dummy_text"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/textLatestAnnouncement_Admin"/>
+
+                <TextView
+                    android:id="@+id/announcement_description_text_Admin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@string/announcement_description"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@id/announcement_title_text_Admin"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+    <View
+        android:id="@+id/bottomView_Admin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </View>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

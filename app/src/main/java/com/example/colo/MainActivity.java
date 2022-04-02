@@ -1,11 +1,9 @@
 package com.example.colo;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.Sampler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,8 +15,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.concurrent.locks.Condition;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -95,7 +91,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent toCreateAccount = new Intent(MainActivity.this, CreateAccount.class);
+                Intent toCreateAccount = new Intent(MainActivity.this, CreateEmployee.class);
                 startActivity(toCreateAccount);
             }
         });

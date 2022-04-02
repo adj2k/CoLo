@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +31,6 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
     EditText name, description;
     private Button create_project_btn;
     private String companyName = "";
-    boolean flag = true;
     ProjectHelperClass projectHelperClass;
 
     RecyclerView recyclerView;
@@ -63,9 +63,13 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ManagerProjectListEmployeeData user = dataSnapshot.getValue(ManagerProjectListEmployeeData.class);
-
-                    list.add(user);
+                    // used to make sure PROJECTS and maybe ANNOUNCEMENTS are not posted to list
+                    if(!dataSnapshot.getKey().equals("Projects") ) {
+                        if(!dataSnapshot.getKey().equals("Announcements")) {
+                            ManagerProjectListEmployeeData user = dataSnapshot.getValue(ManagerProjectListEmployeeData.class);
+                            list.add(user);
+                        }
+                    }
                 }
                 myAdapter.notifyDataSetChanged();
 
@@ -89,12 +93,14 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
         String pName = name.getText().toString();
         String pDescription = description.getText().toString();
         String pManagerUI = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        System.out.println("before Valid check");
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyName).child("Projects");
         projectHelperClass = new ProjectHelperClass(pName, pDescription, pManagerUI, employees);
-        if(validateDec() && validateName() && validateEmployees()){
+        if(validateDesc() && validateName() && validateEmployees()){
             ref.child(name.getText().toString()).setValue(projectHelperClass);
-
+            System.out.println("Pass Valid Check");
+            finish();
         }
 
 
@@ -102,7 +108,7 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
 
     private boolean validateEmployees() {
         if(employees.isEmpty()) {
-            create_project_btn.setError("Must select at lease ONE employee");
+            Toast.makeText(CreateProject.this, "At Lease ONE employee must be chosen", Toast.LENGTH_LONG).show();
             return false;
         } else
         {
@@ -115,6 +121,7 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
     // check if fields are blank OR name dup
     private boolean validateName() {
         String val = name.getText().toString();
+        final boolean[] flag = {true};
         // get ref
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyName).child("Projects");
         if(val.isEmpty()) {
@@ -128,7 +135,7 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
                     for(DataSnapshot snapshot : datasnapshot.getChildren()){
                         if(snapshot.getKey().equals(val)) {
                             name.setError("Name is already taken");
-                            flag = false;
+                            recreate();
                         }
 
                     }
@@ -140,12 +147,13 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
                 }
             });
 
-            return flag;
+
+            return flag[0];
 
         }
     }
 
-    private boolean validateDec () {
+    private boolean validateDesc () {
         String val = description.getText().toString();
         if (val.isEmpty())
         {
@@ -161,7 +169,7 @@ public class CreateProject extends AppCompatActivity implements ManagerProjectLi
 
     @Override
     public void onNoteClick(int position) {
-        String empName = list.get(position).getName();
+        String empName = list.get(position).getUserName();
         boolean clickFlag = true;
         for(String i : employees) {
             if(empName.equals(i)) {

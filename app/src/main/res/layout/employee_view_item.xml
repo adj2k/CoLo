@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="16dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:padding="8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/employeeNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Employee Name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/employeeID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Employee ID: "
+                android:textStyle="bold"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/employeeIDtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12345678910"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/employeeEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Employee Email: "
+                android:textStyle="bold"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/employeeEmailtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="employee@company.com"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="8dp"
+        android:layout_gravity="end"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/employeeEditButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_edit"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            >
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/employeeDeleteButton"
+            android:layout_width="30dp"
+            android:clickable="true"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_remove"
+            android:tint="#FF7F7F"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            >
+
+        </ImageView>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
