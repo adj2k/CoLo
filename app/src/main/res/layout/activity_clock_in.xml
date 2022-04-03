@@ -8,7 +8,7 @@
     tools:context=".employeePages.ClockIn">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutHeader"
+        android:id="@+id/layoutHeader_projects"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
@@ -241,7 +241,7 @@
         android:foreground="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutHeader_projects" />
 
     <ImageView
         android:id="@+id/imageView"
