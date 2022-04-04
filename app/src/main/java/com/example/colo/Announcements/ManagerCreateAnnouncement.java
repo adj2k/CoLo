@@ -49,21 +49,26 @@ public class ManagerCreateAnnouncement extends AppCompatActivity {
         // get company name
         //DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Announcements");
 
+        // Sets up Recycler View
         recyclerView = findViewById(R.id.announcement_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Sets up list and adapter for recycler view to display announcements
         list = new ArrayList<>();
         announcements = new ArrayList<>();
         myAdapter = new AnnouncementAdapter(this,list);
         recyclerView.setAdapter(myAdapter);
 
+        // Defines title/description as corresponding XML sections
         title = findViewById(R.id.get_announcement_title);
         description = findViewById(R.id.get_announcement_desc);
 
+        // Gets company reference and
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child("Announcements");
 
+        // This function creates a list of the announcements
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -73,6 +78,7 @@ public class ManagerCreateAnnouncement extends AppCompatActivity {
 
                     list.add(announcement);
                 }
+                // Reverses List to Put Announcements On Top
                 Collections.reverse(list);
                 myAdapter.notifyDataSetChanged();
 
@@ -84,11 +90,12 @@ public class ManagerCreateAnnouncement extends AppCompatActivity {
             }
         });
 
-
+        // Setups up create announcement button
         create_announcement_btn = (Button) findViewById(R.id.create_announcement_btn);
         create_announcement_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Add announcement and makes toast notification, then finishes the page
                 addAnnouncement();
                 Toast.makeText(getApplicationContext(), "Announcement Posted!", Toast.LENGTH_SHORT).show();
                 finish();
@@ -103,6 +110,7 @@ public class ManagerCreateAnnouncement extends AppCompatActivity {
         String aTitle = title.getText().toString();
         String aDescription = description.getText().toString();
 
+        // References the database, then pushes it to the database
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child("Announcements");
         announcementHelperClass = new AnnouncementHelperClass(aTitle, aDescription);
         ref.push().setValue(announcementHelperClass);
