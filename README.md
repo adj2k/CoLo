@@ -232,3 +232,21 @@ Employees registered under a single Manager) messages.
 ● Man-Hours
 ○ Expected: 10 hours
 ○ Completed: 10 hours
+
+CURRENT SCREENSHOTS
+ Login page:   	     ![image](https://user-images.githubusercontent.com/98622327/161833511-2225596f-1c63-4437-ab9a-aa6a8d7f810c.png)
+ Register a Company: ![image](https://user-images.githubusercontent.com/98622327/161833679-7c2923d2-0442-45e4-a6b2-41ad18ca3f93.png)
+ Employee Page:      ![image](https://user-images.githubusercontent.com/98622327/161833740-c4a51bdd-bbf6-4996-8748-ef1f0c6ae2fa.png)
+ Clock In/Out :      ![image](https://user-images.githubusercontent.com/98622327/161833859-a434e852-9797-4f67-91ee-4300392e3708.png)
+ Announcement:       ![image](https://user-images.githubusercontent.com/98622327/161834046-d2355122-d01d-4273-ba6e-4619a50227d7.png)
+ Manager page:       ![image](https://user-images.githubusercontent.com/98622327/161834287-7a72e111-b3eb-4741-8bd9-92e78d6491d5.png)
+ Projects page:      ![image](https://user-images.githubusercontent.com/98622327/161834343-974443b6-3828-49f3-b968-4b063c3164e8.png)
+ Create Announcements:![image](https://user-images.githubusercontent.com/98622327/161834404-85195673-2875-4fd5-baa1-6ced37d0e53b.png)
+ Create Employees:    ![image](https://user-images.githubusercontent.com/98622327/161834479-08ff40fb-469f-45d6-9324-e6844a889d89.png)
+ Admin Page:          ![image](https://user-images.githubusercontent.com/98622327/161834650-f71055fb-6310-4e90-9417-ab875ef501c7.png)
+
+ 
+
+
+       
+
