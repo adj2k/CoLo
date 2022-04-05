@@ -118,7 +118,7 @@ public class CreateManager extends AppCompatActivity
 
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender() & validateRole())
                 {
-                    userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null);
+                    userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null,true);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
                             {
                                 @Override
