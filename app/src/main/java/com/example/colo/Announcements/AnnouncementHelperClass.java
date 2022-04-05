@@ -2,6 +2,8 @@ package com.example.colo.Announcements;
 
 import java.util.ArrayList;
 
+// This helper class helps set the title and description for use in the adapter
+
 public class AnnouncementHelperClass {
     String aTitle, aDescription;
 

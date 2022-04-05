@@ -59,6 +59,7 @@ public class CreateAnnouncement extends AppCompatActivity {
         myAdapter = new AnnouncementAdapter(this,list);
         recyclerView.setAdapter(myAdapter);
 
+        // Grabs company name and reference for the company's announcements
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child("Announcements");
 
@@ -72,6 +73,7 @@ public class CreateAnnouncement extends AppCompatActivity {
 
                     list.add(announcement);
                 }
+                // Reverses list to put latest announcement at the top
                 Collections.reverse(list);
                 myAdapter.notifyDataSetChanged();
 

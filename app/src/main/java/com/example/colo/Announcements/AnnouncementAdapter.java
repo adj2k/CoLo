@@ -27,6 +27,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         this.list = list;
     }
 
+    // This function inflates the view with the pre-made announcement layout
     @NonNull
     @Override
     public AnnouncementAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,6 +35,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         return new MyViewHolder(v);
     }
 
+    // Gets the current announcement and sets it's title and description
     @Override
     public void onBindViewHolder(@NonNull AnnouncementAdapter.MyViewHolder holder, int position) {
 
@@ -47,6 +49,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         return list.size();
     }
 
+    // This function sets the database information to the corresponding XML data
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         // Here we setup the variables to assign to the different textItems in the announcement_item.xml
         TextView title, description;
