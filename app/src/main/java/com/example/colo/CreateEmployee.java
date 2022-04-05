@@ -138,6 +138,7 @@ public class CreateEmployee extends AppCompatActivity
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                         Toast.makeText(CreateEmployee.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+
                                     }
                                 }
                             });
