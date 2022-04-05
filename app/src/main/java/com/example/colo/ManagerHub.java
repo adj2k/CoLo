@@ -42,9 +42,9 @@ import org.w3c.dom.Text;
 
 public class ManagerHub extends AppCompatActivity {
 
+    // Variable Setup
     public Button LogOut;
     public TextView Email;
-
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
     private DatabaseReference refAnnouncements;
@@ -62,11 +62,11 @@ public class ManagerHub extends AppCompatActivity {
     LinearLayout SettingsButton;
     ConstraintLayout AnnouncementButton2;
     ImageView LogoutButton;
-
     private String companyNameRef = "";
     String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private String m_Text = "";
 
+    // On Page Creation (When Page is loaded do this: )
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
@@ -171,6 +171,7 @@ public class ManagerHub extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_hub);
 
+        // Grabs All Button/Text ID's from the XML and assigns them to corresponding variable
         //LogoutButton = (Button) findViewById(R.id.LogOut_btn);
         EmployeeButton = findViewById(R.id.layoutEmployees);
         ActivityLogButton = findViewById(R.id.layoutActivityLog);
@@ -183,17 +184,21 @@ public class ManagerHub extends AppCompatActivity {
         AnnouncementButton2 = findViewById(R.id.announcement_popup);
         LogoutButton = findViewById(R.id.logoutImage);
 
+        // Database Setup
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference("Manager");
         mAuth = FirebaseAuth.getInstance();
+        // Get's current user
         user = mAuth.getCurrentUser();
         UID = user.getUid();
         Log.i("UID: ", UID);
 
+        // Grabs Company Name, and uses it to reference the user of the company and the announcements
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child(UID);
         refAnnouncements = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child("Announcements");
 
+        // This function sets the "Hello NameHere" to user's name
         ref.child("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -207,12 +212,15 @@ public class ManagerHub extends AppCompatActivity {
             }
         });
 
+        // This function sets the latest announcement to the top announcement in database
         refAnnouncements.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    // Gets text from database
                     String text = dataSnapshot.child("aTitle").getValue(String.class);
                     String description = dataSnapshot.child("aDescription").getValue(String.class);
+                    // Sets text on the page XML
                     announcement_text.setText(text);
                     announcement_desc_text.setText(description);
                 }
@@ -224,21 +232,26 @@ public class ManagerHub extends AppCompatActivity {
             }
         });
 
-        ActivityLogButton.setOnClickListener(new View.OnClickListener() {
+        // This function will make the page go to Activity Log on button click
+        ActivityLogButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 // CHANGE TO ACTIVITY LOG CLASS
                 startActivity(new Intent(ManagerHub.this, ManagerCreateAnnouncement.class));
             }
         });
 
-        AnnouncementButton2.setOnClickListener(new View.OnClickListener() {
+        // This function will make the page go to Manager Announcement on button click
+        AnnouncementButton2.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ManagerHub.this, ManagerCreateAnnouncement.class));
             }
         });
-
+// This function will make the page go to View Employee on button click
         EmployeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -246,22 +259,27 @@ public class ManagerHub extends AppCompatActivity {
             }
         });
 
-        ProjectButton.setOnClickListener(new View.OnClickListener() {
+        // This function will make the page go to Manager Project Page on button click
+        ProjectButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ManagerHub.this, ManagerProjects.class));
             }
         });
 
-        SettingsButton.setOnClickListener(new View.OnClickListener() {
+        // This function will make the page go to Activity Log on button click
+        SettingsButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 //startActivity(new Intent(ManagerHub.this, ManagerSettings.class));
             }
         });
 
-
-        LogoutButton.setOnClickListener(new View.OnClickListener() {
+        // This function will log the user out and make the page go to Login page on button click
+        LogoutButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
