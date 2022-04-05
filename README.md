@@ -1,10 +1,14 @@
 # CoLo (Corporate Logistics Workplace Management)
 Our group has decided to move forward with an Android Application. This app will allow its users to clock-in/out, be assigned projects, and have managers who can control certain aspects of the employees. The initial plan is to use a database like Firebase to hold all the user’s information and use Android Studio to develop the actual application. Languages used will most likely be Java or Kotlin depending on the needs of the application as we develop. 
 
-Upon launching the app, the user would be met by a login page. After entering the user’s login and password, the application would check Firebase to see if the user is an employee or manager. Depending on the status of the login the user will be sent to their respected hub page. Displayed on this page would be buttons to navigate to a Clock-in page and a project page. If a manager, additional buttons would be displayed to control the employees. 
+Upon launching the app, the user would be met by a login page. They can then register a company and login as admin. The admin can then create manager for the comapny. Then the manager will be able to create employees for the company. After entering the user’s login and password, the application would check Firebase to see if the user is an admin, employee or manager. Depending on the status of the login the user will be sent to their respected hub page. Displayed on this page would be buttons to navigate to a Clock-in page, a project page, an announcement page and settings. Managers and Admins can view Employees of the company and assign them projects. 
+
 
 
 USE CASES FOR OUR APPLICATION:
+
+
+
 From CoLo App domain
 1.
 ● Name: Setup company (Nguyen and Austin)
@@ -47,6 +51,10 @@ manager account
 ○ Expected: 25 hours
 ○ Completed: 25 hours 
 
+
+
+
+
 2.
 ● Name: Register employees/manager setup (Caleb and Eduardo)
 ● Scope: CoLo Appt
@@ -86,6 +94,10 @@ reestablished
 ○ Expected: 10 hours
 ○ Completed: 9.5 hours (being finalized)
 
+
+
+
+
 3.
 ● Name: Employee clock-in/out (Bradley and Nirdesh)
 ● Scope: CoLo App
@@ -121,6 +133,9 @@ duration of that break
 ○ Expected: 10 hours
 ○ Completed: 11 hours
 
+
+
+
 4.
 ● Name: Creating and editing Projects (Bradley and Michael)
 ● Scope: CoLo App
@@ -151,6 +166,9 @@ is assigned to
 ○ Expected: 15 hours
 ○ Completed: 10 hours (still being worked on)
 
+
+
+
 5.
 ● Name: Working with Projects (Bradley and Michael)
 ● Scope: CoLo App
@@ -178,6 +196,11 @@ be able to easily show they have been working on assigned projects.
 ● Man-Hours
 ○ Expected: 10 hours
 ○ Completed: 10 hours 
+
+
+
+
+
 
 6.
 ● Name: Creating Announcements (Caleb and Michael)
@@ -208,6 +231,11 @@ Employees registered under a single Manager) messages.
 ○ Expected: 10 hours
 ○ Completed: 10 hours 
 
+
+
+
+
+
 7.
 ● Name: Viewing Announcements (Caleb and Michael)
 ● Scope: CoLo App
@@ -232,6 +260,49 @@ Employees registered under a single Manager) messages.
 ● Man-Hours
 ○ Expected: 10 hours
 ○ Completed: 10 hours
+
+
+
+MAIN TASKS FOR ITERRATION 3
+8. One time pop up temporary password for managers and employees
+Main Success Scenarios:
+- When created a new account by admin, manager and employees get a temporary password and they should be able to change their password.
+
+
+9. Complete Settings page for all 3 users
+Main Success Scenarios:
+- Be able to reset their password
+- Be able to change their email
+- Request for missed clock in/out
+
+
+
+10. View Activity logs
+Main Success Scenarios:
+- Be able to view their clock in/out time
+- be able to see past worked projects
+
+
+
+11. Finish Up with the XMLs
+
+
+
+
+
+GENERAL FOLLOW PATTERN FOR OUR APP:
+Login Page ------> Register a company --------> Login as admin -------->  Admin Page --------> Create Manager ---------> Manager Login -------> Create Employees -------> Employees Login --------> Dashboard for all 3 users
+
+
+
+
+
+
+
+
+
+
+
 
 CURRENT SCREENSHOTS
  Login page:   	     ![image](https://user-images.githubusercontent.com/98622327/161833511-2225596f-1c63-4437-ab9a-aa6a8d7f810c.png)
