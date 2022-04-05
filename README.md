@@ -3,4 +3,232 @@ Our group has decided to move forward with an Android Application. This app will
 
 Upon launching the app, the user would be met by a login page. After entering the user’s login and password, the application would check Firebase to see if the user is an employee or manager. Depending on the status of the login the user will be sent to their respected hub page. Displayed on this page would be buttons to navigate to a Clock-in page and a project page. If a manager, additional buttons would be displayed to control the employees. 
 
-We are still in the beginning stages of deciding what all the features of the app will be and have started a Wants and Needs list. Also, we have created the below flow chart to show the direction that we are thinking the app could go. Such as having the manager be able to choose an employee and navigate through their pages
+
+USE CASES FOR OUR APPLICATION:
+From CoLo App domain
+1.
+● Name: Setup company (Nguyen and Austin)
+● Scope: CoLo (Corporate Logistics) App
+● Level: Admin goal
+● Primary Actor: Admin
+● Stakeholders and Interests:
+○ Company: Wants to set up the app to be used by its Managers and Employees.
+○ Admin: Wants to register the company quickly to later set up CoLo for Managers
+and Employees.
+○ Managers: Wants to be able to accurately track hours worked and collaborate
+with employees.
+● Preconditions:
+○ Company is not yet registered
+○ Admin has downloaded CoLo
+○ Managers and employees to be added to the app
+● Postconditions:
+○ Company is saved to DB
+○ Admin account is created
+○ Admin is given privileges to oversee company app operations
+○ Manager account(s) is/are created
+● Main Success Scenario:
+1) Admin opens CoLo app and proceeds to registration
+2) Admin enters company information and their own account information
+3) System stores admin and company information, generates account, and presents
+Administrator Hub
+4) Admin registers Managers and gives them temporary password
+● Extension(s):
+○ Invalid data entered at any point:
+■ Inform Admin at point of confirmation that a field is invalid
+■ Require Admin to re-enter applicable field’s data until valid upon
+confirmation
+○ No response from database upon confirmation:
+■ Display error message and ask to try again later or when connection is
+reestablished
+○ After registration, Admin tries to use other app features before creating first
+manager account
+■ Display message that at least one Manager account must be created first
+● Man-Hours
+○ Expected: 25 hours
+○ Completed: 25 hours 
+
+2.
+● Name: Register employees/manager setup (Caleb and Eduardo)
+● Scope: CoLo Appt
+● Level: Manager goals
+● Primary Actor: Manager
+● Stakeholders and Interests:
+○ Manager: Wants to register Employees under them so as to manage them and
+assign Projects.
+○ Employee: Wants to have an account that they can then use to collaborate and
+track their time with.
+○ Company: Wants to organize and consolidate employees under a Manager.
+● Preconditions:
+○ Admin and Company have been registered
+○ Admin registered Manager account
+○ Manager has downloaded CoLo
+● Postconditions:
+○ Manager finishes account setup
+○ Manager given access to view Employee hours and Project information
+○ Manager given access to create and assign Projects for subordinates
+○ Employee accounts are created and accessible for those Employees
+● Main Success Scenario:
+1) Manager opens app and proceeds to first time login, changes temporary
+password
+2) Uses Manager Hub to create Employee accounts and give them temporary
+password
+● Extension(s):
+○ Invalid data entered at any point:
+■ Inform Manager at point of confirmation that a field is invalid
+■ Require Manager to re-enter applicable field’s data until valid upon
+confirmation
+○ No response from database upon confirmation:
+■ Display error message and ask to try again later or when connection is
+reestablished
+○ Temporary password is forgotten or does not work:
+■ Email can be sent to Manager to reset password
+● Man-Hours
+○ Expected: 10 hours
+○ Completed: 9.5 hours (being finalized)
+
+3.
+● Name: Employee clock-in/out (Bradley and Nirdesh)
+● Scope: CoLo App
+● Level: Employee goals
+● Primary Actor: Employee
+● Stakeholders and Interests:
+○ Manager: Wants the hours tracked so that they can know their employees are
+coming into work and leaving when they are supposed to.
+○ Employee: Wants to be compensated appropriately for the time they worked.
+○ Company: Wants to properly compensate employees for the time they worked.
+● Preconditions:
+○ Manager registered Employee account
+○ Employee has downloaded CoLo
+○ Employee has reset temporary password on first login
+● Postconditions:
+○ Employee hours worked information is stored and viewable
+○ Manager can view Employee’s recorded hours worked.
+● Main Success Scenario:
+1) Employee clocks-in at beginning of work day
+2) Employee clocks-out at end of work day
+● Extension(s):
+○ Employee attempts to press the clock-in and presses clock-out the incorrect time
+■ Employee is prompted when clocking-in or out to confirm action
+■ Only one clock-in and clock-out allowed per day
+■ Admin can override the hours worked of a day
+○ Employee has a break during working hours:
+■ Separate option is provided upon clock-in to take a break and set the
+duration of that break
+○ Employee never presses clock-out
+■ Automatically clocked-out by CoLo after a period of time
+■ Manually clocked-out by Admin
+● Man-Hours
+○ Expected: 10 hours
+○ Completed: 11 hours
+
+4.
+● Name: Creating and editing Projects (Bradley and Michael)
+● Scope: CoLo App
+● Level: Manager goals
+● Primary Actor: Manager
+● Stakeholders and Interests:
+○ Manager: Wants to be able to assign tasks to an individual or a group to be
+completed for the Company.
+○ Employee: Wants to be easily informed of work that needs to be done.
+○ Company: Wants to profit from organized and quickly completed Projects.
+● Preconditions:
+○ Manager has a registered account and has registered Employees
+● Postconditions:
+○ Project is stored in the DB
+○ A Project is created which can be seen by a group of, or individual, employees it
+is assigned to
+○ A Project is updated in a way that a Manager specifies
+● Main Success Scenario:
+1) Manager creates a Project and sets attributes of the Project
+2) Manager assigns employee(s) to the Project
+3) Manager confirms Project and makes it visible to relevant people
+● Extension(s):
+○ Project is incorrectly entered:
+■ Manager can toggle visibility of a completed Project
+■ Manager can edit any attribute of the Project and it will show as updated
+■ Manager can delete the Project
+● Man-Hours
+○ Expected: 15 hours
+○ Completed: 10 hours (still being worked on)
+
+5.
+● Name: Working with Projects (Bradley and Michael)
+● Scope: CoLo App
+● Level: Employee goals
+● Primary Actor: Employee
+● Stakeholders and Interests:
+○ Manager: Wants their Projects to be visible to relevant Employees. Wants to be
+able to see how the projects are going.
+○ Employee: Wants to be able to see what has been assigned to them. Wants to
+be able to easily show they have been working on assigned projects.
+○ Company: Wants to profit from organized and quickly completed Projects.
+● Preconditions:
+○ Manager has a registered account and has registered Employees
+○ Employee has an assigned Project
+● Postconditions:
+○ Project is presented to the Employee
+○ Employee applied a change to the state of a project
+● Main Success Scenario:
+1) Employee reviews all currently assigned Projects
+2) Employee indicates that a Project that showed as “not started” is now in progress
+3) Employee marks a project as done when they have completed it
+● Extension(s):
+○ Employee miss inputs when working with a selected project
+■ Reselect project being worked on
+● Man-Hours
+○ Expected: 10 hours
+○ Completed: 10 hours 
+
+6.
+● Name: Creating Announcements (Caleb and Michael)
+● Scope: CoLo App
+● Level: Manager goals
+● Primary Actor: Manager
+● Stakeholders and Interests:
+○ Manager: Wants to be able to inform their Employees about general changes,
+notices, or announcements.
+○ Employee: Wants to be able to easily check company or department-wide (the
+Employees registered under a single Manager) messages.
+○ Company: Wants to be able to easily inform a variety of personnel
+● Preconditions:
+○ Manager has a registered account
+● Postconditions:
+○ Announcement is stored in DB
+○ Announcement is posted to relevant people in the Company
+● Main Success Scenario:
+1) Manager shares an Announcement to the entire Company.
+2) Manager edits the Announcement to convey their intended message.
+3) Manager confirms their Announcement to be displayed.
+● Extension(s):
+○ Announcement was incorrectly format or contains the incorrect message:
+■ Manager or Admin can delete the Announcement
+○ Manager not allowed to send Announcement to entire Company:
+■ Admin can revoke that privilege
+● Man-Hours
+○ Expected: 10 hours
+○ Completed: 10 hours 
+
+7.
+● Name: Viewing Announcements (Caleb and Michael)
+● Scope: CoLo App
+● Level: Employee goals
+● Primary Actor: Employee
+● Stakeholders and Interests:
+○ Manager: Wants to be able to inform their Employees about general changes,
+notices, or announcements.
+○ Employee: Wants to be able to easily check company or department-wide (the
+Employees registered under a single Manager) messages.
+○ Company: Wants to be able to easily inform a variety of personnel
+● Preconditions:
+○ Employee has a registered account
+○ An Announcement is posted
+● Postconditions:
+○ Announcement is viewed
+● Main Success Scenario:
+1) Employee selects an Announcement to see further details
+● Extension(s):
+○ Announcement was unintentionally marked as read
+■ Employee can unmark it
+● Man-Hours
+○ Expected: 10 hours
+○ Completed: 10 hours
