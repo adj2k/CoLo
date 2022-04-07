@@ -59,6 +59,7 @@ public class AddCompany extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_company);
 
+
         CompanyName = (EditText) findViewById(R.id.etAddCompany);
         Name = (EditText) findViewById(R.id.etNameEntry);
         Email = (EditText) findViewById(R.id.etEmailEntry);

@@ -40,7 +40,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
-public class ManagerHub extends AppCompatActivity {
+public class ManagerHub extends AppCompatActivity
+{
 
     // Variable Setup
     public Button LogOut;
@@ -68,68 +69,97 @@ public class ManagerHub extends AppCompatActivity {
 
     // On Page Creation (When Page is loaded do this: )
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+
+        //import GlobalCompany class so we can access the database globally
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child(userKey);
-
         DatabaseReference referenceCompany = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef);
 
-
-        referenceCompany.addValueEventListener(new ValueEventListener() {
+        //find information in the company child
+        referenceCompany.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-
-                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
-                    if (snapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                        // Auth Key = Key in Company => proceed to check for role
-                        reference.addValueEventListener(new ValueEventListener() {
+            public void onDataChange(@NonNull DataSnapshot datasnapshot)
+            {
+                //loop through companies in the database
+                for (DataSnapshot snapshot : datasnapshot.getChildren())
+                {
+                    //if the current user has the same UID as the database key, proceed to password change
+                    if (snapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                    {
+                        //find information in the user ID child
+                        reference.addValueEventListener(new ValueEventListener()
+                        {
                             @Override
 
-                            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
-                                    if (snapshot.getKey().equals("oneTimePassword")) {
-                                        if (snapshot.getValue().equals((true))) {
+                            public void onDataChange(@NonNull DataSnapshot datasnapshot)
+                            {
+                                //loop through attributes for the user to find the oneTimePassword key
+                                for (DataSnapshot snapshot : datasnapshot.getChildren())
+                                {
+                                    //if the key is equal to oneTimePassword
+                                    if (snapshot.getKey().equals("oneTimePassword"))
+                                    {
+                                        //and if the value of oneTimePassword is true
+                                        if (snapshot.getValue().equals((true)))
+                                        {
+                                            //show popup and prompt user to enter a new password
                                             LayoutInflater linf = LayoutInflater.from(ManagerHub.this);
                                             final View inflator = linf.inflate(R.layout.onetime_popup, null);
+                                            //setting the properties of the popup dialog
                                             AlertDialog dialog = new AlertDialog.Builder(ManagerHub.this)
                                                     .setTitle("Please update your password")
                                                     .setView(inflator)
                                                     .setPositiveButton(android.R.string.ok, null)
                                                     .create();
 
+                                            //linking the xml widgets to the java
                                             final EditText UpdatePassword = (EditText) inflator.findViewById(R.id.updatePassword);
                                             final EditText ConfirmUpdatePassword = (EditText) inflator.findViewById(R.id.confirmUpdatePassword);
 
-
-                                            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                                            //overwrite the positive button
+                                            dialog.setOnShowListener(new DialogInterface.OnShowListener()
+                                            {
 
                                                 @Override
-                                                public void onShow(DialogInterface dialogInterface) {
+                                                public void onShow(DialogInterface dialogInterface)
+                                                {
 
+                                                    //add listener for the "ok" button
                                                     Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
-                                                    button.setOnClickListener(new View.OnClickListener() {
+                                                    button.setOnClickListener(new View.OnClickListener()
+                                                    {
 
                                                         @Override
-                                                        public void onClick(View view) {
+                                                        public void onClick(View view)
+                                                        {
                                                             // TODO Do something
 
+                                                            //taking the information the user entered and saving it as a string
                                                             String updatePassword = UpdatePassword.getText().toString();
                                                             String confirmUpdatePassword = ConfirmUpdatePassword.getText().toString();
 
-
+                                                            //accessing the current user
                                                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
                                                             //Update password and oneTimePassword in database
-                                                            if (updatePassword.isEmpty()) {
+                                                            if (updatePassword.isEmpty())
+                                                            {
                                                                 UpdatePassword.setError("Field can not be empty");
-                                                            } else if (confirmUpdatePassword.isEmpty()) {
+                                                            } else if (confirmUpdatePassword.isEmpty())
+                                                            {
                                                                 ConfirmUpdatePassword.setError("Field can not be empty");
-                                                            } else if (UpdatePassword.length() < 6) {
+                                                            } else if (UpdatePassword.length() < 6)
+                                                            {
                                                                 UpdatePassword.setError("Password needs to be at least 6 characters long");
-                                                            } else if (!(updatePassword.equals(confirmUpdatePassword))) {
+                                                            } else if (!(updatePassword.equals(confirmUpdatePassword)))
+                                                            {
                                                                 ConfirmUpdatePassword.setError("The passwords do not match");
-                                                            } else {
+                                                            } else
+                                                            {
                                                                 reference.child("password").setValue(updatePassword);
                                                                 reference.child("oneTimePassword").setValue(false);
                                                                 //Dismiss once everything is OK.
@@ -151,18 +181,21 @@ public class ManagerHub extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                            public void onCancelled(@NonNull DatabaseError error)
+                            {
 
                             }
                         });
-                    } else {
+                    } else
+                    {
                     }
 
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
@@ -199,24 +232,30 @@ public class ManagerHub extends AppCompatActivity {
         refAnnouncements = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child("Announcements");
 
         // This function sets the "Hello NameHere" to user's name
-        ref.child("name").addValueEventListener(new ValueEventListener() {
+        ref.child("name").addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
                 first_name = snapshot.getValue(String.class);
                 screen_name.setText(first_name);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
 
         // This function sets the latest announcement to the top announcement in database
-        refAnnouncements.addValueEventListener(new ValueEventListener() {
+        refAnnouncements.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
                     // Gets text from database
                     String text = dataSnapshot.child("aTitle").getValue(String.class);
                     String description = dataSnapshot.child("aDescription").getValue(String.class);
@@ -227,7 +266,8 @@ public class ManagerHub extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
@@ -247,14 +287,17 @@ public class ManagerHub extends AppCompatActivity {
         AnnouncementButton2.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 startActivity(new Intent(ManagerHub.this, ManagerCreateAnnouncement.class));
             }
         });
 // This function will make the page go to View Employee on button click
-        EmployeeButton.setOnClickListener(new View.OnClickListener() {
+        EmployeeButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 startActivity(new Intent(ManagerHub.this, ViewEmployees.class));
             }
         });
@@ -263,7 +306,8 @@ public class ManagerHub extends AppCompatActivity {
         ProjectButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 startActivity(new Intent(ManagerHub.this, ManagerProjects.class));
             }
         });
@@ -272,7 +316,8 @@ public class ManagerHub extends AppCompatActivity {
         SettingsButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 //startActivity(new Intent(ManagerHub.this, ManagerSettings.class));
             }
         });
@@ -281,7 +326,8 @@ public class ManagerHub extends AppCompatActivity {
         LogoutButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 mAuth.signOut();
                 startActivity(new Intent(ManagerHub.this, LogIn.class));
             }
