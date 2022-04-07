@@ -1,11 +1,15 @@
 package com.example.colo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.InputType;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -38,7 +42,8 @@ public class LogIn extends AppCompatActivity
     TextView Login;
     TextView AddCompany;
 
-    //Firebase
+    //Firebase variables
+    private String m_Text = "";
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -58,7 +63,6 @@ public class LogIn extends AppCompatActivity
         Company = (EditText) findViewById(R.id.etCompany);
         AddCompany = (TextView) findViewById(R.id.tvAddCompany);
 
-
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference(EMPLOYEE);
         mAuth = FirebaseAuth.getInstance();
@@ -72,13 +76,8 @@ public class LogIn extends AppCompatActivity
 
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 for(DataSnapshot snapshot : datasnapshot.getChildren()){
-
-//                    Log.i("Company: ", snapshot.getKey());
                     arrayList.add(snapshot.getKey());
-
                     }
-
-
             }
 
             @Override
@@ -86,19 +85,16 @@ public class LogIn extends AppCompatActivity
 
             }
         });
-        //
-        System.out.println("HEELELELELELLE");
 
 
-        /*
-        AutoCompleteTextView autocomplete =  (AutoCompleteTextView) (R.id.etCompany);
+        AutoCompleteTextView autocomplete =  (AutoCompleteTextView) Company;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this,android.R.layout.select_dialog_item, arrayList);
         autocomplete.setThreshold(1);
         autocomplete.setAdapter(adapter);
-        Log.i("Company: ","asdaasdads");
-        */
-        //
+
+
+
 
 
         Login.setOnClickListener(new View.OnClickListener()
@@ -107,7 +103,6 @@ public class LogIn extends AppCompatActivity
             public void onClick(View view)
             {
                 logIn();
-
             }
         });
 
@@ -122,34 +117,36 @@ public class LogIn extends AppCompatActivity
 
     }
 
+    //Method that allows the user to login
     private void logIn()
     {
-
-
+        //Getting the variables from the database and setting them to a string
         String email = Email.getText().toString();
         String password = Password.getText().toString();
         String company = Company.getText().toString();
 
-
-
+        //if the company field is empty, throw an error and tell the user to enter the correct information
         if(company.isEmpty())
         {
             Company.setError("Company is required");
             Company.requestFocus();
             return;
         }
-
+        //if the email field is empty, throw an error and tell the user to enter the correct information
         if(email.isEmpty())
         {
             Email.setError("Email is required");
             Email.requestFocus();
             return;
         }
+        //if the password field is empty, throw an error and tell the user to enter the correct information
         if(password.isEmpty())
         {
             Password.setError("Password is required");
             Password.requestFocus();
         }
+
+        //sighInWithEmailAndPassword takes two parameters email and password and checks the firebase database database to see if the username, password belongs to the same UID
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>()
                 {
@@ -160,47 +157,51 @@ public class LogIn extends AppCompatActivity
                         {
                             DatabaseReference referenceCompany =  FirebaseDatabase.getInstance().getReference("Companies").child(company);
 
-
                             DatabaseReference reference =  FirebaseDatabase.getInstance().getReference("Companies").child(company)
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-                            //FirebaseAuth.getInstance().getCurrentUser().getUid() => Key from auth
-                            //Get ref from the company that they chose in login
-                            //////// LOOP THRU EVERY KEY
 
 
                             referenceCompany.addValueEventListener(new ValueEventListener() {
                                 @Override
 
-
-
                                 public void onDataChange(@NonNull DataSnapshot datasnapshot) {
 
                                     for(DataSnapshot snapshot : datasnapshot.getChildren()){
+                                        //checks if there is a UID for the email and password combo.
                                         if(snapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                                             // Auth Key = Key in Company => proceed to check for role
+
+                                            //Use a reference right at the User ID level, so you can look through all the users and check their keys for easy access to the "role" attribute we use later
                                             reference.addValueEventListener(new ValueEventListener() {
                                                 @Override
-
                                                 public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                                                     for(DataSnapshot snapshot : datasnapshot.getChildren()){
+                                                        String localRole = "";
+                                                        //Every attribute in the database has a key, we are checking the key that is equal to role
+                                                        //if the snapshot key is equal to role, set the check role to the value of role as a string so it can be used compare the different company roles.
                                                         if(snapshot.getKey().equals("role")) {
                                                             String checkRole = snapshot.getValue().toString();
+                                                            localRole = checkRole;
+                                                            Log.i("StupidLocalRole",localRole);
                                                             Log.i("Role: ", checkRole);
 
+                                                            //if the role is equal to Admin and their company matches the one in the database, send the user to the admin hub
                                                             if(checkRole.equals("Admin")){
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, AdminHub.class));
+                                                            //if the role is equal to Manager and their company matches the one in the database, send the user to the manager hub
                                                             }else if(checkRole.equals("Manager")){
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, ManagerHub.class));
+                                                            //if the role is equal to Employee and their company matches the one in the database, send the user to the employee hub
                                                             } else if (checkRole.equals("Employee")){
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, EmployeeHub.class));
+                                                                } else{
+                                                                Toast.makeText(LogIn.this, "YOU DON'T WORK FOR THIS COMPANY.", Toast.LENGTH_LONG).show();
+                                                            }
                                                             }
                                                         }
-
-                                                    }
                                                 }
 
                                                 @Override
@@ -210,21 +211,15 @@ public class LogIn extends AppCompatActivity
                                             });
                                         }
                                         else {
-                                            // Return
-//                                            Toast.makeText(LogIn.this, "YOU DON'T WORK FOR THIS COMPANY.", Toast.LENGTH_LONG).show();
-
+                                           //Toast.makeText(LogIn.this, "YOU DON'T WORK FOR THIS COMPANY.", Toast.LENGTH_LONG).show();
                                         }
-
                                     }
                                 }
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
-
                                 }
                             });
-
-
 
                         }else{
                             Toast.makeText(LogIn.this, "Failed to login. Please check credentials", Toast.LENGTH_LONG).show();
@@ -232,6 +227,4 @@ public class LogIn extends AppCompatActivity
                     }
                 });
     }
-
-
 }
