@@ -1,17 +1,19 @@
-package com.example.colo.Projects;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.colo.employeePages;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.colo.GlobalCompanyName;
+import com.example.colo.Projects.CreateProject;
+import com.example.colo.Projects.ManagerProjectAdapter;
+import com.example.colo.Projects.ProjectData;
 import com.example.colo.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,9 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ManagerProjects extends AppCompatActivity {
+public class EmployeeProjects extends AppCompatActivity {
 
-    private ConstraintLayout new_project_btn;
 
     // set up recycler
     RecyclerView recyclerView;
@@ -38,7 +39,7 @@ public class ManagerProjects extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager_projects);
+        setContentView(R.layout.activity_employee_projects);
 
         companyName = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
 
@@ -73,13 +74,6 @@ public class ManagerProjects extends AppCompatActivity {
         });
 
 
-
-
-        new_project_btn = (ConstraintLayout) findViewById(R.id.moveToCreateProject);
-        new_project_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { startActivity(new Intent(ManagerProjects.this, CreateProject.class)); }
-        });
 
     }
 
