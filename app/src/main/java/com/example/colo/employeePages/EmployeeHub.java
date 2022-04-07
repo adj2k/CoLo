@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.colo.Announcements.CreateAnnouncement;
+import com.example.colo.EmployeeActivityLog;
 import com.example.colo.GlobalCompanyName;
 import com.example.colo.LogIn;
 import com.example.colo.MainActivity;
@@ -38,7 +39,8 @@ import com.google.firebase.database.ValueEventListener;
 public class EmployeeHub extends AppCompatActivity
 {
 
-    LinearLayout clock_in_out, e_projects_btn, e_settings_btn;
+
+    LinearLayout clock_in_out,e_projects_btn,e_settings_btn, layoutActivityLog;
     ConstraintLayout e_ann_btn;
     ImageView emp_logout;
 
@@ -63,6 +65,7 @@ public class EmployeeHub extends AppCompatActivity
         e_ann_btn = findViewById(R.id.e_ann_btn);
         ann_title = findViewById(R.id.ann_title);
         ann_desc = findViewById(R.id.ann_desc);
+        layoutActivityLog = findViewById(R.id.layoutActivityLog);
 
         eAuth = FirebaseAuth.getInstance();
         user = eAuth.getCurrentUser();
@@ -263,6 +266,15 @@ public class EmployeeHub extends AppCompatActivity
             {
                 eAuth.signOut();
                 startActivity(new Intent(EmployeeHub.this, LogIn.class));
+            }
+        });
+
+        layoutActivityLog.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(EmployeeHub.this, EmployeeActivityLog.class));
             }
         });
     }

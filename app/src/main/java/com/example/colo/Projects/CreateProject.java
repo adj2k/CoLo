@@ -2,6 +2,7 @@ package com.example.colo.Projects;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ import java.util.List;
 public class CreateProject extends AppCompatActivity implements QuantityListener {
 
     EditText name, description;
-    private Button create_project_btn;
+    private ConstraintLayout create_project_btn;
     private String companyName = "";
     ProjectHelperClass projectHelperClass;
 
@@ -84,7 +86,7 @@ public class CreateProject extends AppCompatActivity implements QuantityListener
 
         setRecyclerView();
 
-        create_project_btn = (Button) findViewById(R.id.create_project_btn);
+        create_project_btn = (ConstraintLayout) findViewById(R.id.layoutHeader_projects);
         create_project_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { addProject();}
@@ -124,7 +126,6 @@ public class CreateProject extends AppCompatActivity implements QuantityListener
             return false;
         } else
         {
-            create_project_btn.setError(null);
             return true;
         }
     }
