@@ -43,6 +43,7 @@ import java.util.concurrent.TimeUnit;
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class ClockIn extends AppCompatActivity {
 
+    // items
     private Button clock_in_btn;
     private Button clock_out_btn;
     private static final String CLOCKIN = "Clock In";
@@ -71,7 +72,7 @@ public class ClockIn extends AppCompatActivity {
 
         // gets user's company name and user ref
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/"+companyNameRef).child(userKey);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child(userKey);
 
         //Display the first name after Hello
         ref.child("name").addValueEventListener(new ValueEventListener() {

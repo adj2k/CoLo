@@ -4,20 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".Projects.ManagerProjects">
 
-    <Button
-        android:id="@+id/new_project_btn"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/moveToCreateProject"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="159dp"
-        android:text="Create New Project"
-        app:backgroundTint="#2E72E3"
+        android:background="@drawable/header_background"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="218dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="100dp"
+            android:text="Create Project"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/projects_list"
@@ -29,5 +42,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_project_btn" />
+        app:layout_constraintTop_toBottomOf="@id/moveToCreateProject" />
 </androidx.constraintlayout.widget.ConstraintLayout>

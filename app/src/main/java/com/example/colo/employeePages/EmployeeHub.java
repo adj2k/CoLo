@@ -256,6 +256,15 @@ public class EmployeeHub extends AppCompatActivity
             }
         });
 
+        e_projects_btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(EmployeeHub.this, EmployeeProjects.class));
+            }
+        });
+
         emp_logout.setOnClickListener(new View.OnClickListener()
         {
             @Override
