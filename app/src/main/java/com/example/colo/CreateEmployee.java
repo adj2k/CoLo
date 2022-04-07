@@ -117,26 +117,26 @@ public class CreateEmployee extends AppCompatActivity
                 String gender = RadioButtonGender.getText().toString();
                 String role = "Employee";
 
+
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender() & validateRole())
                 {
-                    userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null);
+                    userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null, true);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                    {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task)
+                        {
+                            if (task.isSuccessful())
                             {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task)
-                                {
-                                    if (task.isSuccessful())
-                                    {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
-                                        Log.d(TAG, "createUserWithEmail:success");
-//                                      FirebaseDatabase.getInstance().getReference("Employees "+uidpath);
+                                // Sign in success, update UI with the signed-in user's information
+                                Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
+//
+                                        //set value in the firebase realtime database
                                         FirebaseDatabase.getInstance().getReference("Companies").child(companyName).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                 .setValue(userHelperClass);
                                     } else
                                     {
                                         // If sign in fails, display a message to the user.
-                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                         Toast.makeText(CreateEmployee.this, "Authentication failed.", Toast.LENGTH_LONG).show();
 
                                     }
