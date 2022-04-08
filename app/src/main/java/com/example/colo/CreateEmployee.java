@@ -118,7 +118,7 @@ public class CreateEmployee extends AppCompatActivity
                 String role = "Employee";
 
 
-                if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender() & validateRole())
+                if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
                     userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null, true);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
@@ -303,19 +303,6 @@ public class CreateEmployee extends AppCompatActivity
         }
     }
 
-
-    private boolean validateRole()
-    {
-        if (RadioGroupRole.getCheckedRadioButtonId() == -1)
-        {
-            RadioButtonRole.setError("Please select the role");
-            return false;
-        } else
-        {
-            RadioButtonRole.setError(null);
-            return true;
-        }
-    }
 
 
 }

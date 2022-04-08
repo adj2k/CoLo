@@ -61,6 +61,7 @@ public class EmployeeHub extends AppCompatActivity
         clock_in_out = findViewById(R.id.clock_in_out_btn);
         emp_logout = findViewById(R.id.e_logout_btn);
         e_ann_btn = findViewById(R.id.e_ann_btn);
+        e_projects_btn = findViewById(R.id.e_projects_btn);
         ann_title = findViewById(R.id.ann_title);
         ann_desc = findViewById(R.id.ann_desc);
 
