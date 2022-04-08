@@ -70,8 +70,10 @@ public class ViewEmployees extends AppCompatActivity {
                     // used to make sure PROJECTS and maybe ANNOUNCEMENTS are not posted to list
                     if(!dataSnapshot.getKey().equals("Projects") ) {
                         if(!dataSnapshot.getKey().equals("Announcements")) {
-                            EmployeeList user = dataSnapshot.getValue(EmployeeList.class);
-                            list.add(user);
+                            if(dataSnapshot.child("role").getValue().equals("Employee")) {
+                                EmployeeList user = dataSnapshot.getValue(EmployeeList.class);
+                                list.add(user);
+                            }
                         }
                     }
                 }

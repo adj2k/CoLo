@@ -116,7 +116,7 @@ public class CreateManager extends AppCompatActivity
                 String gender = RadioButtonGender.getText().toString();
                 String role = "Manager";
 
-                if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender() & validateRole())
+                if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
                     userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null,true);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
@@ -306,7 +306,7 @@ public class CreateManager extends AppCompatActivity
         }
     }
 
-
+/*
     private boolean validateRole()
     {
         if (RadioGroupRole.getCheckedRadioButtonId() == -1)
@@ -320,5 +320,5 @@ public class CreateManager extends AppCompatActivity
         }
     }
 
-
+*/
 }
