@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.colo.employeePages.ClockIn;
 import com.example.colo.employeePages.EmployeeHub;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -233,11 +234,74 @@ public class LogIn extends AppCompatActivity
                                 }
                             });
 
+                        } else if(!task.isSuccessful()) {
+                            if(testForInfo(email, password, company)) {
+                                // CreateUserWithEmailAndPassword();
+                            }
                         } else
                         {
                             Toast.makeText(LogIn.this, "Failed to login. Please check credentials", Toast.LENGTH_LONG).show();
                         }
                     }
+
                 });
+    }
+
+    private boolean testForInfo(String email, String password, String company) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/" + company);
+
+        boolean key = true;
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                for(DataSnapshot snapshot : datasnapshot.getChildren()) {
+                    if(!snapshot.getKey().equals("Projects") ) {
+                        if(!snapshot.getKey().equals("Announcements")) {
+                            System.out.println("Email: " + snapshot.child("email").getValue());
+                            // Check if manager and pass to manager hub
+                            if (snapshot.child("email").getValue().equals(email) &&
+                                snapshot.child("password").getValue().equals(password) &&
+                                snapshot.child("role").getValue().equals("Manager")) {
+                                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task)
+                                    {
+                                        if (task.isSuccessful())
+                                        {
+                                            // Sign in success, update UI with the signed-in user's information
+                                            Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(LogIn.this, ManagerHub.class));
+                                        }
+                                    }
+                                });
+                            } // Check if manager and pass to manager hub
+                              else if (snapshot.child("email").getValue().equals(email) &&
+                                    snapshot.child("password").getValue().equals(password) &&
+                                    snapshot.child("role").getValue().equals("Employee")) {
+                                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task)
+                                        {
+                                            if (task.isSuccessful())
+                                            {
+                                                // Sign in success, update UI with the signed-in user's information
+                                                Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
+                                                startActivity(new Intent(LogIn.this, EmployeeHub.class));
+                                            }
+                                        }
+                                    });
+                                }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return key;
     }
 }

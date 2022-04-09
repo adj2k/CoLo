@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.colo.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 
 import java.util.ArrayList;
 
@@ -17,7 +19,6 @@ public class ManagerProjectAdapter extends RecyclerView.Adapter<ManagerProjectAd
 
     Context context;
     ArrayList<ProjectData> list;
-
     public ManagerProjectAdapter(Context context, ArrayList<ProjectData> list) {
         this.context = context;
         this.list = list;

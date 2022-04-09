@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -119,27 +120,8 @@ public class CreateManager extends AppCompatActivity
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
                     userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null,true);
-                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
-                            {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task)
-                                {
-                                    if (task.isSuccessful())
-                                    {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
-                                        Log.d(TAG, "createUserWithEmail:success");
-//                                      FirebaseDatabase.getInstance().getReference("Employees "+uidpath);
-                                        FirebaseDatabase.getInstance().getReference("Companies").child(companyName).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                .setValue(userHelperClass);
-                                    } else
-                                    {
-                                        // If sign in fails, display a message to the user.
-                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(CreateManager.this, "Authentication failed.", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            });
+                    FirebaseDatabase.getInstance().getReference("Companies").child(companyName).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(userHelperClass);
                     finish();
                 }
             }
