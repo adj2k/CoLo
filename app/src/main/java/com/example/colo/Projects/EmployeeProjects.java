@@ -1,4 +1,4 @@
-package com.example.colo.employeePages;
+package com.example.colo.Projects;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import com.example.colo.Projects.CreateProject;
 import com.example.colo.Projects.ManagerProjectAdapter;
 import com.example.colo.Projects.ProjectData;
 import com.example.colo.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,17 +53,19 @@ public class EmployeeProjects extends AppCompatActivity {
         myAdapter = new ManagerProjectAdapter(this, list);
         recyclerView.setAdapter(myAdapter);
 
+        // goes through and finds the projects that are assigned to the logged in user.
+        // then adds these projects to the employee list
         ref = FirebaseDatabase.getInstance().getReference("Companies/" + companyName + "/Projects");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ProjectData data = dataSnapshot.getValue(ProjectData.class);
-                    System.out.println(data.toString());
-                    list.add(data);
-
-
+                    for(DataSnapshot deeperSnapshot : dataSnapshot.child("pEmployees").getChildren()) {
+                        if (deeperSnapshot.getValue().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                            ProjectData data = dataSnapshot.getValue(ProjectData.class);
+                            list.add(data);
+                        }
+                    }
                 }
                 myAdapter.notifyDataSetChanged();
             }
@@ -73,9 +76,9 @@ public class EmployeeProjects extends AppCompatActivity {
             }
         });
 
-
+        // TODO: Check for current working project and display
 
     }
 
-
+    // TODO: Make clicker to select projects currently worked on AND complete after finished
 }

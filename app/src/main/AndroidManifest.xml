@@ -22,6 +22,7 @@
         <activity android:name=".ViewEmployees" />
         <activity android:name=".ViewManagers" />
         <activity android:name=".Projects.ManagerProjects" />
+        <activity android:name=".Projects.EmployeeProjects" />
         <activity
             android:name=".Announcements.ManagerCreateAnnouncement"
             android:windowSoftInputMode="adjustPan" />

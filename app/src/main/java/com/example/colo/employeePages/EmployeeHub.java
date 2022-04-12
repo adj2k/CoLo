@@ -1,22 +1,17 @@
 package com.example.colo.employeePages;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,8 +20,7 @@ import com.example.colo.Announcements.CreateAnnouncement;
 import com.example.colo.EmployeeActivityLog;
 import com.example.colo.GlobalCompanyName;
 import com.example.colo.LogIn;
-import com.example.colo.MainActivity;
-import com.example.colo.ManagerHub;
+import com.example.colo.Projects.EmployeeProjects;
 import com.example.colo.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
