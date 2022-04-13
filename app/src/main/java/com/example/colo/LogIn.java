@@ -171,8 +171,10 @@ public class LogIn extends AppCompatActivity
                                 public void onDataChange(@NonNull DataSnapshot datasnapshot)
                                 {
                                     //loop through companies in the database
+
                                     for (DataSnapshot snapshot : datasnapshot.getChildren())
                                     {
+                                        System.out.println("THIS IS WHY YOU ARE BACK AT THE HUB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                                         //if the current user has the same UID as the database key, proceed to check role
                                         if (snapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
                                         {
@@ -183,6 +185,7 @@ public class LogIn extends AppCompatActivity
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot datasnapshot)
                                                 {
+                                                    System.out.println("OOOOOOOR THIS IS WHY YOU ARE BACK AT THE HUB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                                                     //loop through the attributes for the selected user
                                                     for (DataSnapshot snapshot : datasnapshot.getChildren())
                                                     {
