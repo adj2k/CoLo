@@ -95,6 +95,7 @@ public class ClockIn extends AppCompatActivity {
                 if(snapshot.child("clockInTime").exists()) {
                     clock_in_btn.setEnabled(false);
                     clock_in_btn.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+                    System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 } else {
                     clock_out_btn.setEnabled(false);
                     clock_out_btn.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
@@ -185,20 +186,24 @@ public class ClockIn extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         long timeWorked = 0;
-                        if(snapshot.child("timeWorked").getValue() !=null) {
-                            timeWorked = ((long) snapshot.child("timeWorked").getValue());
+                        if(snapshot.child("timeWorked").child("Total").getValue() !=null) {
+                            timeWorked = ((long) snapshot.child("timeWorked").child("Total").getValue());
                         }
 
-                        long newTimeWorked = timeInMillis + timeWorked;
-                        System.out.println("old time : " + timeWorked + "   New Time worked was                                                 " + newTimeWorked);
-                        ref.child("timeWorked").setValue(newTimeWorked);
+                        long newTotal = timeInMillis + timeWorked;
+                        System.out.println("old time : " + timeWorked + "   New Time worked was                                                 " + timeInMillis);
+                        // Add to total in DB and create new entry for work day
+                        ref.child("timeWorked").child("Total").setValue(newTotal);
 
-                        //  !!!!!!!!!!!!!!!!!!!!!! RUNS FOREVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        // test if date is already used and at to daily total if so
+                        if(snapshot.child("timeWorked").child(LocalDate.now().toString()).getValue() != null) {
+                            long currentDaysWork = (long) snapshot.child("timeWorked").child(LocalDate.now().toString()).getValue();
+                            ref.child("timeWorked").child(LocalDate.now().toString()).setValue(currentDaysWork + timeInMillis);
+                        } else {
+                            ref.child("timeWorked").child(LocalDate.now().toString()).setValue(timeInMillis);
+                        }
 
 
-                        //HashMap map = new HashMap();
-                        //map.put("timeWorked", newTimeWorked);
-                        //ref.updateChildren(map);
                     }
 
                     @Override
