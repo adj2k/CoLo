@@ -193,5 +193,4 @@ public class EmployeeProjects extends AppCompatActivity implements ManagerProjec
         });
     }
 
-    // TODO: Make clicker to complete after finished with project
 }
