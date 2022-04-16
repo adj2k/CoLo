@@ -17,17 +17,19 @@ public class ManagerProjectAdapter extends RecyclerView.Adapter<ManagerProjectAd
 
     Context context;
     ArrayList<ProjectData> list;
+    private OnNoteListener mOnNoteListener;
 
-    public ManagerProjectAdapter(Context context, ArrayList<ProjectData> list) {
+    public ManagerProjectAdapter(Context context, ArrayList<ProjectData> list, OnNoteListener onNoteListener) {
         this.context = context;
         this.list = list;
+        this.mOnNoteListener = onNoteListener;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.project_item, parent, false);
-        return new MyViewHolder(v);
+        return new MyViewHolder(v, mOnNoteListener);
     }
 
     @Override
@@ -45,16 +47,32 @@ public class ManagerProjectAdapter extends RecyclerView.Adapter<ManagerProjectAd
         return list.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView pName, pDescription, employees;
-        public MyViewHolder(@NonNull View itemView) {
+        OnNoteListener onNoteListener;
+
+
+        public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
             pName = itemView.findViewById(R.id.pName);
             pDescription = itemView.findViewById(R.id.pDescription);
+            this.onNoteListener = onNoteListener;
             //employees = itemView.findViewById(R.id.employees);
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onNoteListener.onNoteClick(getAdapterPosition());
+        }
+    }
+
+    // adds clicker to list
+    public interface OnNoteListener{
+        void onNoteClick(int position);
     }
 
 }

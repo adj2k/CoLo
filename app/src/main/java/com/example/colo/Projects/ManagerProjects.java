@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ManagerProjects extends AppCompatActivity {
+public class ManagerProjects extends AppCompatActivity implements ManagerProjectAdapter.OnNoteListener {
 
     private ConstraintLayout new_project_btn;
 
@@ -48,7 +48,7 @@ public class ManagerProjects extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myAdapter = new ManagerProjectAdapter(this, list);
+        myAdapter = new ManagerProjectAdapter(this, list, this);
         recyclerView.setAdapter(myAdapter);
 
         ref = FirebaseDatabase.getInstance().getReference("Companies/" + companyName + "/Projects");
@@ -78,10 +78,17 @@ public class ManagerProjects extends AppCompatActivity {
         new_project_btn = (ConstraintLayout) findViewById(R.id.moveToCreateProject);
         new_project_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { startActivity(new Intent(ManagerProjects.this, CreateProject.class)); }
+            public void onClick(View view) {
+                startActivity(new Intent(ManagerProjects.this, CreateProject.class));
+                finish();
+            }
         });
 
     }
 
 
+    @Override
+    public void onNoteClick(int position) {
+
+    }
 }

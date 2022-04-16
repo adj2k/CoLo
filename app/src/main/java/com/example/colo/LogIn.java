@@ -164,7 +164,7 @@ public class LogIn extends AppCompatActivity
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                             //find information in the company child
-                            referenceCompany.addValueEventListener(new ValueEventListener()
+                            referenceCompany.addListenerForSingleValueEvent(new ValueEventListener()
                             {
                                 @Override
 
@@ -180,7 +180,7 @@ public class LogIn extends AppCompatActivity
                                         {
 
                                             //find information in the user ID child
-                                            referenceUser.addValueEventListener(new ValueEventListener()
+                                            referenceUser.addListenerForSingleValueEvent(new ValueEventListener()
                                             {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot datasnapshot)

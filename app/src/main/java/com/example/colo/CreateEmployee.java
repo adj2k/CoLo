@@ -39,7 +39,6 @@ public class CreateEmployee extends AppCompatActivity
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private FirebaseAuth dumbAuth;
     private static final String EMPLOYEE = "Employee";
     private static final String TAG = "CreateAccount";
     private UserHelperClass userHelperClass;
@@ -143,7 +142,7 @@ public class CreateEmployee extends AppCompatActivity
                                     }
                                 }
                             });
-
+                    // TODO FIX CREATE ACCOUNT ISSUE
                     finish();
 //                    startActivity(new Intent(CreateAccount.this, ManagerHub.class));
                 }
