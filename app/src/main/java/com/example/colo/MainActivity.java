@@ -68,15 +68,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        ButtonSunny.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                conditionRef.setValue("Clocked In");
-            }
-        });
-
         ButtonFoggy.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -126,6 +117,19 @@ public class MainActivity extends AppCompatActivity
                 startActivity(toLogin);
             }
         });
+
+        // TODO dialog with time tables
+        ButtonSunny.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                openDialog();
+            }
+        });
+    }
+
+    private void openDialog() {
 
     }
 }
