@@ -1,8 +1,10 @@
 package com.example.colo;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity
     Button ToLogin;
     Button ButtonCreateAnnouncement;
     Button ButtonAnnouncements;
-
+    String companyNameRef;
     DatabaseReference RootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference conditionRef = RootRef.child("condition");
 
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_CoLo);
         setContentView(R.layout.activity_main);
+
+        companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
+
 
         conditionTextView = (TextView) findViewById(R.id.textViewCondition);
         ButtonSunny = (Button) findViewById(R.id.buttonSunny);
@@ -118,18 +123,21 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        // TODO dialog with time tables
         ButtonSunny.setOnClickListener(new View.OnClickListener()
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view)
             {
-                openDialog();
+                String UID = "sxTQNUVXjCNftdNt9OGuuvS2FJC2";
+                openDialog(UID);
             }
         });
     }
 
-    private void openDialog() {
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void openDialog(String UID) {
+        ShowTimesDialog showTimesDialog = new ShowTimesDialog(UID, "Facebook");
+        showTimesDialog.show(getSupportFragmentManager(),"TEST");
     }
 }
