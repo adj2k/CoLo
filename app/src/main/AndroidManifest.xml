@@ -34,13 +34,12 @@
         <activity android:name=".employeePages.EmployeeHub" />
         <activity android:name=".ManagerHub" />
         <activity android:name=".AdminHub" />
-        <activity
-            android:name=".LogIn"
-            android:windowSoftInputMode="adjustPan" />
+
         <activity android:name=".CreateEmployee" />
         <activity android:name=".CreateManager" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LogIn"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
