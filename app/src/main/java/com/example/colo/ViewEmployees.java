@@ -72,6 +72,7 @@ public class ViewEmployees extends AppCompatActivity {
                         if(!dataSnapshot.getKey().equals("Announcements")) {
                             if(dataSnapshot.child("role").getValue().equals("Employee")) {
                                 EmployeeList user = dataSnapshot.getValue(EmployeeList.class);
+                                user.setFirebaseId(dataSnapshot.getKey());
                                 list.add(user);
                             }
                         }
