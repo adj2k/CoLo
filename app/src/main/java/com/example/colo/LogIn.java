@@ -53,6 +53,7 @@ public class LogIn extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_CoLo);
         setContentView(R.layout.activity_log_in);
         //linking the variable from xml to java so the buttons have functionality
         Email = (EditText) findViewById(R.id.etEmail);
