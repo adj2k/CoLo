@@ -113,7 +113,9 @@ public class ShowTimesDialog extends AppCompatDialogFragment {
                         Hours.set(i,daysTimeFormatted);
                         System.out.println(Hours.get(i));
                     }
-                String totalTimeFormatted = TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()) + ":" + String.format("%02d",TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()));
+                String totalTimeFormatted = "00:00";
+                if((snapshot.child("timeWorked").child("Total").getValue() != null))
+                    totalTimeFormatted = TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()) + ":" + String.format("%02d",TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()));
 
                 H1.setText(Hours.get(6));
                 H2.setText(Hours.get(5));

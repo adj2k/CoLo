@@ -1,14 +1,19 @@
 package com.example.colo.ViewEmployeesFolder;
 
 import android.content.Context;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.colo.ShowTimesDialog;
 import com.example.colo.ViewEmployeesFolder.ViewEmployeeAdapter;
 import com.example.colo.ViewEmployeesFolder.EmployeeList;
 import com.example.colo.R;
@@ -43,6 +48,9 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
         holder.name.setText(employee.getName());
         holder.ID.setText(employee.getEmployeeID());
         holder.email.setText(employee.getEmail());
+        holder.position = position;
+        holder.context = this.context;
+        holder.list = this.list;
     }
 
     @Override
@@ -53,6 +61,9 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         // Here we setup the variables to assign to the different textItems in the announcement_item.xml
         TextView name, ID, email;
+        int position;
+        ArrayList<EmployeeList> list;
+        Context context;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,17 +72,34 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
             ID = itemView.findViewById(R.id.employeeIDtext);
             email = itemView.findViewById(R.id.employeeEmailtext);
 
-            /*
+
             itemView.findViewById(R.id.employeeDeleteButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    System.out.println("You pressed delete");
                 }
-            });*/
+            });
 
+            itemView.findViewById(R.id.employeeEditButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    System.out.println(list.get(position).getFirebaseId());
+                }
+            });
+
+            // displays employee's timesheet
+            itemView.findViewById(R.id.displayTime).setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onClick(View view) {
+                    if(list.get(position).getRole().equals("Employee")) {
+                        ShowTimesDialog showTimesDialog = new ShowTimesDialog(list.get(position).getFirebaseId(), list.get(position).getCompanyName());
+                        showTimesDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "TEST");
+                    }
+                }
+            });
 
         }
     }
-
 
 }
