@@ -1,12 +1,14 @@
 package com.example.colo.employeePages;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +62,7 @@ public class EmployeeHub extends AppCompatActivity
         e_projects_btn = findViewById(R.id.e_projects_btn);
         ann_title = findViewById(R.id.ann_title);
         ann_desc = findViewById(R.id.ann_desc);
-        layoutActivityLog = findViewById(R.id.layoutActivityLog);
+        //layoutActivityLog = findViewById(R.id.layoutActivityLog);
 
         eAuth = FirebaseAuth.getInstance();
         user = eAuth.getCurrentUser();
@@ -217,6 +219,7 @@ public class EmployeeHub extends AppCompatActivity
 
         clock_in_out.setOnClickListener(new View.OnClickListener()
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v)
             {
@@ -273,13 +276,13 @@ public class EmployeeHub extends AppCompatActivity
             }
         });
 
-        layoutActivityLog.setOnClickListener(new View.OnClickListener()
+ /*       layoutActivityLog.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 startActivity(new Intent(EmployeeHub.this, EmployeeActivityLog.class));
             }
-        });
+        });*/
     }
 }

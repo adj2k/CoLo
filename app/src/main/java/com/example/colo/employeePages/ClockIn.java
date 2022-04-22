@@ -149,14 +149,22 @@ public class ClockIn extends AppCompatActivity {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(int i = 0; i < 7; i++)
-                    if(snapshot.child("timeWorked").child(LocalDate.now().minusDays(i).format(dtf)).exists()) {
+                for(int i = 0; i < 7; i++) {
+                    if (snapshot.child("timeWorked").child(LocalDate.now().minusDays(i).format(dtf)).exists()) {
                         long daysTime = (long) snapshot.child("timeWorked").child(LocalDate.now().minusDays(i).format(dtf)).getValue();
-                        String daysTimeFormatted = TimeUnit.MILLISECONDS.toHours(daysTime) + ":" + String.format("%02d",TimeUnit.MILLISECONDS.toMinutes(daysTime)%60);
-                        Hours.set(i,daysTimeFormatted);
+                        String daysTimeFormatted = TimeUnit.MILLISECONDS.toHours(daysTime) + ":" + String.format("%02d", TimeUnit.MILLISECONDS.toMinutes(daysTime) % 60);
+                        Hours.set(i, daysTimeFormatted);
                         System.out.println(Hours.get(i));
+                    }
+                    else
+                    {
+                        String daysTimeFormatted = "00:00";
+                        Hours.set(i, daysTimeFormatted);
+                    }
                 }
-                String totalTimeFormatted = TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()) + ":" + String.format("%02d",TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()));
+                String totalTimeFormatted = "00:00";
+                if (snapshot.child("timeWorked").child("Total").exists())
+                    totalTimeFormatted = TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()) + ":" + String.format("%02d",TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()));
 
                 H1.setText(Hours.get(6));
                 H2.setText(Hours.get(5));

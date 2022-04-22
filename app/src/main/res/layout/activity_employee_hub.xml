@@ -143,80 +143,48 @@
 
             <LinearLayout
                 android:id="@+id/clock_in_out_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:clickable="true"
+                android:layout_width="375dp"
+                android:layout_height="173dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/white_rectangle_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="15dp"
-                app:layout_constraintEnd_toStartOf="@+id/e_projects_btn"
                 app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:focusable="true">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="200dp"
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/clockinout"/>
+                    android:src="@drawable/clockinout" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
                     android:text="@string/clock"
-                    android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/e_projects_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/clock_in_out_btn"
-                android:padding="15dp"
-                app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/projects_icon"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/projects"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutActivityLog"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/white_rectangle_background"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="15dp"
-                app:layout_constraintEnd_toStartOf="@+id/e_projects_btn"
                 app:layout_constraintDimensionRatio="H, 1:1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/clock_in_out_btn">
@@ -226,63 +194,69 @@
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/activity_log_icon"/>
+                    android:src="@drawable/projects_icon"
+                    tools:layout_editor_absoluteX="52dp"
+                    tools:layout_editor_absoluteY="248dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/activity_log_string"
                     android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:text="@string/projects"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="31dp"
+                    tools:layout_editor_absoluteY="357dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/e_settings_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="198dp"
                 android:background="@drawable/white_rectangle_background"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintStart_toEndOf="@id/clock_in_out_btn"
-                app:layout_constraintTop_toBottomOf="@+id/e_projects_btn">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.686"
+                app:layout_constraintStart_toEndOf="@+id/e_projects_btn"
+                app:layout_constraintTop_toTopOf="@+id/clock_in_out_btn">
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/settings_icon"/>
+                    android:src="@drawable/settings_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
                     android:text="@string/settings_string"
-                    android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/e_ann_btn"
-                android:clickable="true"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/announcement_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/e_settings_btn"
-                app:layout_constraintStart_toStartOf="@id/clock_in_out_btn"
-                app:layout_constraintTop_toBottomOf="@+id/layoutActivityLog"
-                android:focusable="true">
+                app:layout_constraintStart_toStartOf="@+id/e_projects_btn"
+                app:layout_constraintTop_toBottomOf="@+id/e_projects_btn">
 
                 <TextView
                     android:id="@+id/textLatestAnnouncement"
@@ -297,8 +271,7 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="30dp"
@@ -308,8 +281,7 @@
                     android:tint="@color/colorWhite"
                     app:layout_constraintBottom_toBottomOf="@id/textLatestAnnouncement"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/textLatestAnnouncement"
-                    />
+                    app:layout_constraintTop_toTopOf="@id/textLatestAnnouncement" />
 
                 <TextView
                     android:id="@+id/ann_title"
@@ -322,7 +294,7 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/textLatestAnnouncement"/>
+                    app:layout_constraintTop_toBottomOf="@id/textLatestAnnouncement" />
 
                 <TextView
                     android:id="@+id/ann_desc"
@@ -334,7 +306,7 @@
                     android:text="@string/announcement_description"
                     android:textColor="@color/colorWhite"
                     android:textSize="12sp"
-                    app:layout_constraintTop_toBottomOf="@id/ann_title"/>
+                    app:layout_constraintTop_toBottomOf="@id/ann_title" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

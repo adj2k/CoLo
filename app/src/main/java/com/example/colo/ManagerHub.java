@@ -207,7 +207,7 @@ public class ManagerHub extends AppCompatActivity
         // Grabs All Button/Text ID's from the XML and assigns them to corresponding variable
         //LogoutButton = (Button) findViewById(R.id.LogOut_btn);
         EmployeeButton = findViewById(R.id.layoutEmployees);
-        ActivityLogButton = findViewById(R.id.layoutActivityLog);
+        //ActivityLogButton = findViewById(R.id.layoutActivityLog);
         ProjectButton = findViewById(R.id.layoutProjects);
         //ActivityButton = (ImageButton) findViewById(R.id.activity_btn);
         SettingsButton = findViewById(R.id.layoutSettings);
@@ -273,7 +273,7 @@ public class ManagerHub extends AppCompatActivity
         });
 
         // This function will make the page go to Activity Log on button click
-        ActivityLogButton.setOnClickListener(new View.OnClickListener()
+        /*ActivityLogButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -281,7 +281,7 @@ public class ManagerHub extends AppCompatActivity
                 // CHANGE TO ACTIVITY LOG CLASS
                 startActivity(new Intent(ManagerHub.this, ManagerCreateAnnouncement.class));
             }
-        });
+        });*/
 
         // This function will make the page go to Manager Announcement on button click
         AnnouncementButton2.setOnClickListener(new View.OnClickListener()
