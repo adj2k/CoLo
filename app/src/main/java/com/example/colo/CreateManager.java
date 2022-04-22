@@ -1,6 +1,7 @@
 package com.example.colo;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -37,11 +38,11 @@ public class CreateManager extends AppCompatActivity
 
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth, mAuthMan;
     private static final String EMPLOYEE = "Employee";
     private static final String TAG = "CreateAccount";
     private UserHelperClass userHelperClass;
-    private String CompanyName = "";
+    private String CompanyName,originalEmail,originalPassword = "";
 
 
     @Override
@@ -63,11 +64,14 @@ public class CreateManager extends AppCompatActivity
         RadioGroupGender = (RadioGroup) findViewById(R.id.RadioGroupGender);
         RadioButtonGender = (RadioButton) findViewById(R.id.rbNoAnswer);
         CompanyName = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
+        originalEmail = ((GlobalCompanyName) this.getApplication()).getloginEmail();
+        originalPassword = ((GlobalCompanyName) this.getApplication()).getloginPassword();
 
 
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference(EMPLOYEE);
         mAuth = FirebaseAuth.getInstance();
+        mAuthMan = FirebaseAuth.getInstance();
 
 
         //Date of Birth Button
@@ -119,28 +123,47 @@ public class CreateManager extends AppCompatActivity
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
                     userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null,true);
-                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                    mAuthMan.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                    {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task)
+                        {
+                            if (task.isSuccessful())
                             {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task)
-                                {
-                                    if (task.isSuccessful())
-                                    {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
-                                        Log.d(TAG, "createUserWithEmail:success");
+                                // Sign in success, update UI with the signed-in user's information
+                                Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
+                                Log.d(TAG, "createUserWithEmail:success");
 //                                      FirebaseDatabase.getInstance().getReference("Employees "+uidpath);
-                                        FirebaseDatabase.getInstance().getReference("Companies").child(companyName).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                .setValue(userHelperClass);
-                                    } else
-                                    {
+                                FirebaseDatabase.getInstance().getReference("Companies").child(companyName).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(userHelperClass);
+
+                            } else
+                            {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(CreateManager.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                    mAuthMan.signOut();
+                    //                    mAuth.signInWithEmailAndPassword("stickythicky@gmail.com", "123456")
+                    mAuth.signInWithEmailAndPassword(originalEmail, originalPassword)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+
+                                    } else {
                                         // If sign in fails, display a message to the user.
-                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(CreateManager.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+
                                     }
                                 }
                             });
                     finish();
+
                 }
             }
         });
@@ -306,19 +329,6 @@ public class CreateManager extends AppCompatActivity
         }
     }
 
-/*
-    private boolean validateRole()
-    {
-        if (RadioGroupRole.getCheckedRadioButtonId() == -1)
-        {
-            RadioButtonRole.setError("Please select the role");
-            return false;
-        } else
-        {
-            RadioButtonRole.setError(null);
-            return true;
-        }
-    }
 
-*/
+
 }

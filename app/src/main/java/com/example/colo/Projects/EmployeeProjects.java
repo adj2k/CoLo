@@ -1,9 +1,6 @@
 package com.example.colo.Projects;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.colo.GlobalCompanyName;
-import com.example.colo.Projects.CreateProject;
-import com.example.colo.Projects.ManagerProjectAdapter;
-import com.example.colo.Projects.ProjectData;
 import com.example.colo.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

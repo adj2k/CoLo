@@ -45,6 +45,7 @@ public class AdminHub extends AppCompatActivity
     LinearLayout SettingsButton;
     ConstraintLayout AnnouncementButton;
 
+
     private String companyNameRef = "";
 
     @Override
@@ -52,6 +53,9 @@ public class AdminHub extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_hub);
+
+
+        //
 
         //LogoutButton = (Button) findViewById(R.id.LogOut_btn);
         EmployeeButton = findViewById(R.id.layoutEmployees_Admin);
