@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class ProjectData {
     String pName, pDescription;
+    ArrayList<String> pEmployee;
    // ArrayList<String> pEmployees;
 
     public String getpName() {
@@ -14,10 +15,9 @@ public class ProjectData {
         return pDescription;
     }
 
-    /*
-    public ArrayList<String> getEmployees() {
-        return pEmployees;
+    public ArrayList<String> getpEmployee() {
+        return pEmployee;
     }
 
-     */
+
 }

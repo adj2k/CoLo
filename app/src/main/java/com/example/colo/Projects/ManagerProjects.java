@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.colo.GlobalCompanyName;
 import com.example.colo.R;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 
 public class ManagerProjects extends AppCompatActivity implements ManagerProjectAdapter.OnNoteListener {
 
-    private ConstraintLayout new_project_btn;
+    private LinearLayout new_project_btn;
 
     // set up recycler
     RecyclerView recyclerView;
@@ -74,7 +75,7 @@ public class ManagerProjects extends AppCompatActivity implements ManagerProject
 
 
 
-        new_project_btn = (ConstraintLayout) findViewById(R.id.moveToCreateProject);
+        new_project_btn =  findViewById(R.id.moveToCreateProject);
         new_project_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
