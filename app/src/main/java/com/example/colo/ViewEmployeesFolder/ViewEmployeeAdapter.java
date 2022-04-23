@@ -17,6 +17,11 @@ import com.example.colo.ShowTimesDialog;
 import com.example.colo.ViewEmployeesFolder.ViewEmployeeAdapter;
 import com.example.colo.ViewEmployeesFolder.EmployeeList;
 import com.example.colo.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -28,6 +33,8 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
 
     Context context;
     ArrayList<EmployeeList> list;
+    DatabaseReference ref;
+
 
     public ViewEmployeeAdapter(Context context, ArrayList<EmployeeList> list) {
         this.context = context;
@@ -64,6 +71,7 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
         int position;
         ArrayList<EmployeeList> list;
         Context context;
+        DatabaseReference ref;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,7 +84,22 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
             itemView.findViewById(R.id.employeeDeleteButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    System.out.println("You pressed delete");
+                    //TODO Make dialog to as if sure to remove manager/employee
+                    ref = FirebaseDatabase.getInstance().getReference("Companies/" +
+                                                                        list.get(position).getCompanyName() + '/' +
+                                                                        list.get(position).getFirebaseId());
+                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            snapshot.getRef().removeValue();
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             });
 
