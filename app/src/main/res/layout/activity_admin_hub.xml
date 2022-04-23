@@ -152,10 +152,10 @@
                 android:background="@drawable/white_rectangle_background"
                 android:gravity="center"
                 android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/layoutEmployees_Admin"
                 android:padding="15dp"
                 app:layout_constraintDimensionRatio="H, 1:1"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/layoutEmployees_Admin"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
@@ -163,30 +163,33 @@
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/manager_icon"/>
+                    android:src="@drawable/manager_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
                     android:text="@string/managers_string"
-                    android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
+
             <LinearLayout
-                android:id="@+id/layoutActivityLog_Admin"
+                android:id="@+id/layoutProjects_Admin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/white_rectangle_background"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="15dp"
-                app:layout_constraintEnd_toStartOf="@+id/layoutManagers"
                 app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintEnd_toStartOf="@+id/layoutSettings_Admin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layoutEmployees_Admin">
 
@@ -195,31 +198,33 @@
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/activity_log_icon"/>
+                    android:src="@drawable/projects_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/activity_log_string"
                     android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:text="@string/projects"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutProjects_Admin"
+                android:id="@+id/layoutSettings_Admin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/white_rectangle_background"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintStart_toEndOf="@id/layoutEmployees_Admin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/layoutEmployees_Admin"
                 app:layout_constraintTop_toBottomOf="@+id/layoutManagers">
 
                 <ImageView
@@ -227,64 +232,30 @@
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/projects_icon"/>
+                    android:src="@drawable/settings_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/projects"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/layoutSettings_Admin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp"
-                app:layout_constraintEnd_toStartOf="@+id/layoutManagers"
-                app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutActivityLog_Admin">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/settings_icon"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/settings_string"
-                    android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/announcement_popup_admin"
-                android:clickable="true"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/announcement_background"
+                android:clickable="true"
                 android:padding="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/layoutProjects_Admin"
+                app:layout_constraintEnd_toEndOf="@+id/layoutSettings_Admin"
                 app:layout_constraintStart_toStartOf="@id/layoutEmployees_Admin"
-                app:layout_constraintTop_toBottomOf="@+id/layoutSettings_Admin"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/layoutSettings_Admin">
 
                 <TextView
                     android:id="@+id/textLatestAnnouncement_Admin"
@@ -299,8 +270,7 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="30dp"
@@ -310,8 +280,7 @@
                     android:tint="@color/colorWhite"
                     app:layout_constraintBottom_toBottomOf="@id/textLatestAnnouncement_Admin"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/textLatestAnnouncement_Admin"
-                    />
+                    app:layout_constraintTop_toTopOf="@id/textLatestAnnouncement_Admin" />
 
                 <TextView
                     android:id="@+id/announcement_title_text_Admin"
@@ -324,7 +293,7 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/textLatestAnnouncement_Admin"/>
+                    app:layout_constraintTop_toBottomOf="@id/textLatestAnnouncement_Admin" />
 
                 <TextView
                     android:id="@+id/announcement_description_text_Admin"
@@ -336,7 +305,7 @@
                     android:text="@string/announcement_description"
                     android:textColor="@color/colorWhite"
                     android:textSize="12sp"
-                    app:layout_constraintTop_toBottomOf="@id/announcement_title_text_Admin"/>
+                    app:layout_constraintTop_toBottomOf="@id/announcement_title_text_Admin" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
