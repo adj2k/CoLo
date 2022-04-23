@@ -28,15 +28,24 @@
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_create_project.xml" value="0.14722222222222223" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_employee_hub.xml" value="0.22" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_employee_log.xml" value="0.15172101449275363" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_employee_projects.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_log_in.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_main.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_manager_clock_log.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_manager_hub.xml" value="0.33" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_manager_projects.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_view_employees.xml" value="0.25" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/activity_view_managers.xml" value="0.26875" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/adminSettingsPage.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/announcement_view.xml" value="0.17882472137791286" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/employee.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/employee_check_list.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/employee_hours_popup.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/employee_view_item.xml" value="0.36770833333333336" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/onetime_popup.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/pop_delete.xml" value="0.26875" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/project_item.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/settingsPage.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/menu/navigation_menu.xml" value="0.36770833333333336" />
         <entry key="app/src/main/res/layout/activity_create_account_manager.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/onetime_popup.xml" value="0.24166666666666667" />

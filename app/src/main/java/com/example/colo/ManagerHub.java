@@ -318,7 +318,7 @@ public class ManagerHub extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                //startActivity(new Intent(ManagerHub.this, ManagerSettings.class));
+                startActivity(new Intent(ManagerHub.this, SettingsPage.class));
             }
         });
 
