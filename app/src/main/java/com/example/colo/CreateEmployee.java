@@ -268,7 +268,6 @@ public class CreateEmployee extends AppCompatActivity
         {
             VerifyPassword.setError("Field can not be empty");
             return false;
-
         } else if (!(Password.getText().toString().equals(VerifyPassword.getText().toString())))
         {
             VerifyPassword.setError("The passwords do not match");
