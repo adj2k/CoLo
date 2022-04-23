@@ -1,11 +1,14 @@
 package com.example.colo;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.xmlpull.v1.XmlPullParser;
 
 public class adminSettingsPage extends AppCompatActivity {
 
@@ -138,6 +143,7 @@ public class adminSettingsPage extends AppCompatActivity {
 
                 if (validateName()) {
                     // TODO: UPDATE Name HERE TO DATABASE
+
                 }
             }
         });
@@ -146,17 +152,24 @@ public class adminSettingsPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email = Email.getText().toString();
-
                 if (validateEmail()) {
-                    // TODO: UPDATE EMAIL HERE TO DATABASE
+                    // TODO: UPDATE Name HERE TO DATABASE
+
                 }
+
             }
+
         });
 
         ResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Use toast to say password reset email sent, doesnt need actual functionality
+                // TODO: Use toast to say password reset email sent, doesn't need actual functionality
+                Context message = getApplicationContext();
+                CharSequence text = "Password reset email sent";
+                int duration = Toast.LENGTH_SHORT;
+                Toast updatePassword = Toast.makeText(message, text, duration);
+                updatePassword.show();
             }
         });
 
@@ -164,6 +177,9 @@ public class adminSettingsPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Make them sign out
+                // Took it from main page idk if it can still work like that
+                mAuth.signOut();
+                startActivity(new Intent(adminSettingsPage.this, LogIn.class));
             }
         });
 

@@ -1,6 +1,8 @@
 package com.example.colo;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -77,7 +79,12 @@ public class SettingsPage extends AppCompatActivity {
         ResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Use toast to say password reset email sent, doesnt need actual functionality
+                // TODO: Use toast to say password reset email sent, doesn't need actual functionality
+                Context message = getApplicationContext();
+                CharSequence text = "Password reset email sent";
+                int duration = Toast.LENGTH_SHORT;
+                Toast updatePassword = Toast.makeText(message, text, duration);
+                updatePassword.show();
             }
         });
 
@@ -85,6 +92,9 @@ public class SettingsPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Make them sign out
+                // Took it from main page idk if it can still work like that
+                mAuth.signOut();
+                startActivity(new Intent(SettingsPage.this, LogIn.class));
             }
         });
     }
