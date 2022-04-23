@@ -53,6 +53,7 @@ public class LogIn extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_CoLo);
         setContentView(R.layout.activity_log_in);
         //linking the variable from xml to java so the buttons have functionality
         Email = (EditText) findViewById(R.id.etEmail);
@@ -164,7 +165,7 @@ public class LogIn extends AppCompatActivity
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                             //find information in the company child
-                            referenceCompany.addValueEventListener(new ValueEventListener()
+                            referenceCompany.addListenerForSingleValueEvent(new ValueEventListener()
                             {
                                 @Override
 
@@ -180,7 +181,7 @@ public class LogIn extends AppCompatActivity
                                         {
 
                                             //find information in the user ID child
-                                            referenceUser.addValueEventListener(new ValueEventListener()
+                                            referenceUser.addListenerForSingleValueEvent(new ValueEventListener()
                                             {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot datasnapshot)

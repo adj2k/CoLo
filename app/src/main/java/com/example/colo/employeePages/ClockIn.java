@@ -24,11 +24,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -45,14 +49,19 @@ public class ClockIn extends AppCompatActivity {
     DateTimeFormatter formatterdisplay = DateTimeFormatter.ofPattern("hh:mm a");
 
     String userKey = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    String first_name;
-    TextView hello_name;
+    String first_name, temp;
+    TextView hello_name, D1, D2, D3, D4, D5, D6, D7;
+    TextView Total, H1, H2, H3, H4, H5, H6, H7;
+    ArrayList<String> Hours;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in);
+
+        String p = "MM-dd";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(p);
 
         hello_name=findViewById(R.id.e_username_c);
         //display date on top of the page
@@ -61,6 +70,35 @@ public class ClockIn extends AppCompatActivity {
         Calendar calendar= Calendar.getInstance();
         String currentDate= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         viewDate.setText(currentDate);
+
+        D1=findViewById(R.id.D1);
+        D2=findViewById(R.id.D2);
+        D3=findViewById(R.id.D3);
+        D4=findViewById(R.id.D4);
+        D5=findViewById(R.id.D5);
+        D6=findViewById(R.id.D6);
+        D7=findViewById(R.id.D7);
+
+        H1=findViewById(R.id.H1);
+        H2=findViewById(R.id.H2);
+        H3=findViewById(R.id.H3);
+        H4=findViewById(R.id.H4);
+        H5=findViewById(R.id.H5);
+        H6=findViewById(R.id.H6);
+        H7=findViewById(R.id.H7);
+
+        Hours = new ArrayList<String>(Collections.nCopies(7,"00:00"));
+
+
+        Total=findViewById(R.id.Total);
+
+        D7.setText(LocalDate.now().format(dtf));
+        D6.setText(LocalDate.now().minusDays(1).format(dtf));
+        D5.setText(LocalDate.now().minusDays(2).format(dtf));
+        D4.setText(LocalDate.now().minusDays(3).format(dtf));
+        D3.setText(LocalDate.now().minusDays(4).format(dtf));
+        D2.setText(LocalDate.now().minusDays(5).format(dtf));
+        D1.setText(LocalDate.now().minusDays(6).format(dtf));
 
         // gets user's company name and user ref
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
@@ -92,6 +130,42 @@ public class ClockIn extends AppCompatActivity {
                     clock_out_btn.setEnabled(false);
                     clock_out_btn.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(int i = 0; i < 7; i++) {
+                    if (snapshot.child("timeWorked").child(LocalDate.now().minusDays(i).format(dtf)).exists()) {
+                        long daysTime = (long) snapshot.child("timeWorked").child(LocalDate.now().minusDays(i).format(dtf)).getValue();
+                        String daysTimeFormatted = TimeUnit.MILLISECONDS.toHours(daysTime) + ":" + String.format("%02d", TimeUnit.MILLISECONDS.toMinutes(daysTime) % 60);
+                        Hours.set(i, daysTimeFormatted);
+                        System.out.println(Hours.get(i));
+                    }
+                    else
+                    {
+                        String daysTimeFormatted = "00:00";
+                        Hours.set(i, daysTimeFormatted);
+                    }
+                }
+                String totalTimeFormatted = "00:00";
+                if (snapshot.child("timeWorked").child("Total").exists())
+                    totalTimeFormatted = TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()) + ":" + String.format("%02d",TimeUnit.MILLISECONDS.toHours((long) snapshot.child("timeWorked").child("Total").getValue()));
+
+                H1.setText(Hours.get(6));
+                H2.setText(Hours.get(5));
+                H3.setText(Hours.get(4));
+                H4.setText(Hours.get(3));
+                H5.setText(Hours.get(2));
+                H6.setText(Hours.get(1));
+                H7.setText(Hours.get(0));
+                Total.setText(totalTimeFormatted);
             }
 
             @Override
@@ -149,6 +223,9 @@ public class ClockIn extends AppCompatActivity {
         LocalDateTime clock = LocalDateTime.now();
         String end = clock.format(formatter);
 
+        String p = "MM-dd";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(p);
+
         HashMap map = new HashMap();
         map.put("clockOutTime", end);
         ref.updateChildren(map);
@@ -188,11 +265,11 @@ public class ClockIn extends AppCompatActivity {
                         ref.child("timeWorked").child("Total").setValue(newTotal);
 
                         // test if date is already used and at to daily total if so
-                        if(snapshot.child("timeWorked").child(LocalDate.now().toString()).getValue() != null) {
-                            long currentDaysWork = (long) snapshot.child("timeWorked").child(LocalDate.now().toString()).getValue();
-                            ref.child("timeWorked").child(LocalDate.now().toString()).setValue(currentDaysWork + timeInMillis);
+                        if(snapshot.child("timeWorked").child(LocalDate.now().format(dtf)).getValue() != null) {
+                            long currentDaysWork = (long) snapshot.child("timeWorked").child(LocalDate.now().format(dtf)).getValue();
+                            ref.child("timeWorked").child(LocalDate.now().format(dtf)).setValue(currentDaysWork + timeInMillis);
                         } else {
-                            ref.child("timeWorked").child(LocalDate.now().toString()).setValue(timeInMillis);
+                            ref.child("timeWorked").child(LocalDate.now().format(dtf)).setValue(timeInMillis);
                         }
 
 

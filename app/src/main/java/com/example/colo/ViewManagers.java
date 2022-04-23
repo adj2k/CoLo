@@ -70,6 +70,7 @@ public class ViewManagers extends AppCompatActivity {
                         if(!dataSnapshot.getKey().equals("Announcements")) {
                             if(dataSnapshot.child("role").getValue().equals("Manager")) {
                                 EmployeeList user = dataSnapshot.getValue(EmployeeList.class);
+                                user.setFirebaseId(dataSnapshot.getKey());
                                 list.add(user);
                             }
                         }

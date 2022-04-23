@@ -178,38 +178,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutActivityLog"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp"
-                app:layout_constraintEnd_toStartOf="@+id/layoutProjects"
-                app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutEmployees">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/activity_log_icon"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/activity_log_string"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/layoutSettings"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -218,9 +186,9 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintStart_toEndOf="@id/layoutEmployees"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layoutProjects">
 
                 <ImageView
@@ -228,31 +196,30 @@
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/settings_icon"/>
+                    android:src="@drawable/settings_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
                     android:text="@string/settings_string"
-                    android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/colorPrimary"
                     android:textSize="17sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/announcement_popup"
-                android:clickable="true"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/announcement_background"
+                android:clickable="true"
                 android:padding="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/layoutSettings"
+                app:layout_constraintEnd_toEndOf="@+id/layoutProjects"
                 app:layout_constraintStart_toStartOf="@id/layoutEmployees"
-                app:layout_constraintTop_toBottomOf="@+id/layoutActivityLog"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/layoutSettings">
 
                 <TextView
                     android:id="@+id/textLatestAnnouncement"
@@ -267,8 +234,7 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:layout_width="30dp"
@@ -278,8 +244,7 @@
                     android:tint="@color/colorWhite"
                     app:layout_constraintBottom_toBottomOf="@id/textLatestAnnouncement"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/textLatestAnnouncement"
-                    />
+                    app:layout_constraintTop_toTopOf="@id/textLatestAnnouncement" />
 
                 <TextView
                     android:id="@+id/announcement_title_text"
@@ -292,7 +257,7 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/textLatestAnnouncement"/>
+                    app:layout_constraintTop_toBottomOf="@id/textLatestAnnouncement" />
 
                 <TextView
                     android:id="@+id/announcement_description_text"
@@ -304,7 +269,7 @@
                     android:text="@string/announcement_description"
                     android:textColor="@color/colorWhite"
                     android:textSize="12sp"
-                    app:layout_constraintTop_toBottomOf="@id/announcement_title_text"/>
+                    app:layout_constraintTop_toBottomOf="@id/announcement_title_text" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

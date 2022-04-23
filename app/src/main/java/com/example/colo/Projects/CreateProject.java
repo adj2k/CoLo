@@ -108,6 +108,7 @@ public class CreateProject extends AppCompatActivity implements QuantityListener
         if(validateDesc() && validateName() && validateEmployees()){
             ref.child(name.getText().toString()).setValue(projectHelperClass);
             System.out.println("Pass Valid Check");
+            startActivity(new Intent(CreateProject.this, ManagerProjects.class));
             finish();
         }
 

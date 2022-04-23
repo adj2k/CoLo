@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/eName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimary"
+        android:text="EmployeeName"/>
+
+    <TextView
+        android:id="@+id/currentProject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="-112dp"
+        android:layout_toEndOf="@+id/eName"
+        android:padding="5dp"
+        android:text="CurrentProject"
+        android:textColor="@color/colorAccent" />
+
+    <TableLayout
+        android:layout_width="400dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <TextView
+                android:id="@+id/D1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00/00" />
+
+            <TextView
+                android:id="@+id/D2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00/00" />
+
+            <TextView
+                android:id="@+id/D3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00/00" />
+
+            <TextView
+                android:id="@+id/D4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00/00" />
+
+            <TextView
+                android:id="@+id/D5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00/00" />
+
+            <TextView
+                android:id="@+id/D6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00/00" />
+
+            <TextView
+                android:id="@+id/D7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00/00" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <TextView
+                android:id="@+id/H1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/H3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/H4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/H5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/H6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/H7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Total:" />
+
+            <TextView
+                android:id="@+id/Total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="00"
+                android:textAlignment="center" />
+
+
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

@@ -41,7 +41,7 @@ public class AdminHub extends AppCompatActivity
     //LinearLayout AnnouncementButton;
     LinearLayout ManagersButton;
     LinearLayout ProjectButton;
-    LinearLayout ActivityLogButton;
+    //LinearLayout ActivityLogButton;
     LinearLayout SettingsButton;
     ConstraintLayout AnnouncementButton;
 
@@ -59,7 +59,7 @@ public class AdminHub extends AppCompatActivity
 
         //LogoutButton = (Button) findViewById(R.id.LogOut_btn);
         EmployeeButton = findViewById(R.id.layoutEmployees_Admin);
-        ActivityLogButton = findViewById(R.id.layoutActivityLog_Admin);
+        //ActivityLogButton = findViewById(R.id.layoutActivityLog_Admin);
         ProjectButton = findViewById(R.id.layoutProjects_Admin);
         SettingsButton = findViewById(R.id.layoutSettings_Admin);
         screen_name = findViewById(R.id.textUsername_Admin);
@@ -112,7 +112,7 @@ public class AdminHub extends AppCompatActivity
         });
 
 
-        ActivityLogButton.setOnClickListener(new View.OnClickListener()
+        /*ActivityLogButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -120,7 +120,7 @@ public class AdminHub extends AppCompatActivity
                 // CHANGE TO ACTIVITY LOG CLASS
                 startActivity(new Intent(AdminHub.this, ManagerCreateAnnouncement.class));
             }
-        });
+        });*/
 
         AnnouncementButton.setOnClickListener(new View.OnClickListener()
         {
