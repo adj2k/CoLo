@@ -40,6 +40,7 @@ public class ViewEmployees extends AppCompatActivity {
     Dialog dialog;
     ImageView deleteEmployee;
     Button yes, cancel;
+    boolean firstRun = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class ViewEmployees extends AppCompatActivity {
 
         // Listens for data change in database and updates new entries to the list
 
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -73,12 +74,25 @@ public class ViewEmployees extends AppCompatActivity {
                             if(dataSnapshot.child("role").getValue().equals("Employee")) {
                                 EmployeeList user = dataSnapshot.getValue(EmployeeList.class);
                                 user.setFirebaseId(dataSnapshot.getKey());
+
+                                // see if user is currently clocked in
+                                user.setClockStatus(dataSnapshot.child("clockInTime").exists());
+
                                 list.add(user);
                             }
                         }
                     }
                 }
                 myAdapter.notifyDataSetChanged();
+                // update list after editing of info
+                if (!firstRun) {
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(getIntent());
+                    overridePendingTransition(0, 0);
+                } else {
+                    firstRun = false;
+                }
 
             }
             @Override

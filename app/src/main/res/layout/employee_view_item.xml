@@ -8,7 +8,6 @@
     android:layout_margin="16dp">
 
     <LinearLayout
-        android:id="@+id/displayTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -96,10 +95,10 @@
         android:layout_marginTop="20dp">
 
         <ImageView
-            android:id="@+id/employeeEditButton"
+            android:id="@+id/displayTime"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_edit"
+            android:src="@drawable/clock_3_24"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             >

@@ -1,12 +1,19 @@
 package com.example.colo.ViewEmployeesFolder;
 
 import android.content.Context;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+
+import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +38,7 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
     // RecyclerView is used to generate a scrollable list of data, "recycling" the same item layout
     // In this case, the item layout is res/layout/announcement_view.xml
 
+    ImageView displayTime;
     Context context;
     ArrayList<EmployeeList> list;
     DatabaseReference ref;
@@ -58,6 +66,10 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
         holder.position = position;
         holder.context = this.context;
         holder.list = this.list;
+
+        if(employee.getRole().equals("Manager"))
+            holder.displayTime.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -68,6 +80,7 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         // Here we setup the variables to assign to the different textItems in the announcement_item.xml
         TextView name, ID, email;
+        ImageView displayTime;
         int position;
         ArrayList<EmployeeList> list;
         Context context;
@@ -79,44 +92,80 @@ public class ViewEmployeeAdapter extends RecyclerView.Adapter<ViewEmployeeAdapte
             name = itemView.findViewById(R.id.employeeNameText);
             ID = itemView.findViewById(R.id.employeeIDtext);
             email = itemView.findViewById(R.id.employeeEmailtext);
+            displayTime = itemView.findViewById(R.id.displayTime);
 
-
+            // Remove Employee/ Manager from database
             itemView.findViewById(R.id.employeeDeleteButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //TODO Make dialog to as if sure to remove manager/employee
+                    // set up ref for selected employee
                     ref = FirebaseDatabase.getInstance().getReference("Companies/" +
-                                                                        list.get(position).getCompanyName() + '/' +
-                                                                        list.get(position).getFirebaseId());
-                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            list.get(position).getCompanyName() + '/' +
+                            list.get(position).getFirebaseId());
+
+                    // creating Yes/No dialog
+                    DialogInterface.OnClickListener dialogClockListener = new DialogInterface.OnClickListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            snapshot.getRef().removeValue();
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            switch (i) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            snapshot.getRef().removeValue();
 
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    // closes dialog
+                                    break;
+                            }
                         }
+                    };
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setMessage("Are you sure?").setNegativeButton("No", dialogClockListener)
+                            .setPositiveButton("Yes", dialogClockListener).show();
 
-                        }
-                    });
+
+
                 }
             });
 
+            /* edit info for selected
             itemView.findViewById(R.id.employeeEditButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    System.out.println(list.get(position).getFirebaseId());
+                    ref = FirebaseDatabase.getInstance().getReference("Companies/" +
+                            list.get(position).getCompanyName() + '/' +
+                            list.get(position).getFirebaseId());
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setTitle("Edit User Info");
+
+                    final EditText userName = new EditText(view.getContext());
                 }
             });
+            */
+
+            // Attempting to hide image if not employee
+
 
             // displays employee's timesheet
-            itemView.findViewById(R.id.displayTime).setOnClickListener(new View.OnClickListener() {
+            displayTime.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View view) {
                     if(list.get(position).getRole().equals("Employee")) {
-                        ShowTimesDialog showTimesDialog = new ShowTimesDialog(list.get(position).getFirebaseId(), list.get(position).getCompanyName());
+                        ShowTimesDialog showTimesDialog = new ShowTimesDialog(list.get(position).getFirebaseId(), list.get(position).getCompanyName(), list.get(position).getClockStatus());
                         showTimesDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "TEST");
                     }
                 }

@@ -38,6 +38,7 @@ public class ViewManagers extends AppCompatActivity {
     Dialog dialog;
     ImageView deleteEmployee;
     Button yes, cancel;
+    boolean firstRun = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,15 @@ public class ViewManagers extends AppCompatActivity {
                     }
                 }
                 myAdapter.notifyDataSetChanged();
-
+                // update list after editing of info
+                if (!firstRun) {
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(getIntent());
+                    overridePendingTransition(0, 0);
+                } else {
+                    firstRun = false;
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
