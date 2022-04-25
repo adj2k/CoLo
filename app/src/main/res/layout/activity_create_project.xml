@@ -111,8 +111,8 @@
             android:id="@+id/get_project_desc"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:hint="Enter Project Description"
-            android:background="@color/white"/>
+            android:background="@color/white"
+            android:hint="Enter Project Description" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView

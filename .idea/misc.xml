@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.11296296296296296" />
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/drawable/splash_image.xml" value="0.1095" />
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/activity_employee_hub.xml" value="0.1852355072463768" />
         <entry key="..\:/Users/MichaelH/AndroidStudioProjects/CoLo/app/src/main/res/layout/activity_employee_log.xml" value="0.275" />
@@ -50,7 +51,14 @@
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/layout/settings_page.xml" value="0.17882472137791286" />
         <entry key="..\:/Users/desktop/StudioProjects/CoLo/app/src/main/res/menu/navigation_menu.xml" value="0.36770833333333336" />
         <entry key="app/src/main/res/layout/activity_create_account_manager.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/activity_create_project.xml" value="0.1609375" />
+        <entry key="app/src/main/res/layout/activity_manager_projects.xml" value="0.1609375" />
+        <entry key="app/src/main/res/layout/activity_view_employees.xml" value="0.16302083333333334" />
+        <entry key="app/src/main/res/layout/activity_view_managers.xml" value="0.1609375" />
+        <entry key="app/src/main/res/layout/employee_check_list.xml" value="0.1609375" />
+        <entry key="app/src/main/res/layout/employee_view_item.xml" value="0.165" />
         <entry key="app/src/main/res/layout/onetime_popup.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/layout/project_item.xml" value="0.25" />
       </map>
     </option>
   </component>

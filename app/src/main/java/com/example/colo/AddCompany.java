@@ -138,6 +138,8 @@ public class AddCompany extends AppCompatActivity
                                 Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_LONG).show();
                                 Log.d(TAG, "createUserWithEmail:success");
 //                                      FirebaseDatabase.getInstance().getReference("Employees "+uidpath);
+
+//                                FirebaseDatabase.getInstance().getReference("Companies").child(companyName);
                                 FirebaseDatabase.getInstance().getReference("Companies").child(companyName).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(adminHelperClass);
                             } else
@@ -148,7 +150,8 @@ public class AddCompany extends AppCompatActivity
                             }
                         }
                     });
-                    startActivity(new Intent(AddCompany.this, MainActivity.class));
+//                    startActivity(new Intent(AddCompany.this, MainActivity.class));
+                    finish();
                 }
             }
         });
