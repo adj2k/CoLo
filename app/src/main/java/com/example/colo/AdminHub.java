@@ -154,7 +154,7 @@ public class AdminHub extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent(AdminHub.this, ManagerProjects.class));
+                startActivity(new Intent(AdminHub.this, adminSettingsPage.class));
             }
         });
 

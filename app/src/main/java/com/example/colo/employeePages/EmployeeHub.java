@@ -24,6 +24,7 @@ import com.example.colo.GlobalCompanyName;
 import com.example.colo.LogIn;
 import com.example.colo.Projects.EmployeeProjects;
 import com.example.colo.R;
+import com.example.colo.SettingsPage;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +40,7 @@ public class EmployeeHub extends AppCompatActivity
     LinearLayout clock_in_out,e_projects_btn,e_settings_btn, layoutActivityLog;
     ConstraintLayout e_ann_btn;
     ImageView emp_logout;
+    LinearLayout settingsButton;
 
     private DatabaseReference ann_ref;
     TextView hello_name, ann_title, ann_desc;
@@ -62,6 +64,7 @@ public class EmployeeHub extends AppCompatActivity
         e_projects_btn = findViewById(R.id.e_projects_btn);
         ann_title = findViewById(R.id.ann_title);
         ann_desc = findViewById(R.id.ann_desc);
+        settingsButton = findViewById(R.id.e_settings_btn);
         //layoutActivityLog = findViewById(R.id.layoutActivityLog);
 
         eAuth = FirebaseAuth.getInstance();
@@ -276,6 +279,16 @@ public class EmployeeHub extends AppCompatActivity
             }
         });
 
+        settingsButton.setOnClickListener(new View.OnClickListener()
+        {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(EmployeeHub.this, SettingsPage.class));
+            }
+        });
+
  /*       layoutActivityLog.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -284,5 +297,6 @@ public class EmployeeHub extends AppCompatActivity
                 startActivity(new Intent(EmployeeHub.this, EmployeeActivityLog.class));
             }
         });*/
+
     }
 }
