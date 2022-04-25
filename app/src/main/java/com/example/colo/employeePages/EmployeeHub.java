@@ -184,6 +184,7 @@ public class EmployeeHub extends AppCompatActivity
                                                                 //Dismiss once everything is OK.
                                                                 user.updatePassword(updatePassword);
                                                                 dialog.dismiss();
+                                                                startActivity(new Intent(EmployeeHub.this, EmployeeHub.class));
                                                             }
                                                         }
 
