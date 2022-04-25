@@ -179,11 +179,12 @@ public class EmployeeHub extends AppCompatActivity
                                                                 ConfirmUpdatePassword.setError("The passwords do not match");
                                                             } else
                                                             {
-                                                                reference.child("password").setValue(updatePassword);
                                                                 reference.child("oneTimePassword").setValue(false);
+                                                                reference.child("password").setValue(updatePassword);
                                                                 //Dismiss once everything is OK.
                                                                 user.updatePassword(updatePassword);
                                                                 dialog.dismiss();
+                                                                //startActivity(new Intent(EmployeeHub.this, EmployeeHub.class));
                                                             }
                                                         }
 

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.colo.ViewEmployeesFolder.EmployeeList;
 import com.example.colo.ViewEmployeesFolder.ViewEmployeeAdapter;
+import com.example.colo.employeePages.EmployeeHub;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -79,6 +80,7 @@ public class ViewManagers extends AppCompatActivity {
                 }
                 myAdapter.notifyDataSetChanged();
                 // update list after editing of info
+                /*
                 if (!firstRun) {
                     finish();
                     overridePendingTransition(0, 0);
@@ -86,7 +88,7 @@ public class ViewManagers extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                 } else {
                     firstRun = false;
-                }
+                }*/
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
