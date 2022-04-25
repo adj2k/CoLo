@@ -130,14 +130,10 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 String UID = "sxTQNUVXjCNftdNt9OGuuvS2FJC2";
-                openDialog(UID);
+
             }
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void openDialog(String UID) {
-        ShowTimesDialog showTimesDialog = new ShowTimesDialog(UID, "Facebook");
-        showTimesDialog.show(getSupportFragmentManager(),"TEST");
-    }
+
 }

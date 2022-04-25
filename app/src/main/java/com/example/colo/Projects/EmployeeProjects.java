@@ -151,6 +151,7 @@ public class EmployeeProjects extends AppCompatActivity implements ManagerProjec
 
                             }
                         });
+                        // refreshes page
                         finish();
                         overridePendingTransition(0, 0);
                         startActivity(getIntent());

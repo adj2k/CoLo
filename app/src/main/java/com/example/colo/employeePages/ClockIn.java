@@ -219,7 +219,6 @@ public class ClockIn extends AppCompatActivity {
         display.show();
         clock_in_btn.setEnabled(false);
         clock_out_btn.setEnabled(true);
-        System.out.println(companyNameRef);
         finish();
     }
 
@@ -305,7 +304,6 @@ public class ClockIn extends AppCompatActivity {
 
         clock_out_btn.setEnabled(false);
         clock_in_btn.setEnabled(true);
-        System.out.println(companyNameRef);
         finish();
     }
 
