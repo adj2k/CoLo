@@ -38,7 +38,7 @@ public class ManagerProjectAdapter extends RecyclerView.Adapter<ManagerProjectAd
         ProjectData data = list.get(position);
         holder.pName.setText(data.getpName());
         holder.pDescription.setText(data.getpDescription());
-        //holder.employees.setText(data.getEmployees());
+        holder.pEmployee.setText((CharSequence) data.getpEmployee());
 
     }
 
@@ -49,7 +49,7 @@ public class ManagerProjectAdapter extends RecyclerView.Adapter<ManagerProjectAd
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView pName, pDescription, employees;
+        TextView pName, pDescription, pEmployee;
         OnNoteListener onNoteListener;
 
 
@@ -57,7 +57,9 @@ public class ManagerProjectAdapter extends RecyclerView.Adapter<ManagerProjectAd
             super(itemView);
 
             pName = itemView.findViewById(R.id.pName);
-            pDescription = itemView.findViewById(R.id.pDescription);
+            pDescription = itemView.findViewById(R.id.descriptionText);
+            pEmployee = itemView.findViewById(R.id.currentEmployeeText);
+
             this.onNoteListener = onNoteListener;
             //employees = itemView.findViewById(R.id.employees);
 

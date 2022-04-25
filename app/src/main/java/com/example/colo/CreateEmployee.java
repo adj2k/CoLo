@@ -38,11 +38,11 @@ public class CreateEmployee extends AppCompatActivity
 
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth,mAuthEm;
     private static final String EMPLOYEE = "Employee";
     private static final String TAG = "CreateAccount";
     private UserHelperClass userHelperClass;
-    private String CompanyName = "";
+    private String CompanyName,originalEmail,originalPassword = "";
 
 
     @Override
@@ -64,11 +64,14 @@ public class CreateEmployee extends AppCompatActivity
         RadioGroupGender = (RadioGroup) findViewById(R.id.RadioGroupGender);
         RadioButtonGender = (RadioButton) findViewById(R.id.rbNoAnswer);
         CompanyName = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
+        originalEmail = ((GlobalCompanyName) this.getApplication()).getloginEmail();
+        originalPassword = ((GlobalCompanyName) this.getApplication()).getloginPassword();
 
 
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference(EMPLOYEE);
         mAuth = FirebaseAuth.getInstance();
+        mAuthEm = FirebaseAuth.getInstance();
 
 
         //Date of Birth Button
@@ -121,7 +124,7 @@ public class CreateEmployee extends AppCompatActivity
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
                     userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null, true);
-                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                    mAuthEm.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
                     {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task)
@@ -138,6 +141,23 @@ public class CreateEmployee extends AppCompatActivity
                                     {
                                         // If sign in fails, display a message to the user.
                                         Toast.makeText(CreateEmployee.this, "Authentication failed.", Toast.LENGTH_LONG).show();
+
+                                    }
+                                }
+                            });
+                    mAuthEm.signOut();
+                    mAuth.signInWithEmailAndPassword(originalEmail, originalPassword)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+
+
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
 
                                     }
                                 }
@@ -249,7 +269,6 @@ public class CreateEmployee extends AppCompatActivity
         {
             VerifyPassword.setError("Field can not be empty");
             return false;
-
         } else if (!(Password.getText().toString().equals(VerifyPassword.getText().toString())))
         {
             VerifyPassword.setError("The passwords do not match");

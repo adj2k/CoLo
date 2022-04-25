@@ -201,16 +201,22 @@ public class LogIn extends AppCompatActivity
                                                             //if the role is equal to Admin and their company matches the one in the database, send the user to the admin hub
                                                             if (checkRole.equals("Admin"))
                                                             {
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setloginEmail(email);
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setloginPassword(password);
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, AdminHub.class));
                                                                 //if the role is equal to Manager and their company matches the one in the database, send the user to the manager hub
                                                             } else if (checkRole.equals("Manager"))
                                                             {
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setloginEmail(email);
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setloginPassword(password);
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, ManagerHub.class));
                                                                 //if the role is equal to Employee and their company matches the one in the database, send the user to the employee hub
                                                             } else if (checkRole.equals("Employee"))
                                                             {
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setloginEmail(email);
+                                                                ((GlobalCompanyName) LogIn.super.getApplication()).setloginPassword(password);
                                                                 ((GlobalCompanyName) LogIn.super.getApplication()).setGlobalCompanyName(company);
                                                                 startActivity(new Intent(LogIn.this, EmployeeHub.class));
                                                             }

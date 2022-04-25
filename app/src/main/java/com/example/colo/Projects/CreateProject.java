@@ -9,15 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.colo.GlobalCompanyName;
 import com.example.colo.R;
-import com.example.colo.UserHelperClass;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,12 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CreateProject extends AppCompatActivity implements QuantityListener {
 
     EditText name, description;
-    private ConstraintLayout create_project_btn;
+    private LinearLayout create_project_btn;
     private String companyName = "";
     ProjectHelperClass projectHelperClass;
 
@@ -86,7 +82,7 @@ public class CreateProject extends AppCompatActivity implements QuantityListener
 
         setRecyclerView();
 
-        create_project_btn = (ConstraintLayout) findViewById(R.id.layoutHeader_projects);
+        create_project_btn = findViewById(R.id.createProject);
         create_project_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { addProject();}
