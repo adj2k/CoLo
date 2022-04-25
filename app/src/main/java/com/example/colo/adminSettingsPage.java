@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,7 +53,7 @@ public class adminSettingsPage extends AppCompatActivity {
 
         EmployeeID = (TextView) findViewById(R.id.showEmployeeID);
         DOB = (TextView) findViewById(R.id.showEmployeeDOB);
-        Name = (TextView) findViewById(R.id.showEmployeeFullName);
+        Name = (EditText) findViewById(R.id.etAdminName);
         Email = (EditText) findViewById(R.id.etEmployeeEmail);
         SaveNameButton = (Button) findViewById(R.id.saveAdminName);
         SaveEmailButton = (Button) findViewById(R.id.saveAdminEmail);
@@ -62,6 +64,7 @@ public class adminSettingsPage extends AppCompatActivity {
         hint_email = (TextInputLayout) findViewById(R.id.showAdminEmail);
         CompanyText = (TextView) findViewById(R.id.showCompany);
         EmployeeIDText = (TextView) findViewById(R.id.showEmployeeID);
+
 
 
         companyNameRef = ((GlobalCompanyName) this.getApplication()).getGlobalCompanyName();
@@ -140,10 +143,9 @@ public class adminSettingsPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = Name.getText().toString();
-
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child(UID);
                 if (validateName()) {
-                    // TODO: UPDATE Name HERE TO DATABASE
-
+                    ref.child("name").setValue(name);
                 }
             }
         });
@@ -152,11 +154,19 @@ public class adminSettingsPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email = Email.getText().toString();
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Companies/" + companyNameRef).child(UID);
                 if (validateEmail()) {
-                    // TODO: UPDATE Name HERE TO DATABASE
-
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    ref.child("email").setValue(email);
+                    user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Email Changed!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
-
             }
 
         });
@@ -164,7 +174,6 @@ public class adminSettingsPage extends AppCompatActivity {
         ResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Use toast to say password reset email sent, doesn't need actual functionality
                 Context message = getApplicationContext();
                 CharSequence text = "Password reset email sent";
                 int duration = Toast.LENGTH_SHORT;
@@ -176,8 +185,6 @@ public class adminSettingsPage extends AppCompatActivity {
         SignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Make them sign out
-                // Took it from main page idk if it can still work like that
                 mAuth.signOut();
                 startActivity(new Intent(adminSettingsPage.this, LogIn.class));
             }
@@ -187,6 +194,7 @@ public class adminSettingsPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Delete Company from DB
+                Toast.makeText(getApplicationContext(), "Please verify via Email company deletion!", Toast.LENGTH_SHORT).show();
             }
         });
     }
