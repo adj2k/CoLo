@@ -85,6 +85,7 @@ public class ViewEmployees extends AppCompatActivity {
                 }
                 myAdapter.notifyDataSetChanged();
                 // update list after editing of info
+                /*
                 if (!firstRun) {
                     finish();
                     overridePendingTransition(0, 0);
@@ -92,7 +93,7 @@ public class ViewEmployees extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                 } else {
                     firstRun = false;
-                }
+                }*/
 
             }
             @Override
