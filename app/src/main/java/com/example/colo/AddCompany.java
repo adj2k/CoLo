@@ -126,7 +126,7 @@ public class AddCompany extends AppCompatActivity
 
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
-                    adminHelperClass = new AdminHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null);
+                    adminHelperClass = new AdminHelperClass(companyName, name, email, userName, "", employeeID, dateText, gender, role, null, null);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
                     {
                         @Override

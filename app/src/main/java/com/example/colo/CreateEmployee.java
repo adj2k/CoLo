@@ -123,7 +123,7 @@ public class CreateEmployee extends AppCompatActivity
 
                 if (validateName() & validateEmail() & validateUserName() & validatePassword() & validateVerificationPassword() & validateID() & validateDate() & validateGender())
                 {
-                    userHelperClass = new UserHelperClass(companyName, name, email, userName, password, employeeID, dateText, gender, role, null, null, true);
+                    userHelperClass = new UserHelperClass(companyName, name, email, userName, "", employeeID, dateText, gender, role, null, null, true);
                     mAuthEm.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
                     {
                         @Override

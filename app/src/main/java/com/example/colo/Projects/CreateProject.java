@@ -65,9 +65,11 @@ public class CreateProject extends AppCompatActivity implements QuantityListener
                     // used to make sure PROJECTS and maybe ANNOUNCEMENTS are not posted to list
                     if(!dataSnapshot.getKey().equals("Projects") ) {
                         if(!dataSnapshot.getKey().equals("Announcements")) {
-                            ManagerProjectListEmployeeData user = dataSnapshot.getValue(ManagerProjectListEmployeeData.class);
-                            list.add(user);
-                            EmployeeUIDS.add(dataSnapshot.getKey());
+                            if(dataSnapshot.child("role").getValue().equals("Employee")) {
+                                ManagerProjectListEmployeeData user = dataSnapshot.getValue(ManagerProjectListEmployeeData.class);
+                                list.add(user);
+                                EmployeeUIDS.add(dataSnapshot.getKey());
+                            }
                         }
                     }
                 }

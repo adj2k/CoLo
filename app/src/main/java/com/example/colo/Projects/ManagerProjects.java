@@ -57,6 +57,7 @@ public class ManagerProjects extends AppCompatActivity implements ManagerProject
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     ProjectData data = dataSnapshot.getValue(ProjectData.class);
                     System.out.println(data.toString());
                     list.add(data);

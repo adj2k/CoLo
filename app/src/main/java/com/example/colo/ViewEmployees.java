@@ -63,7 +63,7 @@ public class ViewEmployees extends AppCompatActivity {
 
         // Listens for data change in database and updates new entries to the list
 
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -109,6 +109,7 @@ public class ViewEmployees extends AppCompatActivity {
             {
                 // CHANGE TO ACTIVITY LOG CLASS
                 startActivity(new Intent(ViewEmployees.this, com.example.colo.CreateEmployee.class));
+                
             }
         });
 

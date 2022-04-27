@@ -62,7 +62,7 @@ public class ViewManagers extends AppCompatActivity {
 
         // Listens for data change in database and updates new entries to the list
 
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
