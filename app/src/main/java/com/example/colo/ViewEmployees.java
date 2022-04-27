@@ -63,10 +63,10 @@ public class ViewEmployees extends AppCompatActivity {
 
         // Listens for data change in database and updates new entries to the list
 
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                list.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     // used to make sure PROJECTS and maybe ANNOUNCEMENTS are not posted to list
                     if(!dataSnapshot.getKey().equals("Projects") ) {
